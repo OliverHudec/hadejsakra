@@ -40,6 +40,10 @@
     box-shadow: 0 24px 55px rgba(0, 0, 0, 0.36);
 }
 
+#herniMody .herniMod.popup-open {
+    transform: none;
+}
+
 #herniMody #celaCR {
     grid-area: celaCR;
 }
@@ -351,17 +355,18 @@ input:checked + .switch-round:before {
 }
 
 .popup-content {
-    position: fixed;
+    position: relative;
     background: linear-gradient(150deg, #12262e, #0b171c);
-    width: 800px;
+    width: min(800px, calc(100vw - 32px));
     padding: 20px;
+    box-sizing: border-box;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow-y: auto;
 
     /*top: 50px;*/
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 32px);
 
     transform: scale(0);
     transition: 0.4s;
@@ -376,7 +381,7 @@ input:checked + .switch-round:before {
     width: 26px;
 }
 
-#btn-close {
+.btn-close {
     color: var(--text);
     font-size: 26px;
     text-align: center;
@@ -390,7 +395,7 @@ input:checked + .switch-round:before {
     transition: 0.5s ease;
 }
 
-#btn-close:hover {
+.btn-close:hover {
     color: #fff;
 }
 

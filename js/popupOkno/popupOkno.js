@@ -4,7 +4,10 @@
 // ZOBRAZENÍ/SKRYTÍ PŘÍSLUŠNÉHO POPUP OKNA
 function togglePopup(btn, popup, closeBtn)
 {
+    const herniMod = btn.closest(".herniMod");
+
     btn.addEventListener("click", function() {
+        herniMod.classList.add("popup-open");
         popup.style.opacity = 1;
         popup.style.zIndex = 9999;
         popup.style.pointerEvents = "auto";
@@ -13,6 +16,7 @@ function togglePopup(btn, popup, closeBtn)
     });
 
     closeBtn.addEventListener("click", function() {
+        herniMod.classList.remove("popup-open");
         popup.style.opacity = 0;
         popup.style.zIndex = -9999;
         popup.style.pointerEvents = "none";
@@ -23,6 +27,7 @@ function togglePopup(btn, popup, closeBtn)
     popup.addEventListener("click", function(event) {
         if (event.target === popup && event.target !== btn)
         {
+            herniMod.classList.remove("popup-open");
             popup.style.opacity = 0;
             popup.style.zIndex = -9999;
             popup.style.pointerEvents = "none";
