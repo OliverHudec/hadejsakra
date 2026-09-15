@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="cs-cz">
+    <head>
+        <script type="text/javascript" src="js/beamAnalytics.js" async></script>
+        <script type="text/javascript" data-goatcounter="https://stats.hadejkde.cz/count" src="js/goatCounter.js" async></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Česká obdoba hry GeoGuessr">
+        <meta name="author" content="Martin Hruboš">
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="https://hadejkde.cz/info">
+
+        <title>Hádej kde - Český GeoGuessr</title>
+
+        <link rel="icon" type="image/png" href="img/loga/logo.png">
+        <link rel="stylesheet" href="css/fonty.css" type="text/css">
+        <link rel="stylesheet" href="css/styly.css" type="text/css">
+        <link rel="stylesheet" href="css/menu.css" type="text/css">
+        <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobil.css">
+
+        <!-- Google emoji -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header class="navigation">
+            <div class="navigation-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/loga/logo bod.png" alt="logo hry">
+                        <span class="logo-name">Hádej kde</span>
+                    </a>
+                </div>
+
+                <ul class="nav-list">
+                    <li>
+                        <a href="info.html">
+                            <span class="links-name">O hře</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="napoveda.html">
+                            <span class="links-name">Nápověda</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="kontakt.html">
+                            <span class="links-name">Kontakt</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <article class="home-section">
+            <div class="text">
+                <section>
+                    <h2>O HŘE</h2>
+                    <p><strong>Hádej kde</strong>&#32;je bezplatná česká <a href="https://github.com/Heshtor/hadejkde.cz" target="_blank" rel="noopener noreferrer nofollow noindex">open source</a>&#32;zeměpisná alternativní hra k známé online hře <a href="https://www.geoguessr.com/" target="_blank" rel="noopener noreferrer nofollow noindex">GeoGuessr</a>.</p>
+                    <p>&nbsp;</p>
+                    <p>Hra primárně využívá panoramata <i>(poslední snímkování probíhalo v letech 2021 až 2023)</i>, mapové dlaždice, našeptávač míst a další mapové funkce od společnosti Seznam prostřednictvím jejich <a href="https://developer.mapy.com/rest-api/" target="_blank" rel="noopener noreferrer nofollow noindex">REST&nbsp;API&nbsp;Mapy.com</a>&#32;a <a href="https://developer.mapy.com/js-panorama/" target="_blank" rel="noopener noreferrer nofollow noindex">JS&nbsp;Panorama</a>, a také knihovnu <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer nofollow noindex">Leaflet</a>&#32;pro zobrazení mapy a veškerou práci s ní.</p>
+                    <p>&nbsp;</p>
+                    <p>Hru si můžeš jakkoliv ztížit či zjednodušit pomocí spousty nastavení, které si navolíš bezprostředně před zahájením tvého hádání po České republice.</p>
+                    <p>&nbsp;</p>
+                    <p>Hra není optimalizována pro mobilní zařízení z důvodu ne moc dobrého ovládání.</p>
+                    <p>&nbsp;</p>
+                    <p>Jelikož hra využívá zvýhodněný tarif REST API Mapy.cz, který nabízí 10 000 000 kreditů měsíčně zdarma, tak po spotřebování všech těchto kreditů nebude hra funkční a budeš muset počkat na začátek dalšího měsíce, kdy se tyto kredity znovu obnoví.</p>
+                    <p>&nbsp;</p>
+                    <p>Hra zpřístupněna veřejnosti na začátku července 2023 na již zastaralé knihovně JS SDK Mapy.cz.</p>
+                    <p>Na začátku července 2024 byla hra kompletně předělána na nové REST API Mapy.cz a JS Panorama společně s mapovou knihovnou Leaflet.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <h3>Web využívá:</h3>
+                    <p>Panoramata, mapové dlaždice, našeptávač míst a další mapové funkce - <a href="https://developer.mapy.com/" target="_blank" rel="noopener noreferrer nofollow noindex">REST&nbsp;API&nbsp;Mapy.com&nbsp;a&nbsp;JS&nbsp;Panorama</a></p>
+                    <p>Mapovou knihovnu - <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer nofollow noindex">Leaflet</a></p>
+                    <p>Leaflet rozšíření pro zjištění, zdali se bod nachází uvnitř polygonu - <a href="https://github.com/hayeswise/Leaflet.PointInPolygon" target="_blank" rel="noopener noreferrer nofollow noindex">Leaflet.PointInPolygon</a></p>
+                    <p>SVG mapu České republiky - <a href="https://simplemaps.com/resources/svg-cz" target="_blank" rel="noopener noreferrer nofollow noindex">SimpleMaps</a></p>
+                    <p>Vzorce pro výpočet vzdálenosti, směru a zeměpisných souřadnic - <a href="https://www.movable-type.co.uk/scripts/latlong.html" target="_blank" rel="noopener noreferrer nofollow noindex">Movable&nbsp;Type&nbsp;Ltd</a></p>
+                    <p>Zeměpisná data <i>(souřadnice míst v herním módu Specifická místa v ČR)</i>&#32;- <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer nofollow noindex">OpenStreetMap</a></p>
+                    <p>Webové technologie HTML, CSS a JS</p>
+                    <p>Ukládání dat <i>(statistiky, historie her)</i>&#32;do lokálního uložiště prohlížeče</p>
+                    <p>Webovou analytiku - <a href="https://beamanalytics.io/" target="_blank" rel="noopener noreferrer nofollow noindex">Beam&nbsp;Analytics</a>&#32;a <a href="https://www.goatcounter.com/" target="_blank" rel="noopener noreferrer nofollow noindex">GoatCounter</a></p>
+                </section>
+            </div>
+        </article>
+
+
+        <footer>
+            <p class="footer-text">Copyright &copy; 2023 <span id="aktualni-rok"></span> <a href="https://martinhrubos.cz/" target="_blank">martinhrubos.cz</a></p>
+        </footer>
+
+        <!-- SKRIPTY -->
+        <script src="js/footer.js"></script>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="cs-cz">
+    <head>
+        <script type="text/javascript" src="js/beamAnalytics.js" async></script>
+        <script type="text/javascript" data-goatcounter="https://stats.hadejkde.cz/count" src="js/goatCounter.js" async></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Česká obdoba hry GeoGuessr">
+        <meta name="author" content="Martin Hruboš">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="canonical" href="https://hadejkde.cz/hra">
+
+        <title>Hádej kde - Český GeoGuessr</title>
+
+        <link rel="icon" type="image/png" href="img/loga/logo.png">
+        <link rel="stylesheet" href="css/fonty.css" type="text/css">
+        <link rel="stylesheet" href="css/styly.css" type="text/css">
+        <link rel="stylesheet" href="css/menu-hra.css" type="text/css">
+        <link rel="stylesheet" href="css/mapa.css" type="text/css">
+
+        <!-- FontAwesome CDN Link -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+
+        <!-- Google emoji -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+        
+        <!-- Mapy.cz JS Panorama -->
+        <script type="text/javascript" src='https://api.mapy.com/js/panorama/v1/panorama.js'></script>
+
+        <!-- Leaflet CDN Link -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+        <!-- Leaflet.PointInPolygon CDN Link -->
+        <script src="https://cdn.jsdelivr.net/gh/hayeswise/Leaflet.PointInPolygon@v1.0.0/wise-leaflet-pip.js"></script>
+
+        <!-- RequireJS CDN Link -->
+        <!-- <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script> -->
+    </head>
+
+    <body>
+        <div id="cerveneOkraje"></div>
+
+        <header class="navigation">
+            <div class="navigation-content">
+                <ul class="game-info">
+                    <li class="skore">
+                        <span id="celkove-skore">CELKOVÉ SKÓRE: 0</span>
+                    </li>
+                    <li class="cas">
+                        <span id="casomira"></span>
+                    </li>
+                    <li class="mod-kolo">
+                        <span id="mod">MÓD: mód</span>
+                        <span id="kolo">KOLO: 1/20</span>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <article>
+            <div>
+                <div class="panorama-kontejner">
+                    <div class="panorama"></div>
+                    <div class="loading">
+                        <div class="kolecko"></div>
+                        <p id="loadingText">NAČÍTÁM PANORAMA, POČKEJ PROSÍM.</p>
+                    </div>
+                </div>
+
+                <div id="mapa-parent">
+                    <div id="mapa-kontejner">
+                        <div id="mapa"></div>
+
+                        <button type="button" id="btnPotvrdit" tabindex="-1">POTVRDIT</button>
+
+                        <div id="neniOdhadBod">NEBYL OZNAČEN ODHAD BOD!</div>
+
+                        <div id="napovedy">
+                            <button type="button" id="vzdalenostHelp" class="napoveda" title="Vzdálenost - klávesa 1" tabindex="-1">
+                                <img src="img/napovedy/vzdalenost.png" alt="vzdálenost">
+                            </button>
+            
+                            <button type="button" id="smerHelp" class="napoveda" title="Směr - klávesa 2" tabindex="-1">
+                                <img src="img/napovedy/smer.png" alt="směr">
+                            </button>
+            
+                            <button type="button" id="kruhHelp" class="napoveda" title="Kruh - klávesa 3" tabindex="-1">
+                                <img src="img/napovedy/kruh.png" alt="kruh">
+                            </button>
+                        </div>
+
+                        <div id="velikosti">
+                            <button type="button" id="zvetsitVelikost" class="velikost" tabindex="-1">
+                                <i class="fa-solid fa-arrow-up-long" style="transform: rotate(315deg)"></i>
+                            </button>
+            
+                            <button type="button" id="zmensitVelikost" class="velikost" tabindex="-1">
+                                <i class="fa-solid fa-arrow-up-long" style="transform: rotate(135deg)"></i>
+                            </button>
+            
+                            <button type="button" id="pinVelikost" class="velikost" tabindex="-1">
+                                <i class="fa-solid fa-thumbtack fa-rotate-90"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="resetPanorama" tabindex="-1">RESET</button>
+                <button type="button" id="zvuk" tabindex="-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+        </article>
+
+
+        <!-- SKRIPTY -->
+        <script type="text/javascript" src="js/mapy-config.js"></script>
+        <script type="text/javascript" src="js/hra/nastaveni.js"></script>
+        
+        <script type="text/javascript" src="js/hra/casovac.js"></script>
+        <script type="text/javascript" src="js/hra/mapa.js"></script>
+        <script type="text/javascript" src="js/hra/panorama.js"></script>
+    </body>
+</html>

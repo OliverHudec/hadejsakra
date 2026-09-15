@@ -1,0 +1,81 @@
+#herniMody .herniMody-grid {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+    'celaCR'
+    'krajeCR'
+    'vlastniMisto'
+    'specifickaMista';
+
+    row-gap: 18px;
+}
+
+#statistiky .grid {
+    grid-template-columns: 1fr;
+}
+
+#historie .radkyExport {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup-content {
+    width: 100%;
+}
+
+.popup-content span,
+.popup-content p {
+    font-size: 16px;
+}
+
+.table-wrapper {
+    flex-direction: column;
+}
+
+.switch {
+    width: 56px;
+}
+
+
+
+body {
+    /* PRO NAVBAR */
+    padding-top: 120px;
+}
+
+.navigation-content {
+    flex-direction: column;
+    row-gap: 8px;
+    padding: 6px;
+    height: auto;
+    min-height: 108px;
+    justify-content: center;
+}
+
+.navigation .nav-list {
+    column-gap: 8px;
+}
+
+.navigation li {
+    margin: 4px 6px;
+}
+
+.navigation li a .links-name {
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .home-section .text {
+        padding: 0 14px;
+        font-size: 15px;
+    }
+
+    section {
+        padding-top: 28px;
+        padding-bottom: 28px;
+    }
+
+    .navigation .logo-name {
+        font-size: 19px;
+    }
+}

@@ -1,0 +1,153 @@
+/* OBECNÉ */
+
+:root {
+    --text: #d8e1e6;
+    --text-muted: #8fa2ad;
+    --pozadi-webu: #0b1418;
+    --pozadi-menu: rgba(10, 22, 28, 0.88);
+    --odkazy: #55d6c2;
+    --odkazy-hover: #9af5e6;
+    --oddelovac: #27424a;
+    --pozadi-uvod: #101f25;
+    --pozadi-prvku: #162b33;
+    --prvek: #e8894a;
+    --prvek-hover: #f3a66e;
+    --footer: #081014;
+    --border: rgba(151, 190, 198, 0.2);
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    --radius: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: "Poppins", sans-serif, "Noto Color Emoji";
+    color: var(--text);
+}
+
+html {
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(42, 119, 119, 0.22), transparent 32rem),
+        linear-gradient(145deg, #0b1418 0%, #102229 55%, #0b1418 100%);
+    color: var(--text);
+
+    /* PRO NAVBAR */
+    padding-top: 80px;
+
+    /* PRO FOOTER */
+    display: flex; flex-direction: column;
+    min-height: 100vh; margin: 0;
+
+    /* PRO SCROLLBAR */
+    overflow-x: hidden;
+}
+
+.home-section {
+    position: relative;
+    width: 100%;
+    transition: all 0.5s ease;
+    /*z-index: 2;*/
+
+    /* PRO FOOTER */
+    flex: 1;
+}
+
+.home-section .text {
+    display: block;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 400;
+
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+
+    line-height: 1.7;
+    padding: 0 24px;
+}
+
+a, a:visited {
+    color: var(--odkazy);
+    text-decoration: none;
+
+    transition: all 0.5s ease;
+}
+
+a:hover, a:focus, a:active {
+    color: var(--odkazy-hover);
+}
+
+h2 {
+    text-align: center;
+    color: #f3f8f8;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+section {
+    padding: clamp(32px, 6vw, 72px) 0;
+}
+
+.oddelovac {
+    border: none;
+    border-top: 5px dotted var(--oddelovac);
+    margin: 10px 15px;
+}
+
+/* KONEC OBECNÉHO */
+
+
+
+/* FOOTER */
+
+body > footer {
+    background-color: var(--footer);
+    text-align: center;
+    padding: 24px;
+    margin-top: 72px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+
+    z-index: 99;
+}
+
+.footer-text {
+    position: relative;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+/* KONEC FOOTERU */
+
+
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    width: 17px;    /* default */
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--pozadi-menu);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #111111;
+}
+
+/* KONEC SCROLLBARU */

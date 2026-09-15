@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="cs-cz">
+    <head>
+        <script type="text/javascript" src="js/beamAnalytics.js" async></script>
+        <script type="text/javascript" data-goatcounter="https://stats.hadejkde.cz/count" src="js/goatCounter.js" async></script>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Česká obdoba hry GeoGuessr">
+        <meta name="author" content="Martin Hruboš">
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="https://hadejkde.cz/napoveda">
+
+        <title>Hádej kde - Český GeoGuessr</title>
+
+        <link rel="icon" type="image/png" href="img/loga/logo.png">
+        <link rel="stylesheet" href="css/fonty.css" type="text/css">
+        <link rel="stylesheet" href="css/styly.css" type="text/css">
+        <link rel="stylesheet" href="css/menu.css" type="text/css">
+        <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobil.css">
+
+        <!-- Google emoji -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header class="navigation">
+            <div class="navigation-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/loga/logo bod.png" alt="logo hry">
+                        <span class="logo-name">Hádej kde</span>
+                    </a>
+                </div>
+
+                <ul class="nav-list">
+                    <li>
+                        <a href="info.html">
+                            <span class="links-name">O hře</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="napoveda.html">
+                            <span class="links-name">Nápověda</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="kontakt.html">
+                            <span class="links-name">Kontakt</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <article class="home-section">
+            <div class="text">
+                <section>
+                    <h2>PRINCIP HRY</h2>
+                    <p>Po vybrání herního módu a jeho nastavení se ti každé herní kolo ve zvolené oblasti vygeneruje nové náhodné místo, jehož lokaci musíš co nejpřesněji uhádnout.</p>
+                    <p>Polohu svého odhadu zaznačíš levým tlačítkem myši v mapě v pravém dolním rohu.</p>
+                    <p>Vždy označuj místo, kde ses poprvé objevil. Zajedeš-li v panorama z počátečního místa moc daleko, můžeš se tlačítkem RESET vrátit hned zase zpátky.</p>
+                    <p>Čím více bude tvůj odhad polohy místa přesnější, tím více bodů v herním kole získáš.</p>
+                    <p>Maximální skóre, co můžeš v jednom herním kole získat, je 100 bodů.</p>
+                </section>
+
+                <hr class="oddelovac">
+
+                <section>
+                    <h2>NASTAVENÍ HRY</h2>
+                    <p>Před spuštěním každé nové hry si můžeš navolit různá nastavení.</p>
+                    <p>&nbsp;</p>
+                    <h3>Základní nastavení:</h3>
+                    <p>Ve všech herních módech si můžeš zvolit <strong>počet herních kol</strong>&#32;a <strong>časový limit</strong>&#32;na každé toto kolo. U módu <i>Vlastní&nbsp;místo&nbsp;v&nbsp;ČR</i>&#32;navíc ještě <strong>rádius</strong>, pomocí kterého se vytvoří kruh se středem ve vlastním bodě a hádaná místa se budou generovat uvnitř tohoto kruhu.</p>
+                    <p>Pokud sis nastavil časový limit, tak 10 sekund před koncem herního kola tě hra upozorní jedním dlouhým blikem červeného okraje a časovač začne červeně blikat.</p>
+                    <p>&nbsp;</p>
+                    <h3>Obtížnosti:</h3>
+                    <i>Hru si můžeš jakkoliv ztížit pomocí zakázání těchto 3 ovládání panorama:</i>
+                    <p><strong>Pohyb</strong>&#32;- pohyb v panorama.</p>
+                    <p><strong>Otáčení</strong>&#32;- otáčení v panorama.</p>
+                    <p><strong>Zoom</strong>&#32;- přibližování/oddalování v panorama.</p>
+                    <p>&nbsp;</p>
+                    <h3>Nápovědy:</h3>
+                    <i>Hru si můžeš ale také zjednodušit povolením těchto 4 nápověd:</i>
+                    <p><strong>Vzdálenost</strong>&#32;- po kliku na mapu se zobrazí kruh se vzdáleností v kilometrech či metrech od hádaného místa.</p>
+                    <p><strong>Směr</strong>&#32;- po kliku na mapu se zobrazí kruh se šipkou, která ukazuje směrem na hádané místo.</p>
+                    <p><strong>Kruh</strong>&#32;- po zvolení nápovědy se kolem kurzoru myši zobrazí kruh, který pomocí jeho zbarvení po kliku na mapu znázorní, zda-li se hádané místo nachází uvnitř tohoto kruhu.</p>
+                    <p><span style="color: rgb(0, 200, 0)">Zelená</span>&#32;=&#32;hádané místo se nachází uvnitř kruhu.</p>
+                    <p><span style="color: rgb(200, 0, 0)">Červená</span>&#32;=&#32;hádané místo se nenachází uvnitř kruhu.</p>
+                    <p><strong>Oblast</strong>&#32;- v každém herním kole bude na mapě viditelná oblast, ve které se hádané místo nachází.</p>
+                    <p>&nbsp;</p>
+                    <h3>Druhy mapy:</h3>
+                    <p>Můžeš si také vybrat ze 3 druhů map. A to ze <strong>základní</strong>, <strong>turistické</strong>&#32;nebo <strong>letecké</strong>&#32;mapy.</p>                 
+                </section>
+
+                <hr class="oddelovac">
+
+                <section>
+                    <h2>OVLÁDÁNÍ HRY</h2>
+                    <p>K ovládání celé hry ti bude stačit pouze počítačová myš.</p>
+                    <p>&nbsp;</p>
+                    <h3>Mapa:</h3>
+                    <p>Na mapě se pohybuješ držením levého tlačítka myši. Jejím klikem pak označuješ polohu svého odhadu.</p>
+                    <p>Pokud sis před spuštěním hry zvolils nějaké nápovědy, uvidíš je po pravé straně mapy.</p>
+                    <p>Klikem na nápovědu nebo pomocí stisknutí klávesy 1, 2 nebo 3 (nacházejí se nad písmeny Q, W a E) ji označíš/odoznačíš a můžeš ji použít dalším klikem na mapě.</p>
+                    <p>Mapu si můžeš zvětšit nebo zmenšit pomocí tlačítek nad levým horním rohem mapy.</p>
+                    <p>Jestliže chceš nechat velikost mapy statickou, můžeš ji připíchnout pomocí tlačítka se špendlíkem.</p>
+                    <p>&nbsp;</p>
+                    <h3>Panorama:</h3>
+                    <p>V panorama se můžeš pohybovat pomocí kláves na klávesnici nebo stejně jako na mapě pomocí myši.</p>
+                    <p>Tlačítkem s nápisem RESET nacházejícího se v levém dolním rohu panorama se vrátíš na místo, kde ses objevil poprvé při začátku herního kola.</p>
+                    <p>Pokud ti vadí zvukové efekty během hry nebo chceš mít prostě klid, tak hned napravo od tlačítka RESET je ikona hlasitosti, na kterou když klikneš, tak všechny zvukové efekty vypneš popřípadě zapneš.</p>
+                    <p>&nbsp;</p>
+                    <h3>Výsledková mapa:</h3>
+                    <p>Po potvrzení odhadu nebo vypršení času se objeví výsledková mapa, ve které se zobrazí tvůj odhad spojený čarou s hádaným místem.</p>
+                    <p>Nad tvým odhadem uvidíš vzdálenost těchto dvou bodů a příslušné skóre za herní kolo. Tuto vzdálenost se skórem můžeš skrýt/zobrazit klikem na tvůj odhadový bod.</p>
+                    <p>Klikem na hádaný bod se ti otevře nová karta v prohlížeči mapy.cz s přesnou polohou tohoto bodu.</p>
+                    <p>Pokud neoznačíš svůj odhad a vyprší čas, tak se ve výsledkové mapě zobrazí pouze hádaný bod a získáváš nulové skóre za toto kolo.</p>
+                    <p>&nbsp;</p>
+                    <h3>Konečná mapa:</h3>
+                    <p>Po odehrání všech herních kol se ti zobrazí všechny tvé výsledky v jedné mapě, kde platí stejné ovládání jako ve výsledkové mapě.</p>
+                </section>
+            </div>
+        </article>
+
+
+        <footer>
+            <p class="footer-text">Copyright &copy; 2023 <span id="aktualni-rok"></span> <a href="https://martinhrubos.cz/" target="_blank">martinhrubos.cz</a></p>
+        </footer>
+
+        <!-- SKRIPTY -->
+        <script src="js/footer.js"></script>
+    </body>
+</html>
