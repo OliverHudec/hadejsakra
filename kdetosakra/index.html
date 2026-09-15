@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoGuessr ČR</title>
+    <meta
+      name="description"
+      content="GeoGuessr stylová hra na území České republiky s panoramaty a mapou Mapy.cz"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="config.js"></script>
+    <script defer src="https://api.mapy.cz/loader.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="title-block">
+          <span class="eyebrow">GeoGuessr ČR</span>
+          <h1>Najdi místo v České republice</h1>
+        </div>
+
+        <div class="stats" aria-label="Statistiky hry">
+          <div class="stat">
+            <span>Skóre</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="stat">
+            <span>Kolo</span>
+            <strong id="round">1</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="panorama-panel" aria-label="Panorama místa">
+          <div id="panorama" class="panorama"></div>
+          <div class="badge">Panorama</div>
+        </section>
+
+        <aside class="side-panel">
+          <div class="selection-panel">
+            <label class="field-label">Výběr lokací</label>
+            <div class="mode-switch" aria-label="Režimy hry">
+              <button type="button" class="mode-button is-active" data-mode="all">Celá ČR</button>
+              <button type="button" class="mode-button" data-mode="near">Okolí místa</button>
+            </div>
+
+            <div id="near-settings" class="near-settings hidden">
+              <label for="center-location">Výchozí místo</label>
+              <select id="center-location" aria-label="Výchozí místo"></select>
+
+              <div class="radius-row">
+                <label for="radius-slider">Poloměr</label>
+                <span id="radius-label">30 km</span>
+              </div>
+              <input id="radius-slider" type="range" min="5" max="200" step="5" value="30" />
+            </div>
+          </div>
+
+          <div class="map-header">
+            <div>
+              <h2>Tvůj tip</h2>
+              <p id="location-name">Vyber místo na mapě</p>
+            </div>
+          </div>
+
+          <div id="map" class="map" aria-label="Mapa pro výběr tipu"></div>
+
+          <div class="controls">
+            <button id="confirm-guess" class="primary" type="button">Potvrdit tip</button>
+            <button id="next-round" class="secondary" type="button">Další kolo</button>
+          </div>
+
+          <div id="result" class="result-box" aria-live="polite">
+            Zatím není žádný tip.
+          </div>
+        </aside>
+      </main>
+    </div>
+  </body>
+</html>
