@@ -13,6 +13,21 @@ function togglePopup(btn, popup, closeBtn)
         popup.style.pointerEvents = "auto";
 
         popup.querySelector(".popup-content").style.transform = "scale(1)";
+
+        if (popup.id === "popup-VlastniMisto")
+        {
+            setTimeout(function() {
+                if (typeof map !== "undefined")
+                {
+                    map.invalidateSize({ pan: false });
+
+                    if (typeof souradniceMista !== "undefined" && souradniceMista)
+                    {
+                        map.setView(souradniceMista, 12, { animate: false });
+                    }
+                }
+            }, 450);
+        }
     });
 
     closeBtn.addEventListener("click", function() {
@@ -142,6 +157,7 @@ function zapnoutHru(nazevModu)
 
                 mod = "specifickaMista";
             break;
+
         }
 
         // OBTÍŽNOSTI

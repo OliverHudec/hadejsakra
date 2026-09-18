@@ -19,7 +19,7 @@ nactiHodnotyModu();
 
 
 // VŠECHNA SPECIFICKÁ MÍSTA
-const vsechnaMista = ["hrady", "zamky", "supermarkety", "letiste", "dalnice", "urady", "policie", "hasici", "nemocnice", "vlakovaNadrazi", "kina", "divadla"];
+const vsechnaMista = ["hrady", "zamky", "supermarkety", "letiste", "dalnice", "urady", "policie", "hasici", "nemocnice", "vlakovaNadrazi", "kina", "divadla", "dpmb"];
 
 
 // NAČTE SKRIPTY POTŘEBNÉ PRO FUNGOVÁNÍ MÓDU

@@ -52,6 +52,7 @@ function vytvorOblastAZarovnejMapu()
         case 'specifickaMista':
             hranice = CzechRepublic;
         break;
+
     }
 
     if (mod === "vlastniMisto")

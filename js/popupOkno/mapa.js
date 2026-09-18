@@ -1,4 +1,4 @@
-const API_KEY = window.MAPY_SITE_API_KEY;
+const MAPY_SITE_API_KEY = window.MAPY_SITE_API_KEY;
 
 // VYTVOŘENÍ MAPY
 var stredCR = L.latLng(49.80357765, 15.47488575); // střed ČR
@@ -14,7 +14,7 @@ var geometryLayer = L.layerGroup().addTo(map);  // vytvoření vrstvy geometrick
 function vytvorMapu()
 {
     // VRSTVA - ZÁKLADNÍ MAPA
-    L.tileLayer(`https://api.mapy.com/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${API_KEY}`, {
+    L.tileLayer(`https://api.mapy.com/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${MAPY_SITE_API_KEY}`, {
         minZoom: 6, // minimální úroveň přiblížení
         maxZoom: 19, // maximální úroveň přiblížení
         attribution: '<a href="https://api.mapy.com/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>'

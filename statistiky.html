@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Statistiky a historie hry Hádej sakra">
+        <meta name="robots" content="noindex, nofollow">
+        <title>Statistiky | Hádej sakra</title>
+
+        <link rel="stylesheet" href="css/fonty.css" type="text/css">
+        <link rel="stylesheet" href="css/styly.css" type="text/css">
+        <link rel="stylesheet" href="css/herni-mody.css" type="text/css">
+        <link rel="stylesheet" href="css/menu.css" type="text/css">
+        <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobil.css">
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    </head>
+
+    <body class="home-page stats-page">
+        <header class="navigation">
+            <div class="navigation-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-name">Hádej sakra</span>
+                    </a>
+                </div>
+
+                <ul class="nav-list">
+                    <li><a href="index.html"><span class="links-name">Hrát</span></a></li>
+                    <li><a href="statistiky.html" class="current"><span class="links-name">Statistiky</span></a></li>
+                    <li><a href="info.html"><span class="links-name">O hře</span></a></li>
+                    <li><a href="napoveda.html"><span class="links-name">Nápověda</span></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <article class="home-section stats-section">
+            <div class="text">
+                <section class="stats-intro">
+                    <p class="section-kicker">02 / TVOJE DATA</p>
+                    <h1>Výsledky,<br>které zůstávají.</h1>
+                    <p>Statistiky a historie her se ukládají pouze v tomto prohlížeči. Data můžeš kdykoliv exportovat a přenést jinam.</p>
+                </section>
+
+                <section id="statistiky">
+                    <h2>HERNÍ STATISTIKY</h2>
+                    <div class="grid">
+                        <div><p class="statistika" id="dohranychHer">0</p><p class="statistika-text">DOHRANÝCH HER</p></div>
+                        <div><p class="statistika" id="odehranychKol">0</p><p class="statistika-text">ODEHRANÝCH KOL</p></div>
+                        <div><p class="statistika" id="prumerneSkoreKola">0.0</p><p class="statistika-text">PRŮMĚRNÉ SKÓRE KOLA</p></div>
+                        <div><p class="statistika" id="pomerSkore">0/0</p><p class="statistika-text">ZÍSKANÉ SKÓRE/MAXIMÁLNÍ MOŽNÉ SKÓRE</p></div>
+                        <div><p class="statistika" id="perfektnichHer">0</p><p class="statistika-text">PERFEKTNÍCH HER</p></div>
+                        <div><p class="statistika" id="perfektnichKol">0</p><p class="statistika-text">PERFEKTNÍCH KOL</p></div>
+                        <div><p class="statistika" id="pouzitoNapoved">0</p><p class="statistika-text">POUŽITO NÁPOVĚD</p></div>
+                        <div><p class="statistika" id="naposledyHrano">NIKDY</p><p class="statistika-text">NAPOSLEDY HRÁNO</p></div>
+                        <div><p class="statistika" id="dnesHralo">0</p><p class="statistika-text">DNES HRÁLO</p></div>
+                    </div>
+                </section>
+
+                <section id="historie">
+                    <h2>HISTORIE HER</h2>
+                    <div class="radkyExport">
+                        <div class="pocetRadkuNaStranku">
+                            <p>Zobrazit řádků na stránku:</p>
+                            <select id="selectPocetRadku">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="all">Vše</option>
+                            </select>
+                        </div>
+                        <div class="exportImport">
+                            <button id="import"><p>Import</p><i class='bx bx-import'></i></button>
+                            <button id="export"><p>Export</p><i class='bx bx-export'></i></button>
+                            <input type="file" id="fileInput" accept=".hadejkdesave" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="historieHer">
+                        <table id="historieTabulka">
+                            <thead>
+                                <tr>
+                                    <th data-sort="datum" style="min-width: 200px;"><div><p>Datum</p><i class='bx bx-up-arrow-alt'></i><i class='bx bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="herniMod" style="min-width: 172px;"><div><p>Herní mód</p><i class='bx bx-up-arrow-alt'></i><i class='bx bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="pocetKol"><div><p>Počet kol</p><i class='bx bx-up-arrow-alt'></i><i class='bx bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="casovyLimit"><div><p>Časový limit</p><i class='bx bx-up-arrow-alt'></i><i class='bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="obtiznosti"><div><p>Obtížnosti</p><i class='bx bx-up-arrow-alt'></i><i class='bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="pouzitoNapoved"><div><p>Použito nápověd</p><i class='bx bx-up-arrow-alt'></i><i class='bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="druhMapy"><div><p>Druh mapy</p><i class='bx bx-up-arrow-alt'></i><i class='bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="skore"><div><p>Skóre</p><i class='bx bx-up-arrow-alt'></i><i class='bx-down-arrow-alt'></i></div></th>
+                                    <th data-sort="perfektnichKol"><div><p>Perfektních kol</p><i class='bx bx-up-arrow-alt'></i><i class='bx-down-arrow-alt'></i></div></th>
+                                </tr>
+                            </thead>
+                            <tbody><tr><td colspan="9"><p>Nejsou dostupná žádná data</p></td></tr></tbody>
+                        </table>
+                    </div>
+
+                    <div class="radkySipky">
+                        <div class="radky"><p id="pocetRadkuCelkem"></p></div>
+                        <div class="sipky">
+                            <button id="btnVzad" class="limit"><i class='bx bx-chevron-left'></i></button>
+                            <div class="stranky"></div>
+                            <button id="btnVpred" class="limit"><i class='bx bx-chevron-right'></i></button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+
+        <footer>
+            <p class="footer-text">Copyright &copy; 2023 <span id="aktualni-rok"></span> <a href="https://martinhrubos.cz/" target="_blank">martinhrubos.cz</a></p>
+        </footer>
+
+        <script src="js/footer.js"></script>
+        <script src="js/statistiky/statistiky.js"></script>
+        <script src="js/historieHer/tabulka.js"></script>
+        <script src="js/historieHer/exportImport.js"></script>
+    </body>
+</html>

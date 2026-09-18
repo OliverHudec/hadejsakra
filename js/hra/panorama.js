@@ -116,14 +116,20 @@ async function obtiznostPanorama()
 
 
 /* ******************************************************************************************************************************** */
-// RESET TLAČÍTKO = RESET PANORAMA
+// TLAČÍTKO = NÁVRAT NA ZAČÁTEK AKTUÁLNÍHO KOLA
 document.getElementById("resetPanorama").addEventListener("click", async function() {
-    // VYTVOŘENÍ PANORAMA
+    if (!panoData || !nastaveniPanorama)
+    {
+        return;
+    }
+
     panoData.destroy();
     panoData = await Panorama.panoramaFromPosition(nastaveniPanorama);
 
-    // NASTAVENÍ OBTÍŽNOSTI PANORAMA
-    await obtiznostPanorama();
+    if (!panoData.error)
+    {
+        await obtiznostPanorama();
+    }
 });
 
 
@@ -191,6 +197,7 @@ async function vygenerujMisto()
                 return;
             }
         }
+
     }
 }
 

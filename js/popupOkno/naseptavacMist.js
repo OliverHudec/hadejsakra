@@ -1,5 +1,5 @@
 // NAŠEPTÁVAČ VE VYHLEDÁVAČI MÍST ČR
-const API_KEY = window.MAPY_SITE_API_KEY;
+const MAPY_SUGGEST_API_KEY = window.MAPY_SITE_API_KEY;
 const inputElem = document.getElementById("vyhledavacMista");
 const resultsContainer = document.getElementById("vyhledavacMistaVysledky");
 
@@ -17,7 +17,7 @@ async function handleInputWithDelay()
             try
             {
                 const type = "regional.municipality_part,regional.municipality";
-                const fetchData = await fetch(`https://api.mapy.com/v1/suggest?lang=cs&limit=3&type=${type}&locality=cz&apikey=${API_KEY}&query=${encodeURIComponent(query)}`);
+                const fetchData = await fetch(`https://api.mapy.com/v1/suggest?lang=cs&limit=3&type=${type}&locality=cz&apikey=${MAPY_SUGGEST_API_KEY}&query=${encodeURIComponent(query)}`);
                 if (!fetchData.ok)
                 {
                     throw new Error(`Mapy.com suggest API vrátilo HTTP ${fetchData.status}`);
