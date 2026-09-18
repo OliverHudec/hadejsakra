@@ -50,13 +50,6 @@ function vytvorMapu()
         }).addTo(map);
     }
     
-    // TLAČÍTKA + A - PRO ZOOM MAPY
-    L.control.zoom({
-        position: 'topright',
-        zoomInText: '+',
-        zoomOutText: '-',
-    }).addTo(map);
-
     // CHYBÍ ZDE ZOBRAZENÍ BODŮ ZÁJMŮ (POI)
     
     // KONTROLA A OPRAVA VELIKOSTI OKNA <div>#map
@@ -632,7 +625,7 @@ btnPotvrdit.addEventListener("click", function() {
 });
 
 
-// KLIKNUTÍ NA ZVĚTŠENÍ/ZMENŠENÍ/PIN MAPY
+// KLIKNUTÍ NA ZVĚTŠENÍ/ZMENŠENÍ/PIN CELÉHO OKNA MAPY
 const zvetsitVelikost = document.getElementById("zvetsitVelikost");
 const zmensitVelikost = document.getElementById("zmensitVelikost");
 const pinVelikost = document.getElementById("pinVelikost");
