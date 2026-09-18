@@ -51,14 +51,14 @@ async function zobrazPanorama()
         const mapaKontejner = document.getElementById("mapa-kontejner");
         mapaKontejner.style.left = "auto";
         mapaKontejner.style.right = "10px";
-        mapaKontejner.style.top = "calc(100vh - 252px)";
+        mapaKontejner.style.top = "calc(100vh - 385px)";
         mapaKontejner.style.transform = "none";
-        mapaKontejner.style.width = "300px";
-        mapaKontejner.style.height = "242px";
+        mapaKontejner.style.width = "480px";
+        mapaKontejner.style.height = "375px";
         mapaKontejner.style.opacity = "1";
 
         document.getElementById("velikosti").style.display = "flex";
-        document.getElementById("zmensitVelikost").classList.add("limit");
+        document.getElementById("zmensitVelikost").classList.remove("limit");
         document.getElementById("zvetsitVelikost").classList.remove("limit");
 
         // SPUŠTĚNÍ ČASU

@@ -275,7 +275,7 @@ const mapaKontejner = document.getElementById("mapa-kontejner");
 const mapa = document.getElementById("mapa");
 const btnPotvrdit = document.getElementById("btnPotvrdit");
 const neniOdhadBod = document.getElementById("neniOdhadBod");
-var velikostMapky = 1;
+var velikostMapky = 2;
 var timeoutZmenseniMapy;
 
 
@@ -411,9 +411,9 @@ function cssNormalni2()
     mapaParent.style.transition = "0.3s";
     mapaKontejner.style.transition = "0.3s";
 
-    mapaKontejner.style.width = "576px";
-    mapaKontejner.style.height = "450px";
-    mapaKontejner.style.top = "calc(100vh - 460px)";
+    mapaKontejner.style.width = "480px";
+    mapaKontejner.style.height = "375px";
+    mapaKontejner.style.top = "calc(100vh - 385px)";
     mapaKontejner.style.opacity = "1";
 }
 

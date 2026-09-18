@@ -12,7 +12,7 @@ function nactiHodnotyModu()
     pocetKol = Number(hodnotySlideru[0]);
     document.getElementById("kolo").innerText = "KOLO: " + "1" + "/" + pocetKol;
 
-    maxVzdalenost = 158447;
+    maxVzdalenost = specifickaMista[12] ? 500 : 158447;
 }
 
 nactiHodnotyModu();
