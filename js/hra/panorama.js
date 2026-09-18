@@ -57,6 +57,10 @@ async function zobrazPanorama()
         mapaKontejner.style.height = "242px";
         mapaKontejner.style.opacity = "1";
 
+        document.getElementById("velikosti").style.display = "flex";
+        document.getElementById("zmensitVelikost").classList.add("limit");
+        document.getElementById("zvetsitVelikost").classList.remove("limit");
+
         // SPUŠTĚNÍ ČASU
         if (cas !== 0)
         {

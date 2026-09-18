@@ -282,7 +282,7 @@ const mapaKontejner = document.getElementById("mapa-kontejner");
 const mapa = document.getElementById("mapa");
 const btnPotvrdit = document.getElementById("btnPotvrdit");
 const neniOdhadBod = document.getElementById("neniOdhadBod");
-var velikostMapky = 2;
+var velikostMapky = 1;
 var timeoutZmenseniMapy;
 
 
