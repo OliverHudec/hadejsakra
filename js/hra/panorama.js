@@ -48,7 +48,7 @@ async function zobrazPanorama()
         console.log("SOUŘADNICE PANORAMA:\n" + souradnicePanorama);
 
         document.querySelector(".loading").style.display = "none"; // skryje celé načítání
-        document.getElementById("mapa-kontejner").style.transform = "scale(1)"; // zobrazí mapku
+        document.getElementById("mapa-kontejner").style.transform = "translate(-50%, -50%) scale(1)"; // zobrazí mapku uprostřed
 
         // SPUŠTĚNÍ ČASU
         if (cas !== 0)

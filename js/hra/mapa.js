@@ -609,49 +609,6 @@ btnPotvrdit.addEventListener("click", function() {
 });
 
 
-// HOVER MYŠÍ NA MAPĚ KDYŽ NENÍ JAKO VÝSLEDEK => JE JAKO NORMÁLNÍ MAPKA
-mapaKontejner.addEventListener("mouseover", function() {
-    if (!vysledek && !pinVelikost.classList.contains("selected"))
-    {
-        clearTimeout(timeoutZmenseniMapy);
-
-        document.getElementById("velikosti").style.display = "flex";
-        mapaKontejner.style.borderTopLeftRadius = "0px";
-        mapa.style.borderTopLeftRadius = "0px";
-
-        // zvětší se mapa podle nastavené velikosti
-        switch (velikostMapky)
-        {
-            case 1: cssNormalni1(); break;
-            case 2: cssNormalni2(); break;
-            case 3: cssNormalni3(); break;
-            case 4: cssNormalni4(); break;
-        }
-    }
-});
-
-var timeoutZmenseniMapy;
-mapaKontejner.addEventListener("mouseout", function() {
-    if (!vysledek && !pinVelikost.classList.contains("selected"))
-    {
-        timeoutZmenseniMapy = setTimeout(function() {
-            document.getElementById("velikosti").style.display = "none";
-            mapaKontejner.style.borderTopLeftRadius = "10px";
-            mapa.style.borderTopLeftRadius = "10px";
-
-            // zmenší se mapa
-            mapaParent.style.transition = "0.3s";
-            mapaKontejner.style.transition = "0.3s";
-
-            mapaKontejner.style.width = "300px";
-            mapaKontejner.style.height = "242px";
-            mapaKontejner.style.top = "calc(100vh - 252px)";
-            mapaKontejner.style.opacity = "0.4";
-        }, 1000);
-    }
-});
-
-
 // KLIKNUTÍ NA ZVĚTŠENÍ/ZMENŠENÍ/PIN MAPY
 const zvetsitVelikost = document.getElementById("zvetsitVelikost");
 const zmensitVelikost = document.getElementById("zmensitVelikost");
