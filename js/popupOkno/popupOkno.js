@@ -5,14 +5,27 @@
 function togglePopup(btn, popup, closeBtn)
 {
     const herniMod = btn.closest(".herniMod");
+    const popupContent = popup.querySelector(".popup-content");
+
+    function closePopup()
+    {
+        herniMod.classList.remove("popup-open");
+        popup.classList.remove("is-open");
+        popupContent.style.transform = "scale(0)";
+    }
 
     btn.addEventListener("click", function() {
-        herniMod.classList.add("popup-open");
-        popup.style.opacity = 1;
-        popup.style.zIndex = 9999;
-        popup.style.pointerEvents = "auto";
+        document.querySelectorAll(".popup.is-open").forEach(openPopup => {
+            openPopup.classList.remove("is-open");
+            openPopup.querySelector(".popup-content").style.transform = "scale(0)";
+        });
+        document.querySelectorAll(".herniMod.popup-open").forEach(openMod => {
+            openMod.classList.remove("popup-open");
+        });
 
-        popup.querySelector(".popup-content").style.transform = "scale(1)";
+        herniMod.classList.add("popup-open");
+        popup.classList.add("is-open");
+        popupContent.style.transform = "scale(1)";
 
         if (popup.id === "popup-VlastniMisto")
         {
@@ -31,23 +44,13 @@ function togglePopup(btn, popup, closeBtn)
     });
 
     closeBtn.addEventListener("click", function() {
-        herniMod.classList.remove("popup-open");
-        popup.style.opacity = 0;
-        popup.style.zIndex = -9999;
-        popup.style.pointerEvents = "none";
-
-        popup.querySelector(".popup-content").style.transform = "scale(0)";
+        closePopup();
     });
 
     popup.addEventListener("click", function(event) {
-        if (event.target === popup && event.target !== btn)
+        if (event.target === popup)
         {
-            herniMod.classList.remove("popup-open");
-            popup.style.opacity = 0;
-            popup.style.zIndex = -9999;
-            popup.style.pointerEvents = "none";
-
-            popup.querySelector(".popup-content").style.transform = "scale(0)";
+            closePopup();
         }
     });
 }
@@ -59,25 +62,19 @@ function setupPopup(popupName)
     const btn = document.getElementById("btn-" + popupName);
     const popup = document.getElementById("popup-" + popupName);
     const closeBtn = document.getElementById("close-" + popupName);
+
+    document.body.appendChild(popup);
     togglePopup(btn, popup, closeBtn);
 }
 
 /* **************************************************************************************************************************************************************** */
 /* BUTTON HERNÍ MÓD */
 
-// KONTROLA, ZDALI BYL POKUS O SPUŠTĚNÍ HRY NA MOBILU
+// KONTROLA, ZDA BYL POKUS O SPUŠTĚNÍ HRY NA MOBILU
 function jeMobil()
 {
-    // MOBIL NEBO TABLET
-    var neniPC = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone|Tablet/i.test(navigator.userAgent);
-    if (neniPC)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    const neniPC = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone|Tablet/i.test(navigator.userAgent);
+    return neniPC;
 }
 
 

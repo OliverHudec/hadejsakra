@@ -95,14 +95,7 @@ function spustitCas(pocatecniCas)
                 }
 
                 
-                // KONTROLA POSLEDNÍHO KOLA
-                if (aktualniKolo >= pocetKol)
-                {
-                    konec = true;
-
-                    // ZMĚNA CSS PRO TLAČÍTKO POD MAPOU
-                    btnPotvrdit.textContent = "ZOBRAZ VÝSLEDKY";
-                }
+                zkontrolujPosledniKolo();
             }
         }
         else

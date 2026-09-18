@@ -48,7 +48,14 @@ async function zobrazPanorama()
         console.log("SOUŘADNICE PANORAMA:\n" + souradnicePanorama);
 
         document.querySelector(".loading").style.display = "none"; // skryje celé načítání
-        document.getElementById("mapa-kontejner").style.transform = "translate(-50%, -50%) scale(1)"; // zobrazí mapku uprostřed
+        const mapaKontejner = document.getElementById("mapa-kontejner");
+        mapaKontejner.style.left = "auto";
+        mapaKontejner.style.right = "10px";
+        mapaKontejner.style.top = "calc(100vh - 252px)";
+        mapaKontejner.style.transform = "none";
+        mapaKontejner.style.width = "300px";
+        mapaKontejner.style.height = "242px";
+        mapaKontejner.style.opacity = "1";
 
         // SPUŠTĚNÍ ČASU
         if (cas !== 0)

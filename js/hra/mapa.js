@@ -454,6 +454,16 @@ function cssNormalni4()
 var vysledek = false;
 var konec = false;
 var vypnout = false;
+
+function zkontrolujPosledniKolo()
+{
+    if (aktualniKolo >= pocetKol)
+    {
+        konec = true;
+        btnPotvrdit.textContent = "ZOBRAZ VÝSLEDKY";
+    }
+}
+
 btnPotvrdit.addEventListener("click", function() {
     console.clear(); // vymaže konzoli
 
@@ -593,13 +603,7 @@ btnPotvrdit.addEventListener("click", function() {
             zobrazPrimku();
 
             // KONTROLA POSLEDNÍHO KOLA
-            if (aktualniKolo >= pocetKol)
-            {
-                konec = true;
-
-                // ZMĚNA CSS PRO TLAČÍTKO POD MAPOU
-                btnPotvrdit.textContent = "ZOBRAZ VÝSLEDKY";
-            }
+            zkontrolujPosledniKolo();
         }
         else
         {

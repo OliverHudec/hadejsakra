@@ -928,6 +928,7 @@ input:checked + .switch-round:before {
 
 .popup {
     opacity: 0;
+    visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -936,7 +937,7 @@ input:checked + .switch-round:before {
     background-color: rgba(3, 11, 14, 0.72);
     backdrop-filter: blur(8px);
  
-    z-index: -9999;
+    z-index: 1000;
 
     display: flex;
     align-items: center;
@@ -945,6 +946,13 @@ input:checked + .switch-round:before {
     transition: 0.4s;
 
     pointer-events: none;
+}
+
+.popup.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 10000;
 }
 
 .popup-content {
