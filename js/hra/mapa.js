@@ -264,6 +264,8 @@ function zobrazPrimku()
 // ZOBRAZENÍ VŠECH VÝSLEDKŮ (PŘÍMKY, PANORAMA BODY A ODHAD BODY S VIZITKAMI)
 function zobrazVysledky()
 {
+    cssNormalniMapkaNaVysledkovou();
+
     // ZOBRAZENÍ VŠECH PŘÍMEK A BODŮ (PANORAMA + ODHAD)
     vsechnyPrimkyBodyLayer.addTo(map);
 
@@ -281,6 +283,7 @@ const mapa = document.getElementById("mapa");
 const btnPotvrdit = document.getElementById("btnPotvrdit");
 const neniOdhadBod = document.getElementById("neniOdhadBod");
 var velikostMapky = 2;
+var timeoutZmenseniMapy;
 
 
 // ODSTRANĚNÍ PŘÍMKY, PANORAMA BODU A ODHAD BODU
@@ -459,6 +462,7 @@ function zkontrolujPosledniKolo()
 {
     if (aktualniKolo >= pocetKol)
     {
+        aktualniKolo = pocetKol;
         konec = true;
         btnPotvrdit.textContent = "ZOBRAZ VÝSLEDKY";
     }
@@ -468,10 +472,11 @@ btnPotvrdit.addEventListener("click", function() {
     console.clear(); // vymaže konzoli
 
     // ZOBRAZENÍ VÝSLEDKOVÉ MAPY, KONEČNÉ MAPY A NORMÁLNÍ MAPKY
-    if (konec)
+    if (konec || (vysledek && aktualniKolo >= pocetKol))
     {
         // Z VÝSLEDKOVÉ MAPY NA KONEČNOU MAPU
         konec = false;
+        vysledek = false;
 
         // ZMĚNA CSS PRO TLAČÍTKO POD MAPOU
         btnPotvrdit.textContent = "VYPNOUT";
@@ -485,6 +490,7 @@ btnPotvrdit.addEventListener("click", function() {
 
         // ZOBRAZENÍ VŠECH PŘÍMEK, PANORAMA BODŮ A ODHAD BODŮ S VIZITKAMI
         zobrazVysledky();
+        btnPotvrdit.textContent = "VYPNOUT";
 
         // ZVÝRAZNĚNÍ MENU HRY
         document.querySelector(".navigation").style.zIndex = 100;
@@ -529,16 +535,22 @@ btnPotvrdit.addEventListener("click", function() {
 
         // ANALYTICS - CUSTOM EVENT
         // Beam Analytics
-        window.beam(`Dokončení hry/${mod}_${hodnotyObtiznosti}_${hodnotyNapovedy}_${druhMapy}_${cas}_${pocetKol}_${radius}`);
+        if (typeof window.beam === "function")
+        {
+            window.beam(`Dokončení hry/${mod}_${hodnotyObtiznosti}_${hodnotyNapovedy}_${druhMapy}_${cas}_${pocetKol}_${radius}`);
+        }
 
         // GoatCounter
         let cislo = Math.floor(100000 + Math.random() * 900000);
 
-        window.goatcounter.count({
-            path:  `Dokončení hry/${cislo}`,
-            title: `${mod}_${hodnotyObtiznosti}_${hodnotyNapovedy}_${druhMapy}_${cas}_${pocetKol}_${radius}`,
-            event: true,
-        });
+        if (window.goatcounter && typeof window.goatcounter.count === "function")
+        {
+            window.goatcounter.count({
+                path:  `Dokončení hry/${cislo}`,
+                title: `${mod}_${hodnotyObtiznosti}_${hodnotyNapovedy}_${druhMapy}_${cas}_${pocetKol}_${radius}`,
+                event: true,
+            });
+        }
     }
     else if (vypnout)
     {
@@ -550,6 +562,13 @@ btnPotvrdit.addEventListener("click", function() {
     else if (vysledek)
     {
         // Z VÝSLEDKOVÉ MAPY NA NORMÁLNÍ MAPKU
+
+        // POSLEDNÍ KOLO UŽ NESMÍ SPUSTIT DALŠÍ GENERACI
+        if (aktualniKolo >= pocetKol)
+        {
+            zkontrolujPosledniKolo();
+            return;
+        }
 
         // ZMĚNA CSS PRO MAPU
         cssVysledkovaMapaNaNormalni1();
@@ -573,7 +592,7 @@ btnPotvrdit.addEventListener("click", function() {
         generace();
 
         // DALŠÍ KOLO
-        aktualniKolo++;
+        aktualniKolo = Math.min(aktualniKolo + 1, pocetKol);
         document.getElementById("kolo").innerText = "KOLO: " + aktualniKolo + "/" + pocetKol;
 
         vysledek = false;
