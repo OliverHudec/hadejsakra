@@ -2,7 +2,7 @@
 ## 📜 Licencování a Původní Autor
 Původní projekt vytvořil **Martin Hruboš** hadejkde.cz. 
 
-Tento fork je distribuován pod stejnou licencí **European Union Public Licence v. 1.2 (EUPL v1.2)**[cite: 1]. Kompletní text licence naleznete v souboru `LICENSE`.
+Tento fork je distribuován pod stejnou licencí **European Union Public Licence v. 1.2 (EUPL v1.2)**. Kompletní text licence naleznete v souboru `LICENSE`.
 
 ---
 *Více informací o původním projektu a licenčních podmínkách naleznete v přiložené dokumentaci.*
