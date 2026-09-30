@@ -1,17 +1,8 @@
-# KdeToSakra.cz (Community Fork)
-
-Tento projekt je neoficiálním komunitním forkem původní hry **KdeToSakra.cz**. 
-
-Cílem tohoto forku je zachovat hru plně funkční a bezplatně přístupnou pro všechny hráče skrze přechod na novější verze mapových API.
-
-## 🛠️ Provedené změny
-* **[září 2026]**: Refaktorování kódu a aktualizace mapového API na nejnovější verzi.
-* Modernizace uživatelského rozhraní (UI/UX) a úprava responzivity.
 
 ## 📜 Licencování a Původní Autor
 Původní projekt vytvořil **Martin Hruboš** hadejkde.cz. 
 
-Tento fork je distribuován pod stejnou licencí **European Union Public Licence v. 1.2 (EUPL v1.2)**[cite: 1]. Kompletní text licence naleznete v souboru `LICENSE`.
+Tento fork je distribuován pod stejnou licencí **European Union Public Licence v. 1.2 (EUPL v1.2)**. Kompletní text licence naleznete v souboru `LICENSE`.
 
 ---
 *Více informací o původním projektu a licenčních podmínkách naleznete v přiložené dokumentaci.*
