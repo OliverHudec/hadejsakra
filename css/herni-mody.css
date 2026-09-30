@@ -193,78 +193,6 @@
     box-shadow: 5px 5px 0 var(--home-coral);
 }
 
-.hero-board {
-    position: relative;
-    min-height: 410px;
-    padding: 30px;
-    overflow: hidden;
-    color: #fff;
-    background: var(--home-blue);
-    box-shadow: 18px 18px 0 var(--home-coral);
-    transform: rotate(2deg);
-    animation: home-float 6s ease-in-out infinite;
-}
-
-.hero-board:before {
-    content: "";
-    position: absolute;
-    right: -80px;
-    bottom: -130px;
-    width: 310px;
-    height: 310px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 50%;
-    box-shadow: 0 0 0 34px rgba(255, 255, 255, 0.1), 0 0 0 68px rgba(255, 255, 255, 0.08);
-}
-
-.hero-board-label {
-    position: relative;
-    color: var(--home-lime);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-}
-
-.hero-board strong {
-    position: relative;
-    display: block;
-    margin-top: 80px;
-    color: #fff;
-    font-size: clamp(4rem, 8vw, 7rem);
-    line-height: 0.82;
-    letter-spacing: -0.07em;
-}
-
-.hero-board-pin {
-    position: absolute;
-    top: 34%;
-    right: 17%;
-    display: grid;
-    width: 64px;
-    height: 64px;
-    place-items: center;
-    color: var(--home-ink);
-    background: var(--home-lime);
-    border-radius: 50%;
-    font-size: 30px;
-    transform: rotate(-8deg);
-}
-
-.hero-board-footer {
-    position: absolute;
-    right: 30px;
-    bottom: 28px;
-    left: 30px;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.34);
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 11px;
-    font-weight: 600;
-}
-
 .section-heading {
     display: grid;
     grid-template-columns: minmax(180px, 0.55fr) minmax(280px, 1fr) minmax(220px, 0.8fr);
@@ -374,50 +302,6 @@
     transform: translateY(-2px);
 }
 
-.home-page #herniMody .play-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: 120px !important;
-    padding: 12px 14px 12px 18px;
-    color: var(--home-ink);
-    background: transparent;
-    border: 1px solid var(--home-ink);
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.home-page #herniMody .play-button i {
-    display: grid;
-    width: 25px;
-    height: 25px;
-    place-items: center;
-    color: var(--home-ink);
-    background: var(--home-lime);
-    border-radius: 50%;
-    font-size: 17px;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.home-page #herniMody .play-button:hover,
-.home-page #herniMody .play-button:focus-visible {
-    color: #fff;
-    background: var(--home-ink);
-    box-shadow: 5px 5px 0 var(--home-coral);
-    transform: translate(-2px, -2px);
-}
-
-.home-page #herniMody .play-button:hover i,
-.home-page #herniMody .play-button:focus-visible i {
-    color: #fff;
-    background: var(--home-coral);
-    transform: rotate(45deg);
-}
-
 .home-page:not(.stats-page) #statistiky,
 .home-page:not(.stats-page) #historie {
     border-top: 1px solid var(--home-line);
@@ -510,11 +394,6 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes home-float {
-    0%, 100% { transform: rotate(2deg) translateY(0); }
-    50% { transform: rotate(1deg) translateY(-8px); }
-}
-
 @media (max-width: 800px) {
     .home-page .home-section .text {
         padding: 0 20px;
@@ -529,12 +408,6 @@
 
     .home-hero h1 {
         font-size: clamp(3.1rem, 14vw, 5.5rem);
-    }
-
-    .hero-board {
-        width: calc(100% - 14px);
-        min-height: 350px;
-        margin-left: 0;
     }
 
     .section-heading {
@@ -567,24 +440,6 @@
 
     .home-hero h1 {
         font-size: 3.2rem;
-    }
-
-    .hero-board {
-        min-height: 300px;
-        padding: 24px;
-        box-shadow: 10px 10px 0 var(--home-coral);
-    }
-
-    .hero-board strong {
-        margin-top: 62px;
-        font-size: 4.5rem;
-    }
-
-    .hero-board-footer {
-        right: 24px;
-        bottom: 22px;
-        left: 24px;
-        font-size: 10px;
     }
 
     .home-page #herniMody .herniMod {
@@ -741,7 +596,7 @@ input[type="range"]::-webkit-slider-thumb {
     appearance: none; 
     height: 30px;
     width: 30px;
-    background: url("../img/loga/logo.png");
+    background: url("../img/loga/logo.svg");
     background-size: cover;
     border-radius: 50%;
     border: none;
@@ -829,7 +684,6 @@ input:checked + .switch-round:before {
     bottom: 2px;
     transform: rotateZ(0deg);
 
-    /*background-image: url("../img/loga/logo.png");*/
     background-repeat: no-repeat;
     background-size: contain;
     border-radius: 50%;
@@ -842,33 +696,33 @@ input:checked + .switch-round:before {
 /* OBTÍŽNOSTI */
 
 #pohyb:before {
-    background-image: url("../img/switche/pohyb.png");
+    background-image: url("../img/switche/pohyb.svg");
 }
 
 #otaceni:before {
-    background-image: url("../img/switche/otaceni.png");
+    background-image: url("../img/switche/otaceni.svg");
 }
 
 #zoom:before {
-    background-image: url("../img/switche/zoom.png");
+    background-image: url("../img/switche/zoom.svg");
 }
 
 /* NÁPOVĚDY */
 
 #vzdalenost:before {
-    background-image: url("../img/switche/vzdalenost.png");
+    background-image: url("../img/switche/vzdalenost.svg");
 }
 
 #smer:before {
-    background-image: url("../img/switche/smer.png");
+    background-image: url("../img/switche/smer.svg");
 }
 
 #kruh:before {
-    background-image: url("../img/switche/kruh.png");
+    background-image: url("../img/switche/kruh.svg");
 }
 
 #oblast:before {
-    background-image: url("../img/switche/oblast.png");
+    background-image: url("../img/switche/oblast.svg");
 }
 
 /* TABULKA PRO SWITCHE (OBTÍŽNOSTI, NÁPOVĚDY, DRUH MAPY) */
@@ -1446,7 +1300,8 @@ input:checked + .switch-round:before {
     position: relative;
     cursor: pointer;
 
-    background-color: var(--text);
+    border: 2px solid transparent;
+    background-color: var(--pozadi-uvod);
     height: 30px;
     min-width: 30px;
     border-radius: 15px;
@@ -1455,18 +1310,35 @@ input:checked + .switch-round:before {
     justify-content: center;
     align-items: center;
 
-    transition: 0.3s;
+    transition: none;
 }
 
 .misto .checkmark span.material-icons {
     display: none;
-    color: black;
+    color: #fff;
     font-size: 22px;
 }
 
-.misto .checkmark:hover,
+.misto .checkmark:hover {
+    border-color: var(--prvek);
+    background-color: var(--pozadi-prvku);
+}
+
 .misto input[type="checkbox"]:checked + .checkmark {
-    background-color: white;
+    border-color: var(--prvek);
+    background-color: var(--prvek);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--prvek) 28%, transparent);
+}
+
+.misto .checkmark.is-selected {
+    border-color: var(--prvek);
+    background-color: var(--prvek);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--prvek) 28%, transparent);
+}
+
+.misto input[type="checkbox"]:focus-visible + .checkmark {
+    outline: 3px solid var(--odkazy);
+    outline-offset: 3px;
 }
 
 .misto input[type="checkbox"]:checked + .checkmark span {

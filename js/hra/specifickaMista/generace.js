@@ -11,6 +11,14 @@ function vygenerujSouradnici()
         }
     }
 
+    for (let index = 0; index < zastavkyMHD.length; index++)
+    {
+        if (zastavkyMHD[index] === true)
+        {
+            vsechnaSpeficickaMista = vsechnaSpeficickaMista.concat(window[vsechnyZastavkyMHD[index].data]);
+        }
+    }
+
     // náhodný prvek v poli
     var nahodnyIndex = Math.floor(Math.random() * vsechnaSpeficickaMista.length);
     var lng = vsechnaSpeficickaMista[nahodnyIndex].lng;

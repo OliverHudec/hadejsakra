@@ -66,7 +66,7 @@ function spustitCas(pocatecniCas)
                     icon: L.divIcon({
                         iconSize: [22, 31],
                         iconAnchor: [11, 31],
-                        html: `<a href="${odkaz}" target="_blank"><img src="img/body/panorama-marker.png"></a>`,
+                        html: `<a href="${odkaz}" target="_blank"><img src="img/body/panorama-marker.svg"></a>`,
                         className: "panoramaBod"
                     }),
                     opacity: 1,
@@ -87,14 +87,6 @@ function spustitCas(pocatecniCas)
                 }, 300);
 
 
-                // PŘEHRÁNÍ ZVUKU
-                if (zvukoveEfekty === true)
-                {
-                    var SadTrombone = new Audio("zvuk/Sad Trombone.wav");
-                    SadTrombone.play();
-                }
-
-                
                 zkontrolujPosledniKolo();
             }
         }

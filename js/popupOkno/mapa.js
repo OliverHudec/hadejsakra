@@ -85,7 +85,7 @@ function zobrazKruh()
     // NASTAVENÍ PRO MARKER
     var markerOptions = {
         icon: L.icon({
-            iconUrl: 'img/body/bod-marker.png',
+            iconUrl: 'img/body/bod-marker.svg',
             iconSize: [30, 30],
             iconAnchor: [15, 15]
         }),

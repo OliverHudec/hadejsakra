@@ -1,0 +1,1282 @@
+:root {
+    --text: #17263b;
+    --text-muted: #64758b;
+    --pozadi-webu: #eaf0f8;
+    --pozadi-menu: rgba(246, 249, 255, 0.68);
+    --odkazy: #2766b2;
+    --odkazy-hover: #174779;
+    --oddelovac: rgba(71, 103, 145, 0.16);
+    --pozadi-uvod: rgba(255, 255, 255, 0.68);
+    --pozadi-prvku: rgba(255, 255, 255, 0.72);
+    --prvek: #3475c5;
+    --prvek-hover: #215894;
+    --footer: rgba(237, 243, 251, 0.82);
+    --border: rgba(255, 255, 255, 0.82);
+    --shadow: 0 18px 48px rgba(41, 66, 103, 0.13);
+    --radius: 8px;
+    --glass-edge: rgba(255, 255, 255, 0.88);
+    --glass-fill: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(242, 247, 255, 0.42));
+    --glass-shadow: 0 18px 48px rgba(41, 66, 103, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+body:not(.game-page),
+body.game-page {
+    font-family: "Poppins", sans-serif, "Noto Color Emoji";
+}
+
+body:not(.game-page) {
+    padding-top: 0;
+    color: var(--text);
+    background:
+        linear-gradient(128deg, rgba(221, 235, 252, 0.7) 0%, transparent 44%),
+        linear-gradient(310deg, rgba(250, 232, 219, 0.38) 0%, transparent 42%),
+        linear-gradient(145deg, #f4f7fc 0%, #e8eff8 54%, #f4f5f3 100%);
+}
+
+body:not(.game-page) h1,
+body:not(.game-page) h2,
+body:not(.game-page) h3,
+body:not(.game-page) p,
+body:not(.game-page) span,
+body:not(.game-page) label {
+    color: inherit;
+}
+
+body:not(.game-page) a,
+body:not(.game-page) a:visited {
+    color: var(--odkazy);
+}
+
+body:not(.game-page) a:hover,
+body:not(.game-page) a:focus-visible {
+    color: var(--odkazy-hover);
+}
+
+body:not(.game-page) :focus-visible,
+body.game-page :focus-visible {
+    outline: 3px solid rgba(52, 117, 197, 0.7);
+    outline-offset: 3px;
+}
+
+body:not(.game-page) .navigation {
+    position: sticky;
+    top: 0;
+    background: rgba(242, 247, 253, 0.68);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.76);
+    box-shadow: 0 8px 30px rgba(41, 66, 103, 0.08);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+body:not(.game-page) .navigation-content {
+    width: min(1280px, 100%);
+    min-height: 76px;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px 30px;
+}
+
+body:not(.game-page) .navigation .logo-name {
+    color: var(--text);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+body:not(.game-page) .navigation .nav-list {
+    gap: 30px;
+}
+
+body:not(.game-page) .navigation li {
+    margin: 6px 0;
+}
+
+body:not(.game-page) .navigation li a .links-name,
+body:not(.game-page) .navigation li:hover a .links-name,
+body:not(.game-page) .navigation li a.current .links-name {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+body:not(.game-page) .navigation li a:after {
+    bottom: -9px;
+    left: 0;
+    height: 2px;
+    background: var(--odkazy);
+}
+
+body:not(.game-page) .home-section {
+    flex: 1;
+}
+
+body:not(.game-page) .home-section .text {
+    width: min(1280px, 100%);
+    max-width: 1280px;
+    padding: 0 30px;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+body:not(.game-page) .home-section > .text > section:not(.home-hero):not(#herniMody) {
+    padding: 68px 0;
+}
+
+body:not(.game-page) .home-section > .text > section:not(.home-hero):not(#herniMody) h2 {
+    margin: 0 0 28px;
+    color: var(--text);
+    text-align: left;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+body:not(.game-page) .home-section > .text > section:not(.home-hero):not(#herniMody) h3 {
+    margin: 28px 0 10px;
+    color: #315c8d;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+body:not(.game-page) .home-section > .text > section:not(.home-hero):not(#herniMody) p {
+    max-width: 900px;
+    margin: 0 0 14px;
+}
+
+body:not(.game-page) .home-section > .text > section:not(.home-hero):not(#herniMody) h2:after {
+    display: block;
+    width: 42px;
+    height: 3px;
+    margin-top: 16px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #3475c5, #71b7ca);
+    content: "";
+}
+
+body:not(.game-page) .oddelovac {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid var(--oddelovac);
+}
+
+body:not(.game-page) > footer {
+    margin-top: 44px;
+    padding: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.76);
+    background: rgba(231, 238, 248, 0.68);
+    color: var(--text-muted);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body:not(.game-page) > footer p,
+body:not(.game-page) > footer a {
+    color: var(--text-muted);
+}
+
+body:not(.game-page) > footer a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+body.home-page {
+    --home-ink: #17263b;
+    --home-muted: #64758b;
+    --home-paper: #eaf0f8;
+    --home-card: rgba(255, 255, 255, 0.72);
+    --home-blue: #3475c5;
+    --home-coral: #e88a6c;
+    --home-lime: #a8d7d0;
+    --home-line: rgba(71, 103, 145, 0.16);
+    background:
+        linear-gradient(128deg, rgba(221, 235, 252, 0.7) 0%, transparent 44%),
+        linear-gradient(310deg, rgba(250, 232, 219, 0.38) 0%, transparent 42%),
+        linear-gradient(145deg, #f4f7fc 0%, #e8eff8 54%, #f4f5f3 100%);
+}
+
+body.home-page .navigation {
+    position: sticky;
+    background: rgba(242, 247, 253, 0.68);
+}
+
+body.home-page .home-section .text {
+    max-width: 1280px;
+}
+
+body.home-page .home-hero {
+    min-height: min(660px, calc(100vh - 76px));
+    padding: 76px 0 78px;
+}
+
+body.home-page .home-hero h1,
+body.home-page .stats-intro h1 {
+    color: var(--home-ink);
+    font-family: "Poppins", sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: 0;
+}
+
+body.home-page .hero-kicker,
+body.home-page .section-kicker {
+    color: #3977b9;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+body.home-page .hero-lead {
+    color: var(--home-muted);
+    font-size: 18px;
+}
+
+body.home-page .hero-action {
+    padding: 14px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #4386ce, #2868b2);
+    box-shadow: 0 10px 24px rgba(41, 99, 164, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+    color: #fff !important;
+}
+
+body.home-page .hero-action:hover,
+body.home-page .hero-action:focus-visible {
+    background: linear-gradient(135deg, #5796d7, #3475c5);
+    box-shadow: 0 14px 30px rgba(41, 99, 164, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.46);
+    transform: translateY(-2px);
+}
+
+body.home-page .section-heading {
+    padding: 52px 0 32px;
+    border-top: 1px solid var(--home-line);
+}
+
+body.home-page .section-heading h2 {
+    color: var(--home-ink);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.12;
+}
+
+body.home-page #herniMody .herniMody-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas: "celaCR krajeCR vlastniMisto specifickaMista";
+    gap: 18px;
+}
+
+body.home-page #herniMody .herniMod {
+    min-height: 390px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    border-radius: 8px;
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.82), rgba(244, 248, 255, 0.48));
+    box-shadow: 0 18px 48px rgba(41, 66, 103, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(26px) saturate(155%);
+    -webkit-backdrop-filter: blur(26px) saturate(155%);
+    text-align: left;
+    justify-content: flex-start;
+    animation: glass-arrive 0.55s ease both;
+}
+
+body.home-page #herniMody .herniMod:nth-child(2) { animation-delay: 70ms; }
+body.home-page #herniMody .herniMod:nth-child(3) { animation-delay: 140ms; }
+body.home-page #herniMody .herniMod:nth-child(4) { animation-delay: 210ms; }
+
+body.home-page #herniMody .herniMod:hover {
+    border-color: rgba(98, 153, 211, 0.56);
+    box-shadow: 0 24px 58px rgba(41, 66, 103, 0.2), inset 0 1px 0 #fff;
+    transform: translateY(-4px);
+}
+
+body.home-page #herniMody .herniMod.popup-open {
+    transform: none;
+}
+
+body.home-page #herniMody .herniMod h3 {
+    margin-bottom: 12px;
+    color: var(--home-ink);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+body.home-page #herniMody .herniMod p {
+    color: var(--home-muted);
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+body.home-page #herniMody .mode-card-head {
+    display: flex;
+    min-height: 78px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+body.home-page #herniMody .mode-index {
+    padding-top: 4px;
+    color: var(--mode-accent);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+body.home-page #herniMody .mode-art {
+    display: grid;
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    border-radius: 8px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.48));
+    box-shadow: 0 9px 22px rgba(41, 66, 103, 0.1), inset 0 1px 0 #fff;
+    color: var(--mode-accent);
+}
+
+body.home-page #herniMody .mode-art svg {
+    width: 54px;
+    height: 54px;
+    overflow: visible;
+}
+
+body.home-page #herniMody #celaCR { --mode-accent: #3d79b8; }
+body.home-page #herniMody #krajeCR { --mode-accent: #c66f60; }
+body.home-page #herniMody #vlastniMisto { --mode-accent: #3b8c83; }
+body.home-page #herniMody #specifickaMista { --mode-accent: #816bad; }
+
+body.home-page #herniMody .herniMod .info {
+    flex: 1;
+    margin-bottom: 26px;
+}
+
+body.home-page #herniMody .herniMod h3 {
+    margin-bottom: 12px;
+    font-size: 21px;
+    line-height: 1.3;
+}
+
+body.home-page #herniMody .tlacitko-wrapper {
+    width: 100%;
+}
+
+body.home-page #herniMody .play-button {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+body.home-page .tlacitko {
+    min-height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.76);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #4386ce, #2868b2);
+    box-shadow: 0 8px 20px rgba(41, 99, 164, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    color: #fff;
+}
+
+body.home-page .tlacitko:hover {
+    background: linear-gradient(135deg, #5796d7, #3475c5);
+}
+
+body.home-page .popup {
+    background: rgba(30, 45, 63, 0.38);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+body.home-page .popup-content {
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    border-radius: 8px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(239, 246, 255, 0.82));
+    box-shadow: 0 28px 80px rgba(25, 53, 98, 0.28), inset 0 1px 0 #fff;
+    backdrop-filter: blur(32px) saturate(155%);
+    -webkit-backdrop-filter: blur(32px) saturate(155%);
+}
+
+body.home-page .popup-content h2,
+body.home-page .popup-content h3,
+body.home-page .popup-content span,
+body.home-page .popup-content p,
+body.home-page .popup-content label {
+    color: var(--text);
+}
+
+body.home-page .popup-content input,
+body.home-page .popup-content select {
+    border-color: rgba(94, 125, 165, 0.28);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text);
+}
+
+body.stats-page .stats-section {
+    padding-top: 0;
+}
+
+body.stats-page .stats-intro {
+    padding: 74px 0 58px;
+    border-bottom: 1px solid var(--home-line);
+}
+
+body.stats-page .stats-intro h1 {
+    font-size: 58px;
+}
+
+body.stats-page #statistiky,
+body.stats-page #historie {
+    padding-top: 48px;
+}
+
+body.stats-page #statistiky .grid > div {
+    min-height: 132px;
+    padding: 20px 18px;
+    border: 1px solid var(--glass-edge);
+    border-radius: 8px;
+    background: var(--glass-fill);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(22px) saturate(145%);
+    -webkit-backdrop-filter: blur(22px) saturate(145%);
+}
+
+body.stats-page #statistiky .grid .statistika {
+    color: var(--text);
+    font-size: 32px;
+    font-weight: 600;
+}
+
+body.stats-page #statistiky .grid .statistika-text {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+body.stats-page #historie .radkyExport {
+    align-items: end;
+    gap: 18px;
+    padding: 18px 0;
+    border-top: 1px solid var(--home-line);
+    border-bottom: 1px solid var(--home-line);
+}
+
+body.stats-page #historie .pocetRadkuNaStranku select,
+body.stats-page #historie .exportImport button,
+body.stats-page #historie .sipky button {
+    min-height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 6px 16px rgba(41, 66, 103, 0.08), inset 0 1px 0 #fff;
+    color: var(--text);
+}
+
+body.stats-page #historie .exportImport button {
+    padding: 8px 14px;
+}
+
+body.stats-page #historie .exportImport button:hover,
+body.stats-page #historie .sipky button:hover {
+    background: rgba(213, 231, 251, 0.9);
+}
+
+body.stats-page #historie #historieTabulka {
+    border: 1px solid var(--glass-edge);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.66);
+    box-shadow: 0 12px 32px rgba(41, 66, 103, 0.08);
+    font-size: 14px;
+}
+
+body.stats-page #historie #historieTabulka th {
+    background: rgba(218, 231, 247, 0.72);
+    color: #2b5f96;
+}
+
+body.stats-page #historie #historieTabulka th p {
+    color: inherit;
+}
+
+body.stats-page #historie #historieTabulka td,
+body.stats-page #historie #historieTabulka th {
+    border-color: rgba(91, 119, 153, 0.14);
+}
+
+body.game-page {
+    --text: #f6f9fe;
+    --text-muted: #d4e0ee;
+    --pozadi-webu: #172638;
+    --pozadi-prvku: rgba(235, 244, 255, 0.84);
+    --prvek: #8bc6e8;
+    --odkazy: #b2e3f4;
+    --border: rgba(255, 255, 255, 0.38);
+    padding-top: 0;
+    background: #172638;
+}
+
+body.game-page .navigation {
+    background: rgba(20, 34, 51, 0.58);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 30px rgba(7, 17, 29, 0.2);
+    backdrop-filter: blur(24px) saturate(155%);
+    -webkit-backdrop-filter: blur(24px) saturate(155%);
+}
+
+body.game-page .navigation .game-info .cas {
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 8px;
+    background: rgba(240, 247, 255, 0.16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    color: #fff;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+body.game-page .navigation .game-info .cas span,
+body.game-page .navigation .game-info .skore span,
+body.game-page .navigation .game-info .mod-kolo span {
+    color: #f6f9fe;
+}
+
+body.game-page #mapa-kontejner {
+    border: 1px solid rgba(255, 255, 255, 0.76);
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(7, 17, 29, 0.28);
+}
+
+body.game-page #btnPotvrdit {
+    border-radius: 0 0 7px 7px;
+    background: rgba(232, 243, 255, 0.9);
+    color: #17263b;
+    font-weight: 600;
+}
+
+body.game-page #btnPotvrdit:hover {
+    background: #fff;
+}
+
+body.game-page #resetPanorama {
+    border: 1px solid rgba(255, 255, 255, 0.56);
+    border-radius: 8px;
+    background: rgba(235, 244, 255, 0.2);
+    box-shadow: 0 10px 28px rgba(7, 17, 29, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #f6f9fe;
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+
+body.game-page #resetPanorama:hover {
+    background: rgba(235, 244, 255, 0.34);
+}
+
+body.game-page .loading {
+    background: linear-gradient(145deg, #1b3049, #263e59);
+}
+
+body.game-page .loading .kolecko {
+    border-color: rgba(246, 249, 254, 0.28);
+    border-top-color: #a9dce9;
+}
+
+body.home-page .home-hero {
+    min-height: 500px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 72px 0 78px;
+}
+
+body.home-page .home-hero-copy {
+    max-width: 850px;
+}
+
+body.home-page .home-hero h1 {
+    max-width: 820px;
+    margin-bottom: 22px;
+    font-size: 68px;
+}
+
+body.home-page .hero-lead {
+    max-width: 590px;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.56);
+    box-shadow: 0 6px 18px rgba(41, 66, 103, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.88);
+    color: var(--text);
+    font: 500 12px/1 "Poppins", sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(108, 154, 207, 0.58);
+    background: rgba(255, 255, 255, 0.82);
+}
+
+.theme-toggle-icon {
+    display: grid;
+    width: 20px;
+    height: 20px;
+    place-items: center;
+    color: #3977b9;
+    font-size: 20px;
+    line-height: 1;
+}
+
+body.game-page .navigation-content {
+    position: relative;
+    padding-right: 160px;
+}
+
+body.game-page .game-theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    z-index: 102;
+}
+
+body.game-page .navigation .game-info .cas {
+    top: 0;
+    padding: 9px 14px;
+    font-variant-numeric: tabular-nums;
+}
+
+body.game-page #mapa-kontejner {
+    overflow: visible;
+}
+
+body.game-page #mapa {
+    border-radius: 7px 7px 0 0;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --text: #e8f0fb;
+    --text-muted: #aebbd0;
+    --pozadi-webu: #111b2a;
+    --pozadi-menu: rgba(19, 30, 46, 0.72);
+    --odkazy: #9dc9fa;
+    --odkazy-hover: #c0defe;
+    --oddelovac: rgba(188, 208, 236, 0.15);
+    --pozadi-uvod: rgba(35, 50, 70, 0.72);
+    --pozadi-prvku: rgba(34, 49, 69, 0.78);
+    --prvek: #74a9e1;
+    --prvek-hover: #9bc3ee;
+    --footer: rgba(20, 31, 47, 0.84);
+    --border: rgba(225, 237, 255, 0.18);
+    --shadow: 0 20px 55px rgba(2, 8, 17, 0.34);
+    --glass-edge: rgba(229, 240, 255, 0.2);
+    --glass-fill: linear-gradient(145deg, rgba(38, 54, 76, 0.78), rgba(23, 37, 56, 0.62));
+    --glass-shadow: 0 18px 48px rgba(2, 8, 17, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme="dark"] body:not(.game-page) {
+    color: var(--text);
+    background:
+        linear-gradient(128deg, rgba(41, 67, 99, 0.42) 0%, transparent 46%),
+        linear-gradient(310deg, rgba(78, 55, 57, 0.22) 0%, transparent 43%),
+        linear-gradient(145deg, #111b2a 0%, #18263a 54%, #151f2c 100%);
+}
+
+html[data-theme="dark"] body.home-page {
+    --text: #e8f0fb;
+    --text-muted: #aebbd0;
+    --pozadi-webu: #111b2a;
+    --pozadi-menu: rgba(19, 30, 46, 0.72);
+    --odkazy: #9dc9fa;
+    --odkazy-hover: #c0defe;
+    --oddelovac: rgba(188, 208, 236, 0.15);
+    --pozadi-uvod: rgba(35, 50, 70, 0.72);
+    --pozadi-prvku: rgba(34, 49, 69, 0.78);
+    --prvek: #74a9e1;
+    --prvek-hover: #9bc3ee;
+    --footer: rgba(20, 31, 47, 0.84);
+    --border: rgba(225, 237, 255, 0.18);
+    --shadow: 0 20px 55px rgba(2, 8, 17, 0.34);
+    --home-ink: #e8f0fb;
+    --home-muted: #aebbd0;
+    --home-paper: #111b2a;
+    --home-card: rgba(34, 49, 69, 0.78);
+    --home-blue: #8fbbea;
+    --home-coral: #efaa91;
+    --home-lime: #9ed6d0;
+    --home-line: rgba(188, 208, 236, 0.15);
+}
+
+html[data-theme="dark"] body:not(.game-page) .navigation {
+    background: rgba(18, 29, 44, 0.72);
+    border-bottom-color: rgba(225, 237, 255, 0.16);
+    box-shadow: 0 8px 30px rgba(2, 8, 17, 0.22);
+}
+
+html[data-theme="dark"] body:not(.game-page) .navigation .logo-name,
+html[data-theme="dark"] body:not(.game-page) .navigation li a .links-name,
+html[data-theme="dark"] body:not(.game-page) .navigation li:hover a .links-name,
+html[data-theme="dark"] body:not(.game-page) .navigation li a.current .links-name {
+    color: var(--text);
+}
+
+html[data-theme="dark"] body:not(.game-page) > footer {
+    background: rgba(17, 27, 42, 0.76);
+    border-top-color: rgba(225, 237, 255, 0.16);
+}
+
+html[data-theme="dark"] body.home-page #herniMody .herniMod,
+html[data-theme="dark"] body.stats-page #statistiky .grid > div {
+    border-color: var(--glass-edge);
+    background: var(--glass-fill);
+    box-shadow: var(--glass-shadow);
+}
+
+html[data-theme="dark"] body.home-page #herniMody .mode-art {
+    border-color: rgba(229, 240, 255, 0.18);
+    background: linear-gradient(145deg, rgba(48, 67, 92, 0.88), rgba(27, 42, 62, 0.76));
+    box-shadow: 0 9px 22px rgba(2, 8, 17, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] body.home-page #herniMody .herniMod h3 {
+    color: var(--home-ink);
+}
+
+html[data-theme="dark"] body.home-page #herniMody .herniMod p {
+    color: var(--home-muted);
+}
+
+html[data-theme="dark"] body.stats-page #statistiky .grid .statistika,
+html[data-theme="dark"] body.stats-page #statistiky .grid .statistika-text,
+html[data-theme="dark"] body.stats-page #historie h2 {
+    color: var(--text);
+}
+
+html[data-theme="dark"] body:not(.game-page) .theme-toggle {
+    border-color: rgba(225, 237, 255, 0.2);
+    background: rgba(33, 49, 70, 0.68);
+    box-shadow: 0 6px 18px rgba(2, 8, 17, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    color: var(--text);
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+    background: rgba(50, 69, 94, 0.84);
+}
+
+html[data-theme="dark"] .theme-toggle-icon {
+    color: #f5d992;
+}
+
+html[data-theme="dark"] body.home-page .popup-content {
+    border-color: var(--glass-edge);
+    background: linear-gradient(145deg, rgba(39, 55, 77, 0.96), rgba(24, 38, 57, 0.94));
+    box-shadow: 0 28px 80px rgba(2, 8, 17, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+html[data-theme="dark"] body.home-page .popup-content h2,
+html[data-theme="dark"] body.home-page .popup-content h3,
+html[data-theme="dark"] body.home-page .popup-content span,
+html[data-theme="dark"] body.home-page .popup-content p,
+html[data-theme="dark"] body.home-page .popup-content label {
+    color: var(--text);
+}
+
+html[data-theme="dark"] body.home-page .popup-content input,
+html[data-theme="dark"] body.home-page .popup-content select {
+    border-color: rgba(225, 237, 255, 0.2);
+    background: rgba(18, 29, 44, 0.72);
+    color: var(--text);
+}
+
+html[data-theme="dark"] body.stats-page #historie #historieTabulka {
+    border-color: var(--glass-edge);
+    background: rgba(25, 39, 58, 0.78);
+    color: var(--text);
+}
+
+html[data-theme="dark"] body.stats-page #historie #historieTabulka th {
+    background: rgba(56, 77, 104, 0.9);
+    color: #e8f0fb;
+}
+
+html[data-theme="dark"] body.stats-page #historie #historieTabulka th p,
+html[data-theme="dark"] body.stats-page #historie #historieTabulka td {
+    color: var(--text);
+}
+
+html[data-theme="dark"] body.stats-page #historie .pocetRadkuNaStranku select,
+html[data-theme="dark"] body.stats-page #historie .exportImport button,
+html[data-theme="dark"] body.stats-page #historie .sipky button {
+    border-color: var(--glass-edge);
+    background: rgba(36, 52, 73, 0.8);
+    color: var(--text);
+}
+
+body.game-page {
+    --text: #17263b;
+    --text-muted: #64758b;
+    --pozadi-webu: #eaf0f8;
+    --pozadi-prvku: rgba(255, 255, 255, 0.78);
+    --prvek: #3475c5;
+    --odkazy: #2766b2;
+    --border: rgba(255, 255, 255, 0.62);
+    background: #eaf0f8;
+}
+
+body.game-page .navigation {
+    background: rgba(239, 246, 255, 0.54);
+    border-bottom-color: rgba(255, 255, 255, 0.68);
+    box-shadow: 0 8px 30px rgba(20, 40, 68, 0.12);
+}
+
+body.game-page .navigation .game-info .cas,
+body.game-page .navigation .game-info .cas span,
+body.game-page .navigation .game-info .skore span,
+body.game-page .navigation .game-info .mod-kolo span {
+    color: #17263b;
+}
+
+body.game-page .navigation .game-info .cas {
+    background: rgba(255, 255, 255, 0.48);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+body.game-page #resetPanorama {
+    background: rgba(242, 247, 253, 0.5);
+    border-color: rgba(255, 255, 255, 0.78);
+    color: #17263b;
+}
+
+body.game-page #resetPanorama:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+body.game-page .loading {
+    background: linear-gradient(145deg, #eaf0f8, #f6f8fc);
+    color: #17263b;
+}
+
+body.game-page .loading p {
+    color: #17263b;
+}
+
+html[data-theme="dark"] body.game-page {
+    --text: #f6f9fe;
+    --text-muted: #d4e0ee;
+    --pozadi-webu: #172638;
+    --pozadi-prvku: rgba(235, 244, 255, 0.84);
+    --prvek: #8bc6e8;
+    --odkazy: #b2e3f4;
+    --border: rgba(255, 255, 255, 0.38);
+    background: #172638;
+}
+
+html[data-theme="dark"] body.game-page .navigation {
+    background: rgba(20, 34, 51, 0.58);
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 30px rgba(7, 17, 29, 0.2);
+}
+
+html[data-theme="dark"] body.game-page .navigation .game-info .cas,
+html[data-theme="dark"] body.game-page .navigation .game-info .cas span,
+html[data-theme="dark"] body.game-page .navigation .game-info .skore span,
+html[data-theme="dark"] body.game-page .navigation .game-info .mod-kolo span {
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page .navigation .game-info .cas {
+    background: rgba(240, 247, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.58);
+}
+
+html[data-theme="dark"] body.game-page #resetPanorama {
+    background: rgba(235, 244, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.56);
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page .loading {
+    background: linear-gradient(145deg, #1b3049, #263e59);
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page .loading p {
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page .game-theme-toggle {
+    border-color: rgba(225, 237, 255, 0.38);
+    background: rgba(33, 49, 70, 0.7);
+    color: #f6f9fe;
+}
+
+@media (max-width: 800px) {
+    body.home-page .home-hero {
+        min-height: 430px;
+        padding: 58px 0 62px;
+    }
+
+    body.home-page .home-hero h1 {
+        font-size: 52px;
+    }
+
+    body.game-page .navigation-content {
+        padding-right: 130px;
+    }
+}
+
+@media (max-width: 520px) {
+    body:not(.game-page) .navigation-content {
+        gap: 6px;
+        padding: 8px 8px;
+    }
+
+    body:not(.game-page) .navigation .logo-name {
+        font-size: 17px;
+    }
+
+    body:not(.game-page) .navigation .nav-list {
+        gap: 8px;
+    }
+
+    body:not(.game-page) .navigation li a .links-name {
+        font-size: 10px;
+    }
+
+    .theme-toggle {
+        width: 34px;
+        min-width: 34px;
+        min-height: 34px;
+        padding: 0;
+    }
+
+    .theme-toggle-label {
+        display: none;
+    }
+
+    .theme-toggle-icon {
+        font-size: 20px;
+    }
+
+    body.home-page .home-hero {
+        min-height: 390px;
+        padding: 48px 0 54px;
+    }
+
+    body.home-page .home-hero h1 {
+        font-size: 40px;
+    }
+
+    body.game-page .navigation-content {
+        padding: 6px 58px 6px 8px;
+    }
+
+    body.game-page .game-theme-toggle {
+        top: 8px;
+        right: 10px;
+    }
+
+    body.game-page .navigation .game-info {
+        width: auto;
+        min-width: 0;
+        flex: 1;
+        gap: 4px;
+    }
+
+    body.game-page .navigation .game-info .skore span,
+    body.game-page .navigation .game-info .mod-kolo span {
+        font-size: 10px;
+    }
+
+    body.game-page .navigation .game-info .mod-kolo {
+        gap: 6px;
+    }
+
+    body.game-page .navigation .game-info .cas {
+        width: 112px;
+        padding: 7px 8px;
+        font-size: 11px;
+    }
+
+    body.game-page .navigation .game-info .cas:has(#casomira:empty) {
+        display: none;
+    }
+}
+
+html[data-theme="dark"] body.game-page .navigation {
+    background: rgba(20, 34, 51, 0.62);
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 30px rgba(7, 17, 29, 0.24);
+}
+
+html[data-theme="dark"] body.game-page .navigation .game-info .cas,
+html[data-theme="dark"] body.game-page .navigation .game-info .cas span,
+html[data-theme="dark"] body.game-page .navigation .game-info .skore span,
+html[data-theme="dark"] body.game-page .navigation .game-info .mod-kolo span {
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page .navigation .game-info .cas {
+    background: rgba(240, 247, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.58);
+}
+
+html[data-theme="dark"] body.game-page .game-theme-toggle {
+    border-color: rgba(225, 237, 255, 0.38);
+    background: rgba(33, 49, 70, 0.78);
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page #resetPanorama {
+    background: rgba(27, 43, 63, 0.72);
+    border-color: rgba(255, 255, 255, 0.56);
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page .loading {
+    background: linear-gradient(145deg, #1b3049, #263e59);
+    color: #f6f9fe;
+}
+
+html[data-theme="dark"] body.game-page .loading p {
+    color: #f6f9fe;
+}
+
+@keyframes glass-arrive {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1100px) {
+    body.home-page #herniMody .herniMody-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas: "celaCR krajeCR" "vlastniMisto specifickaMista";
+    }
+}
+
+@media (max-width: 800px) {
+    body:not(.game-page) .navigation-content {
+        min-height: 76px;
+        padding: 8px 18px;
+    }
+
+    body:not(.game-page) .navigation .nav-list {
+        gap: 18px;
+    }
+
+    body:not(.game-page) .home-section .text {
+        padding: 0 20px;
+    }
+
+    body.home-page .home-hero {
+        min-height: auto;
+        padding: 56px 0 70px;
+    }
+
+    body.home-page .home-hero h1,
+    body.home-page .stats-intro h1 {
+        font-size: 52px;
+    }
+
+    body.home-page .section-heading {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    body.stats-page #statistiky .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    body:not(.game-page) .navigation-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        min-height: 92px;
+        gap: 4px 10px;
+        padding: 6px 12px;
+    }
+
+    body:not(.game-page) .navigation .logo {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    body:not(.game-page) .navigation .logo-name {
+        font-size: 19px;
+    }
+
+    body:not(.game-page) .navigation .nav-list {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    body:not(.game-page) .navigation .theme-toggle {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+
+    body:not(.game-page) .navigation li a .links-name {
+        font-size: 11px;
+    }
+
+    body:not(.game-page) .home-section .text {
+        padding: 0 16px;
+        font-size: 15px;
+    }
+
+    body:not(.game-page) .home-section > .text > section:not(.home-hero):not(#herniMody) h2 {
+        font-size: 34px;
+    }
+
+    body.home-page .home-hero h1,
+    body.home-page .stats-intro h1 {
+        font-size: 40px;
+    }
+
+    body.home-page .hero-lead {
+        font-size: 16px;
+    }
+
+    body.home-page #herniMody .herniMody-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: "celaCR" "krajeCR" "vlastniMisto" "specifickaMista";
+    }
+
+    body.home-page #herniMody .herniMod {
+        min-height: 330px;
+    }
+
+    body.home-page #herniMody .mode-card-head {
+        min-height: 66px;
+        margin-bottom: 18px;
+    }
+
+    body.home-page #herniMody .mode-art {
+        width: 64px;
+        height: 64px;
+        flex-basis: 64px;
+    }
+
+    body.home-page #herniMody .mode-art svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    body.stats-page #statistiky .grid {
+        grid-template-columns: 1fr;
+    }
+
+    body.stats-page #historie .radkyExport {
+        align-items: stretch;
+    }
+
+    body.stats-page #historie .pocetRadkuNaStranku {
+        flex-wrap: wrap;
+    }
+
+    body.game-page .navigation-content {
+        padding: 6px 58px 6px 8px;
+    }
+
+    body.game-page .navigation .game-info {
+        gap: 6px;
+    }
+
+    body.game-page .navigation .game-info .mod-kolo {
+        gap: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *:before,
+    *:after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+body.home-page .misto-skupina {
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px solid rgba(91, 119, 153, 0.2);
+    border-radius: 8px;
+    background: rgba(235, 243, 252, 0.46);
+}
+
+body.home-page .misto-skupina h3 {
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+body.home-page .misto-skupina > p {
+    margin: 0 0 12px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+body.home-page .misto-skupina .switche {
+    width: 100%;
+}
+
+body.home-page .misto-skupina .switche td {
+    width: 50%;
+}
+
+html[data-theme="dark"] body.home-page .misto-skupina {
+    border-color: rgba(186, 211, 241, 0.2);
+    background: rgba(17, 29, 45, 0.52);
+}
+
+html[data-theme="dark"] body.home-page .misto .checkmark {
+    border-color: rgba(221, 235, 255, 0.3);
+    background-color: #293b52;
+}
+
+html[data-theme="dark"] body.home-page .misto .checkmark:hover {
+    border-color: #a1d8f5;
+    background-color: #354d69;
+}
+
+html[data-theme="dark"] body.home-page .misto input[type="checkbox"]:checked + .checkmark {
+    border-color: #c6edff;
+    background-color: #4ab0dc;
+    box-shadow: 0 0 0 3px rgba(74, 176, 220, 0.28), 0 0 18px rgba(74, 176, 220, 0.35);
+}
+
+html[data-theme="dark"] body.home-page .popup-content .misto .checkmark.is-selected {
+    border-color: #c6edff !important;
+    background-color: #4ab0dc !important;
+    box-shadow: 0 0 0 3px rgba(74, 176, 220, 0.28), 0 0 18px rgba(74, 176, 220, 0.35) !important;
+}
+
+html[data-theme="dark"] body.home-page .misto .checkmark span.material-icons {
+    color: #09253a;
+}
+
+html[data-theme="dark"] body.home-page .misto input[type="checkbox"]:checked + .checkmark span.material-icons {
+    color: #09253a;
+}

@@ -145,34 +145,6 @@ document.getElementById("resetPanorama").addEventListener("click", async functio
 
 
 
-// HLASITOST TLAČÍTKO = VYPNUTÍ/ZAPNUTÍ ZVUKOVÝCH EFEKTŮ
-var zvukoveEfekty = JSON.parse(localStorage.getItem("zvukoveEfekty"));
-if (zvukoveEfekty === null)
-{
-    zvukoveEfekty = true;
-}
-if (zvukoveEfekty === false)
-{
-    document.getElementById("zvuk").innerHTML = "<i class='fa-solid fa-volume-xmark'></i>";
-}
-
-document.getElementById("zvuk").addEventListener("click", function() {
-    if (zvukoveEfekty === true)
-    {
-        zvukoveEfekty = false;
-        document.getElementById("zvuk").innerHTML = "<i class='fa-solid fa-volume-xmark'></i>";
-    }
-    else
-    {
-        zvukoveEfekty = true;
-        document.getElementById("zvuk").innerHTML = "<i class='fa-solid fa-volume-high'></i>";
-    }
-    
-    localStorage.setItem("zvukoveEfekty", zvukoveEfekty);
-});
-
-
-
 // VYGENERUJE SOUŘADNICI A ZKONTROLUJE, ZDA SE SOUŘADNICE NACHÁZÍ UVNITŘ POLYGONU
 var souradnicePanorama;
 async function vygenerujMisto()

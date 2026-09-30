@@ -14,12 +14,14 @@
         <link rel="canonical" href="https://hadejkde.cz/">
 
         <title>Hádej sakra - Český GeoGuessr</title>
+        <script src="js/theme.js"></script>
 
         <link rel="stylesheet" href="css/fonty.css" type="text/css">
         <link rel="stylesheet" href="css/styly.css" type="text/css">
         <link rel="stylesheet" href="css/herni-mody.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobil.css">
+        <link rel="stylesheet" href="css/liquid-glass.css" type="text/css">
 
         <!-- Boxicons CDN Link -->
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
@@ -43,6 +45,7 @@
             <div class="navigation-content">
                 <div class="logo">
                     <a href="index.html">
+                        <img src="img/loga/logo-bod.svg" alt="" aria-hidden="true">
                         <span class="logo-name">Hádej sakra</span>
                     </a>
                 </div>
@@ -64,6 +67,10 @@
                         </a>
                     </li>
                 </ul>
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Přepnout na tmavý režim" aria-pressed="false" title="Tmavý režim">
+                    <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+                    <span class="theme-toggle-label">Tmavý režim</span>
+                </button>
             </div>
         </header>
 
@@ -77,16 +84,6 @@
                         <a class="hero-action" href="#herniMody">Vybrat hru <i class="bx bx-arrow-down-right"></i></a>
                     </div>
 
-                    <div class="hero-board" aria-label="Přehled hry">
-                        <span class="hero-board-label">DNEŠNÍ VÝZVA</span>
-                        <strong>Hádej<br>sakra.</strong>
-                        <div class="hero-board-pin"><i class="bx bxs-map-pin"></i></div>
-                        <div class="hero-board-footer">
-                            <span>14 krajů</span>
-                            <span>6254 obcí</span>
-                            <span>∞ možností</span>
-                        </div>
-                    </div>
                 </section>
 
                 <section id="herniMody">
@@ -98,13 +95,24 @@
 
                     <div class="herniMody-grid">
                         <div class="herniMod" id="celaCR">
+                            <div class="mode-card-head">
+                                <span class="mode-index">01 / REPUBLIKA</span>
+                                <div class="mode-art" aria-hidden="true">
+                                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m19 17 10 3 10-6 8 5 7 1 3 9-5 6 2 8-8 8-8-3-6 4-7-6-8-3 2-9-4-7 4-5z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                                        <path d="M21 46c6-8 11-13 18-16 5-2 8-5 12-10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="3 4"/>
+                                        <circle cx="21" cy="46" r="3.5" fill="currentColor"/>
+                                        <circle cx="51" cy="20" r="3.5" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="info">
                                 <h3>Celá ČR</h3>
-                                <p>Chceš vyzkoušet své znalosti na území celé České republiky? Tak to je tu pro tebe právě tento herní mód, ve kterém se objevíš na náhodném místě v jedné z 6254 obcí ČR!</p>
+                                <p>Od severních hor po jižní Moravu: každé kolo tě zavede do jiné obce. Všímej si krajiny, hledej orientační body a umísti svůj odhad na mapu.</p>
                             </div>
 
                             <div class="tlacitko-wrapper">
-                                <button id="btn-CelaCR" class="tlacitko play-button" style="width: 120px;">Hrát <i class='bx bx-arrow-up-right'></i></button>
+                                <button id="btn-CelaCR" class="tlacitko play-button">Nastavit mód</button>
                             </div>
 
                             <div id="popup-CelaCR" class="popup">
@@ -258,17 +266,17 @@
                                             <tr>
                                                 <td>
                                                     <div class="image-selector selected" onclick="selectImage(this)" data-druhMapy="zakladni">
-                                                        <img src="img/druhyMapy/zakladni.png" alt="základní mapa">
+                                                        <img src="img/druhyMapy/zakladni.svg" alt="základní mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="turisticka">
-                                                        <img src="img/druhyMapy/turisticka.png" alt="turistická mapa">
+                                                        <img src="img/druhyMapy/turisticka.svg" alt="turistická mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="letecka">
-                                                        <img src="img/druhyMapy/letecka.png" alt="letecká mapa">
+                                                        <img src="img/druhyMapy/letecka.svg" alt="letecká mapa">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -283,13 +291,25 @@
                         </div>
 
                         <div class="herniMod" id="krajeCR">
+                            <div class="mode-card-head">
+                                <span class="mode-index">02 / REGION</span>
+                                <div class="mode-art" aria-hidden="true">
+                                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="14" y="15" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/>
+                                        <rect x="40" y="15" width="18" height="18" rx="4" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="2.2"/>
+                                        <rect x="14" y="41" width="18" height="18" rx="4" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="2.2"/>
+                                        <rect x="40" y="41" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/>
+                                        <path d="m45 24 4 4 7-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="info">
                                 <h3>Kraje ČR</h3>
-                                <p>Je na tebe celá Česká republika moc velká a chceš něco menšího? Nevadí, vyber si jeden ze 14 krajů ČR, který znáš nejlépe!</p>
+                                <p>Vyber kraj, který chceš lépe poznat. Místní krajina a města ti napoví, jak dobře se v jeho okolí orientuješ.</p>
                             </div>
 
                             <div class="tlacitko-wrapper">
-                                <button id="btn-KrajeCR" class="tlacitko play-button" style="width: 120px;">Hrát <i class='bx bx-arrow-up-right'></i></button>
+                                <button id="btn-KrajeCR" class="tlacitko play-button">Nastavit mód</button>
                             </div>
 
                             <div id="popup-KrajeCR" class="popup">
@@ -510,17 +530,17 @@
                                             <tr>
                                                 <td>
                                                     <div class="image-selector selected" onclick="selectImage(this)" data-druhMapy="zakladni">
-                                                        <img src="img/druhyMapy/zakladni.png" alt="základní mapa">
+                                                        <img src="img/druhyMapy/zakladni.svg" alt="základní mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="turisticka">
-                                                        <img src="img/druhyMapy/turisticka.png" alt="turistická mapa">
+                                                        <img src="img/druhyMapy/turisticka.svg" alt="turistická mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="letecka">
-                                                        <img src="img/druhyMapy/letecka.png" alt="letecká mapa">
+                                                        <img src="img/druhyMapy/letecka.svg" alt="letecká mapa">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -535,13 +555,24 @@
                         </div>
 
                         <div class="herniMod" id="vlastniMisto">
+                            <div class="mode-card-head">
+                                <span class="mode-index">03 / VLASTNÍ BOD</span>
+                                <div class="mode-art" aria-hidden="true">
+                                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="36" cy="36" r="24" stroke="currentColor" stroke-width="2.2"/>
+                                        <circle cx="36" cy="36" r="14" stroke="currentColor" stroke-width="2.2" stroke-dasharray="3 4"/>
+                                        <path d="M36 26c-5 0-9 4-9 9 0 7 9 17 9 17s9-10 9-17c0-5-4-9-9-9z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                                        <circle cx="36" cy="35" r="3" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="info">
                                 <h3>Vlastní místo v ČR</h3>
-                                <p>Chceš si vybrat své vlastní místo, v jehož okolí budeš hádat? Bez problému, můžeš si vybrat z jakéhokoliv okresu, města, čtvrti či části obce z celé ČR!</p>
+                                <p>Zadej místo a nastav okruh kolem něj. Každé panorama pak pochází z vybrané oblasti, ať už prozkoumáváš známé okolí, nebo úplně novou čtvrť.</p>
                             </div>
                       
                             <div class="tlacitko-wrapper">
-                                <button id="btn-VlastniMisto" class="tlacitko play-button" style="width: 120px;">Hrát <i class='bx bx-arrow-up-right'></i></button>
+                                <button id="btn-VlastniMisto" class="tlacitko play-button">Nastavit mód</button>
                             </div>
 
                             <div id="popup-VlastniMisto" class="popup">
@@ -721,17 +752,17 @@
                                             <tr>
                                                 <td>
                                                     <div class="image-selector selected" onclick="selectImage(this)" data-druhMapy="zakladni">
-                                                        <img src="img/druhyMapy/zakladni.png" alt="základní mapa">
+                                                        <img src="img/druhyMapy/zakladni.svg" alt="základní mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="turisticka">
-                                                        <img src="img/druhyMapy/turisticka.png" alt="turistická mapa">
+                                                        <img src="img/druhyMapy/turisticka.svg" alt="turistická mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="letecka">
-                                                        <img src="img/druhyMapy/letecka.png" alt="letecká mapa">
+                                                        <img src="img/druhyMapy/letecka.svg" alt="letecká mapa">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -746,13 +777,24 @@
                         </div>
 
                         <div class="herniMod" id="specifickaMista">
+                            <div class="mode-card-head">
+                                <span class="mode-index">04 / TEMATICKY</span>
+                                <div class="mode-art" aria-hidden="true">
+                                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 57h48" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                                        <path d="M18 57V34h15v23M22 34V26l4-6 4 6v8M39 57V29h15v28M43 29v-7l4-6 4 6v7" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                                        <path d="M23 42h5M23 49h5M44 37h5M44 44h5M44 51h5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                                        <path d="m34 24 2-4 2 4 4 2-4 2-2 4-2-4-4-2z" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="info">
                                 <h3>Specifická místa v ČR</h3>
-                                <p>Chceš hádat v blízkém okolí specifických míst, které si sám vybereš? Žádný problém, vyber si z 12 různých specifických míst v ČR!</p>
+                                <p>Zvol tematickou sadu a hádej poblíž míst, která ji charakterizují. Nádraží, hrady, nemocnice i další cíle promění každé kolo v malou místní výpravu.</p>
                             </div>
 
                             <div class="tlacitko-wrapper">
-                                <button id="btn-SpecifickaMista" class="tlacitko play-button" style="width: 120px;">Hrát <i class='bx bx-arrow-up-right'></i></button>
+                                <button id="btn-SpecifickaMista" class="tlacitko play-button">Nastavit mód</button>
                             </div>
 
                             <div id="popup-SpecifickaMista" class="popup">
@@ -880,20 +922,34 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="misto">
-                                                    <input type="checkbox">
-                                                    <span class="checkmark" id="dpmb">
-                                                        <span class="material-icons">directions_transit</span>
-                                                    </span>
-                                                    <label>Brněnské zastávky (DPMB)</label>
-                                                </div>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
                                     </table>
+
+                                    <section class="misto-skupina zastavky-skupina" aria-labelledby="zastavkyMHDHeading">
+                                        <h3 id="zastavkyMHDHeading">Zastávky MHD</h3>
+                                        <p>Vyber město a hádej u jeho zastávek městské dopravy.</p>
+                                        <table class="switche" id="mistaZastavkyMHD" style="margin: 0 auto; width: 100%; table-layout: fixed;">
+                                            <tr>
+                                                <td>
+                                                    <div class="misto">
+                                                        <input type="checkbox">
+                                                        <span class="checkmark" id="dpmb">
+                                                            <span class="material-icons">directions_transit</span>
+                                                        </span>
+                                                        <label>Brněnské zastávky (DPMB)</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="misto">
+                                                        <input type="checkbox">
+                                                        <span class="checkmark" id="blansko">
+                                                            <span class="material-icons">tram</span>
+                                                        </span>
+                                                        <label>Zastávky v Blansku</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </section>
 
                                     <br>
         
@@ -1040,17 +1096,17 @@
                                             <tr>
                                                 <td>
                                                     <div class="image-selector selected" onclick="selectImage(this)" data-druhMapy="zakladni">
-                                                        <img src="img/druhyMapy/zakladni.png" alt="základní mapa">
+                                                        <img src="img/druhyMapy/zakladni.svg" alt="základní mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="turisticka">
-                                                        <img src="img/druhyMapy/turisticka.png" alt="turistická mapa">
+                                                        <img src="img/druhyMapy/turisticka.svg" alt="turistická mapa">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="image-selector" onclick="selectImage(this)" data-druhMapy="letecka">
-                                                        <img src="img/druhyMapy/letecka.png" alt="letecká mapa">
+                                                        <img src="img/druhyMapy/letecka.svg" alt="letecká mapa">
                                                     </div>
                                                 </td>
                                             </tr>

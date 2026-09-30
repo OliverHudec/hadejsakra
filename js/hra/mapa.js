@@ -90,8 +90,19 @@ function generace()
 
 // PRVNÍ NAČTENÍ STRÁNKY
 var hrano;
-window.onload = function() {
+window.onload = async function() {
     //console.clear(); // vymaže konzoli
+
+    try
+    {
+        await gameSetupReady;
+    }
+    catch (error)
+    {
+        document.querySelector(".loading .kolecko").style.display = "none";
+        document.getElementById("loadingText").textContent = error.message;
+        return;
+    }
 
     vytvorMapu();
     vytvorOblastAZarovnejMapu();
@@ -108,13 +119,6 @@ window.onload = function() {
     const vteriny = now.getSeconds().toString().padStart(2, "0");
     hrano = `${rok}-${mesic}-${den}T${hodiny}:${minuty}:${vteriny}`;
 };
-
-
-// ZVUKOVÉ EFEKTY
-//var KidsCheering = new Audio("zvuk/Kids Cheering.wav");
-//var SadTrombone = new Audio("zvuk/Sad Trombone.wav");
-//var Bruh = new Audio("zvuk/Bruh.wav");
-//var HitMarker = new Audio("zvuk/Hit Marker.wav");
 
 
 // ZAOKROUHLENÍ A PŘEVEDENÍ VZDÁLENOSTI DO STRINGU (153 m nebo 1,753 km)
@@ -182,7 +186,7 @@ function zobrazPrimku()
         icon: L.divIcon({
             iconSize: [22, 31],
             iconAnchor: [11, 31],
-            html: `<a href="${odkaz}" target="_blank"><img src="img/body/panorama-marker.png"></a>`,
+            html: `<a href="${odkaz}" target="_blank"><img src="img/body/panorama-marker.svg"></a>`,
             className: "panoramaBod"
         }),
         opacity: 1,
@@ -199,7 +203,7 @@ function zobrazPrimku()
         icon: L.divIcon({
             iconSize: [22, 31],
             iconAnchor: [11, 31],
-            html: `<img src="img/body/odhad-marker.png">`,
+            html: `<img src="img/body/odhad-marker.svg">`,
             className: 'odhadBod'
         }),
         opacity: 1,
@@ -228,22 +232,6 @@ function zobrazPrimku()
     setTimeout(() => {
         map.fitBounds(primkaBodyLayer.getBounds().pad(0.1), {animate: false}); // zvětší hranice boundu o 10%
     }, 300);
-
-
-    // PŘEHRÁNÍ ZVUKU
-    if (zvukoveEfekty === true)
-    {
-        if (skore >= 50)
-        {
-            var KidsCheering = new Audio("zvuk/Kids Cheering.wav");
-            KidsCheering.play();
-        }
-        else
-        {
-            var SadTrombone = new Audio("zvuk/Sad Trombone.wav");
-            SadTrombone.play();
-        }
-    }
 
 
     // STATISTIKA - POČET PERFEKTNÍCH KOL
@@ -693,17 +681,6 @@ pinVelikost.addEventListener("click", function() {
 });
 
 
-// PŘEHRÁNÍ BRUH ZVUKU
-function prehratBruhZvuk()
-{
-    if (zvukoveEfekty === true)
-    {
-        var Bruh = new Audio("zvuk/Bruh.wav");
-        Bruh.play();
-    }
-}
-
-
 // KLIKNUTÍ MYŠÍ NA MAPU KDYŽ NENÍ MAPA JAKO VÝSLEDEK => MAPA JE JAKO NORMÁLNÍ MAPKA
 var odhadBod;
 var souradniceOdhadu;
@@ -752,10 +729,6 @@ function klikNaMapu(e) // kliknulo se na mapu
             mapa.classList.remove("selected");
 
 
-            // PŘEHRÁNÍ ZVUKU
-            prehratBruhZvuk();
-
-
             // STATISTIKA - POUŽITA NÁPOVĚDA
             pouzitoNapoved++;
         }
@@ -779,7 +752,7 @@ function klikNaMapu(e) // kliknulo se na mapu
                 icon: L.divIcon({
                     iconSize: [34, 34],
                     iconAnchor: [17, 17],
-                    html: `<img src="img/napovedy/vzdalenostHelp.png"><div>${vzdalenostZaokrouhlena}</div>`,
+                    html: `<img src="img/napovedy/vzdalenostHelp.svg"><div>${vzdalenostZaokrouhlena}</div>`,
                     className: 'vzdalenostNapoveda'
                 }),
                 opacity: 1,
@@ -797,10 +770,6 @@ function klikNaMapu(e) // kliknulo se na mapu
             mapa.classList.remove("selected");
 
             
-            // PŘEHRÁNÍ ZVUKU
-            prehratBruhZvuk();
-
-
             // STATISTIKA - POUŽITA NÁPOVĚDA
             pouzitoNapoved++;
         }
@@ -827,7 +796,7 @@ function klikNaMapu(e) // kliknulo se na mapu
                 icon: L.divIcon({
                     iconSize: [34, 34],
                     iconAnchor: [17, 17],
-                    html: `<img src="img/napovedy/smerHelp.png" style="transform: rotate(${smer}deg)">`,
+                    html: `<img src="img/napovedy/smerHelp.svg" style="transform: rotate(${smer}deg)">`,
                     className: 'smerNapoveda'
                 }),
                 opacity: 1,
@@ -845,10 +814,6 @@ function klikNaMapu(e) // kliknulo se na mapu
             mapa.classList.remove("selected");
 
 
-            // PŘEHRÁNÍ ZVUKU
-            prehratBruhZvuk();
-
-
             // STATISTIKA - POUŽITA NÁPOVĚDA
             pouzitoNapoved++;
         }
@@ -863,7 +828,7 @@ function klikNaMapu(e) // kliknulo se na mapu
                 icon: L.divIcon({
                     iconSize: [22, 31],
                     iconAnchor: [11, 31],
-                    html: `<img src="img/body/odhad-marker.png">`,
+                    html: `<img src="img/body/odhad-marker.svg">`,
                     className: 'odhadBod'
                 }),
                 opacity: 1,
@@ -875,12 +840,6 @@ function klikNaMapu(e) // kliknulo se na mapu
             primkaBodyLayer.addLayer(odhadBod); // zobrazení bodu
 
 
-            // PŘEHRÁNÍ ZVUKU
-            if (zvukoveEfekty === true)
-            {
-                var HitMarker = new Audio("zvuk/Hit Marker.wav");
-                HitMarker.play();
-            }
         }
     }
 }

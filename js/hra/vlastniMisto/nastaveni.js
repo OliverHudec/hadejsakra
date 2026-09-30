@@ -18,3 +18,5 @@ function nactiHodnotyModu()
 }
 
 nactiHodnotyModu();
+
+window.dataModuReady = Promise.resolve();

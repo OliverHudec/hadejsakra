@@ -139,11 +139,13 @@ function zapnoutHru(nazevModu)
             case "SpecifickaMista":
                 // SPECIFICKÁ MÍSTA
                 const specifickaMista = ziskejHodnotyCheckboxu("mistaSpecifickaMista");
+                const zastavkyMHD = ziskejHodnotyCheckboxu("mistaZastavkyMHD");
                 sessionStorage.setItem("specifickaMista", JSON.stringify(specifickaMista));
+                sessionStorage.setItem("zastavkyMHD", JSON.stringify(zastavkyMHD));
 
-                if (!specifickaMista.some(prvek => prvek === true))
+                if (!specifickaMista.some(prvek => prvek === true) && !zastavkyMHD.some(prvek => prvek === true))
                 {
-                    document.querySelector(".neni-SpecifickaMista").textContent = "Nevybral jsi specifické místo!";
+                    document.querySelector(".neni-SpecifickaMista").textContent = "Vyber alespoň jedno specifické místo nebo zastávku MHD!";
                     return;
                 }
                 else if (jeMobil())
@@ -317,12 +319,14 @@ function ziskejHodnotyCheckboxu(tabulkaId)
 
 
 // VŠECHNY SWITCHE V MÓDU SPECIFICKÁ MÍSTA V ČR
-const checkmarks = document.querySelectorAll("#mistaSpecifickaMista .misto .checkmark");
+const checkmarks = document.querySelectorAll(".misto .checkmark");
 checkmarks.forEach(checkmark => {
     const checkbox = checkmark.previousElementSibling;
+    checkmark.classList.toggle("is-selected", checkbox.checked);
 
     checkmark.addEventListener("click", function() {
         checkbox.checked = !checkbox.checked;
+        checkmark.classList.toggle("is-selected", checkbox.checked);
     });
 });
 

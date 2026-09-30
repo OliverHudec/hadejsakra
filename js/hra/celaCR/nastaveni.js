@@ -17,10 +17,7 @@ nactiHodnotyModu();
 // NAČTE SKRIPTY POTŘEBNÉ PRO FUNGOVÁNÍ MÓDU
 function nactiScriptyModu()
 {
-    // NAČTENÍ SCRIPTU CzechRepublic.js
-    var scriptElement = document.createElement('script');
-    scriptElement.src = "polygony/CzechRepublic.js";
-    document.body.appendChild(scriptElement);
+    return nactiScriptHry("polygony/CzechRepublic.js");
 }
 
-nactiScriptyModu();
+window.dataModuReady = nactiScriptyModu();

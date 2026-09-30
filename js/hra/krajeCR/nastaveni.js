@@ -38,7 +38,7 @@ function nactiScriptyModu()
         case 'Vysočina': scriptElement.src = "polygony/Vysocina.js"; maxVzdalenost = 46510; break;
         case 'Zlínský': scriptElement.src = "polygony/Zlinsky.js"; maxVzdalenost = 35517; break;
     }
-    document.body.appendChild(scriptElement);
+    return nactiScriptHry(scriptElement.src);
 }
 
-nactiScriptyModu();
+window.dataModuReady = nactiScriptyModu();

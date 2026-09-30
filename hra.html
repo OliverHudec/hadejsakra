@@ -13,11 +13,13 @@
         <link rel="canonical" href="https://hadejkde.cz/hra">
 
         <title>Hádej sakra - Český GeoGuessr</title>
+        <script src="js/theme.js"></script>
 
         <link rel="stylesheet" href="css/fonty.css" type="text/css">
         <link rel="stylesheet" href="css/styly.css" type="text/css">
         <link rel="stylesheet" href="css/menu-hra.css" type="text/css">
         <link rel="stylesheet" href="css/mapa.css" type="text/css">
+        <link rel="stylesheet" href="css/liquid-glass.css" type="text/css">
 
         <!-- FontAwesome CDN Link -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
@@ -39,7 +41,7 @@
         <!-- <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script> -->
     </head>
 
-    <body>
+    <body class="game-page">
         <div id="cerveneOkraje"></div>
 
         <header class="navigation">
@@ -56,6 +58,10 @@
                         <span id="kolo">KOLO: 1/20</span>
                     </li>
                 </ul>
+                <button class="theme-toggle game-theme-toggle" type="button" data-theme-toggle aria-label="Přepnout na tmavý režim" aria-pressed="false" title="Tmavý režim">
+                    <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+                    <span class="theme-toggle-label">Tmavý režim</span>
+                </button>
             </div>
         </header>
 
@@ -79,15 +85,15 @@
 
                         <div id="napovedy">
                             <button type="button" id="vzdalenostHelp" class="napoveda" title="Vzdálenost - klávesa 1" tabindex="-1">
-                                <img src="img/napovedy/vzdalenost.png" alt="vzdálenost">
+                                <img src="img/napovedy/vzdalenost.svg" alt="vzdálenost">
                             </button>
             
                             <button type="button" id="smerHelp" class="napoveda" title="Směr - klávesa 2" tabindex="-1">
-                                <img src="img/napovedy/smer.png" alt="směr">
+                                <img src="img/napovedy/smer.svg" alt="směr">
                             </button>
             
                             <button type="button" id="kruhHelp" class="napoveda" title="Kruh - klávesa 3" tabindex="-1">
-                                <img src="img/napovedy/kruh.png" alt="kruh">
+                                <img src="img/napovedy/kruh.svg" alt="kruh">
                             </button>
                         </div>
 
@@ -110,7 +116,6 @@
                 <button type="button" id="resetPanorama" title="Vrátit se na začátek aktuálního kola" tabindex="-1">
                     <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" id="zvuk" tabindex="-1"><i class="fa-solid fa-volume-high"></i></button>
             </div>
         </article>
 

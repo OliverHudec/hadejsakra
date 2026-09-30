@@ -45,29 +45,29 @@ function vytvorTabulkovyRadek(data)
     var div = document.createElement("div");
     if (data.obtiznosti[0] === true)
     {
-        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/pohybOn.png" alt="pohybON">');
+        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/pohybOn.svg" alt="pohybON">');
     }
     else
     {
-        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/pohybOff.png" alt="pohybOFF">');
+        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/pohybOff.svg" alt="pohybOFF">');
     }
 
     if (data.obtiznosti[1] === true)
     {
-        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/otaceniOn.png" alt="otáčeníON">');
+        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/otaceniOn.svg" alt="otáčeníON">');
     }
     else
     {
-        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/otaceniOff.png" alt="otáčeníOFF">');
+        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/otaceniOff.svg" alt="otáčeníOFF">');
     }
 
     if (data.obtiznosti[2] === true)
     {
-        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/zoomOn.png" alt="zoomON">');
+        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/zoomOn.svg" alt="zoomON">');
     }
     else
     {
-        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/zoomOff.png" alt="zoomOFF">');
+        div.insertAdjacentHTML('beforeend', '<img src="img/obtiznostiTabulka/zoomOff.svg" alt="zoomOFF">');
     }
     div.classList.add("obtiznosti");
     sloupec.appendChild(div);

@@ -1,24 +1,26 @@
 // KONTROLA ZAPNUTÍ HRY SKRZE NASTAVENÍ
 var mod = sessionStorage.getItem("mod");
 sessionStorage.removeItem("mod");
+window.dataModuReady = Promise.resolve();
+var gameSetupReady = Promise.resolve();
 if (mod === null)
 {
     window.location.href = "index.html";
 }
 else
 {
-    nactiHodnoty();
+    gameSetupReady = nactiHodnoty();
 }
 
 
 // NAČTENÍ VŠECH HODNOT Z NASTAVENÍ
 //const polomerZeme = 6371e3; // 6 371 000 metrů poloměr Země
 var hodnotyObtiznosti, hodnotyNapovedy, druhMapy, hodnotySlideru;
-var cas, pocetKol, radius, souradniceMista, kraj, specifickaMista;
+var cas, pocetKol, radius, souradniceMista, kraj, specifickaMista, zastavkyMHD;
 var aktualniKolo = 1;
 var celkoveSkore = 0;
 var maxVzdalenost;
-function nactiHodnoty()
+async function nactiHodnoty()
 {
     // HODNOTY SLIDERŮ
     hodnotySlideru = JSON.parse(sessionStorage.getItem("hodnotySlideru"));
@@ -37,18 +39,19 @@ function nactiHodnoty()
     sessionStorage.removeItem("selectedDruhMapy");
 
 
-    // NAČTENÍ SCRIPTU nastaveni.js
-    var scriptElement = document.createElement('script');
-    scriptElement.src = "js/hra/" + mod + "/nastaveni.js";
-    document.body.appendChild(scriptElement);
+    await nactiScriptHry("js/hra/" + mod + "/nastaveni.js");
+    await window.dataModuReady;
+    await nactiScriptHry("js/hra/" + mod + "/generace.js");
+    await nactiScriptHry("js/hra/vytvorOblastAZarovnejMapu.js");
+}
 
-    // NAČTENÍ SCRIPTU generace.js
-    var scriptElement = document.createElement('script');
-    scriptElement.src = "js/hra/" + mod + "/generace.js";
-    document.body.appendChild(scriptElement);
-
-    // NAČTENÍ SCRIPTU vytvorOblastAZarovnejMapu.js
-    var scriptElement = document.createElement('script');
-    scriptElement.src = "js/hra/vytvorOblastAZarovnejMapu.js";
-    document.body.appendChild(scriptElement);
+function nactiScriptHry(src)
+{
+    return new Promise((resolve, reject) => {
+        const scriptElement = document.createElement("script");
+        scriptElement.src = src;
+        scriptElement.onload = resolve;
+        scriptElement.onerror = () => reject(new Error("Nepodařilo se načíst " + src));
+        document.body.appendChild(scriptElement);
+    });
 }
