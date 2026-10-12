@@ -1,0 +1,519 @@
+@import "tailwindcss";
+@source "../hra.html";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+body.game-page {
+    --game-bg: #0a0a0a;
+    --game-panel: #101010;
+    --game-text: #f5f5f5;
+    --game-muted: #a3a3a3;
+    --game-line: rgb(255 255 255 / 22%);
+    --text: var(--game-text);
+    --text-muted: var(--game-muted);
+    --pozadi-webu: var(--game-bg);
+    --pozadi-menu: rgb(10 10 10 / 92%);
+    --pozadi-uvod: var(--game-panel);
+    --pozadi-prvku: #171717;
+    --odkazy: #fff;
+    --odkazy-hover: #d4d4d4;
+    --prvek: #f5f5f5;
+    --prvek-hover: #d4d4d4;
+    --border: var(--game-line);
+    --shadow: none;
+    color-scheme: dark;
+    background: var(--game-bg) !important;
+    color: var(--game-text) !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html[data-theme="light"] body.game-page {
+    --game-bg: #fff;
+    --game-panel: #fff;
+    --game-text: #101010;
+    --game-muted: #5c5c5c;
+    --game-line: rgb(0 0 0 / 24%);
+    --pozadi-menu: rgb(255 255 255 / 94%);
+    --pozadi-prvku: #f5f5f5;
+    color-scheme: light;
+}
+
+body.game-page .navigation {
+    position: fixed !important;
+    inset: 0 0 auto !important;
+    z-index: 99 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    border-bottom: 1px solid var(--game-line) !important;
+    background: color-mix(in srgb, var(--game-bg) 90%, transparent) !important;
+    box-shadow: none !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+}
+
+body.game-page .navigation-content {
+    position: relative !important;
+    min-height: 76px !important;
+    padding: 0 32px !important;
+}
+
+body.game-page .game-info {
+    width: 100% !important;
+    height: 76px !important;
+    margin: 0 !important;
+    padding-right: 260px !important;
+    gap: 16px !important;
+}
+
+body.game-page .game-info li {
+    margin: 0 !important;
+}
+
+body.game-page .game-info .skore {
+    min-width: 0 !important;
+}
+
+body.game-page .game-info .skore span,
+body.game-page .game-info .mod-kolo span {
+    color: var(--game-muted) !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+}
+
+body.game-page .game-info .cas {
+    position: relative !important;
+    inset: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+    transform: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--game-text) !important;
+}
+
+body.game-page .game-info .cas span {
+    color: var(--game-text) !important;
+    font-size: clamp(18px, 2vw, 26px) !important;
+    font-variant-numeric: tabular-nums !important;
+}
+
+body.game-page .game-info .mod-kolo {
+    display: flex !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+}
+
+body.game-page .game-toolbar {
+    right: 32px !important;
+    gap: 8px !important;
+}
+
+body.game-page .game-theme-toggle {
+    position: static !important;
+    min-height: 36px !important;
+    padding: 7px 9px !important;
+    border: 1px solid var(--game-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--game-text) !important;
+    font: 500 10px/1 Arial, Helvetica, sans-serif !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+}
+
+body.game-page .game-theme-toggle:hover,
+body.game-page .multiplayer-open:hover {
+    background: color-mix(in srgb, var(--game-text) 12%, transparent) !important;
+    transform: none !important;
+}
+
+body.game-page .theme-toggle-icon {
+    color: var(--game-text) !important;
+}
+
+body.game-page .multiplayer-open {
+    min-height: 36px !important;
+    padding: 0 10px !important;
+    border: 1px solid var(--game-text) !important;
+    border-radius: 0 !important;
+    background: var(--game-text) !important;
+    color: var(--game-bg) !important;
+    font: 600 10px/1 Arial, Helvetica, sans-serif !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+}
+
+body.game-page .multiplayer-open i,
+body.game-page .multiplayer-open span {
+    color: inherit !important;
+}
+
+body.game-page .multiplayer-opponent-score {
+    right: 32px !important;
+    border: 1px solid var(--game-line) !important;
+    background: var(--game-bg) !important;
+    color: var(--game-text) !important;
+}
+
+body.game-page .panorama-kontejner {
+    position: relative !important;
+    width: 100% !important;
+    height: 100svh !important;
+    background: var(--game-bg) !important;
+}
+
+body.game-page .panorama {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+body.game-page .loading {
+    color: var(--game-text) !important;
+    background: var(--game-bg) !important;
+    font: 500 11px/1.6 Arial, Helvetica, sans-serif !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+}
+
+body.game-page .loading .kolecko {
+    width: 36px !important;
+    height: 36px !important;
+    border: 1px solid var(--game-line) !important;
+    border-top: 1px solid var(--game-text) !important;
+    border-radius: 50% !important;
+}
+
+body.game-page #mapa-parent {
+    background: transparent !important;
+}
+
+body.game-page #mapa-kontejner {
+    right: 20px;
+    bottom: 20px;
+    width: min(36vw, 440px);
+    height: min(42vh, 340px);
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 100px) !important;
+    overflow: visible !important;
+    border: 1px solid var(--game-text) !important;
+    border-radius: 0 !important;
+    background: var(--game-bg) !important;
+    box-shadow: none !important;
+}
+
+body.game-page #mapa {
+    height: 100% !important;
+    border-radius: 0 !important;
+}
+
+body.game-page #btnPotvrdit {
+    min-height: 42px !important;
+    border: 0 !important;
+    border-top: 1px solid var(--game-line) !important;
+    border-radius: 0 !important;
+    background: var(--game-bg) !important;
+    color: var(--game-text) !important;
+    font: 600 10px/1 Arial, Helvetica, sans-serif !important;
+    letter-spacing: .14em !important;
+}
+
+body.game-page #btnPotvrdit:hover {
+    background: var(--game-text) !important;
+    color: var(--game-bg) !important;
+}
+
+body.game-page #velikosti {
+    top: -34px !important;
+    left: -1px !important;
+    height: 33px !important;
+    gap: 8px !important;
+    padding: 0 8px !important;
+    border: 1px solid var(--game-text) !important;
+    border-bottom: 0 !important;
+    border-radius: 0 !important;
+    background: var(--game-bg) !important;
+}
+
+body.game-page .velikost {
+    width: 24px !important;
+    height: 24px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: var(--game-text) !important;
+}
+
+body.game-page .velikost i {
+    color: inherit !important;
+}
+
+body.game-page .napoveda {
+    width: 42px !important;
+    height: 42px !important;
+    border: 1px solid var(--game-line) !important;
+    border-radius: 0 !important;
+    background: var(--game-bg) !important;
+    box-shadow: none !important;
+}
+
+body.game-page .napoveda:hover,
+body.game-page .napoveda.selected {
+    border-color: var(--game-text) !important;
+    background: color-mix(in srgb, var(--game-text) 16%, var(--game-bg)) !important;
+    box-shadow: none !important;
+}
+
+body.game-page #resetPanorama {
+    left: 20px !important;
+    bottom: 20px !important;
+    width: auto !important;
+    height: 42px !important;
+    padding: 0 14px !important;
+    border: 1px solid var(--game-text) !important;
+    border-radius: 0 !important;
+    background: var(--game-bg) !important;
+    color: var(--game-text) !important;
+    box-shadow: none !important;
+    font: 500 10px/1 Arial, Helvetica, sans-serif !important;
+    letter-spacing: .1em !important;
+    text-transform: uppercase !important;
+}
+
+body.game-page #resetPanorama:hover {
+    background: var(--game-text) !important;
+    color: var(--game-bg) !important;
+    transform: none !important;
+}
+
+body.game-page #neniOdhadBod {
+    max-width: calc(100vw - 32px) !important;
+    border: 1px solid var(--game-line) !important;
+    border-radius: 0 !important;
+    background: var(--game-bg) !important;
+    color: var(--game-text) !important;
+    box-shadow: none !important;
+    font-size: 13px !important;
+}
+
+body.game-page .multiplayer-open,
+body.game-page #multiplayerDialog button,
+body.game-page .multiplayer-disconnect {
+    cursor: pointer;
+}
+
+body.game-page #multiplayerDialog {
+    width: min(560px, calc(100vw - 32px)) !important;
+    margin: auto !important;
+    padding: 0 !important;
+    border: 1px solid var(--game-line) !important;
+    border-radius: 0 !important;
+    background: var(--game-bg) !important;
+    color: var(--game-text) !important;
+}
+
+body.game-page #multiplayerDialog::backdrop {
+    background: rgb(0 0 0 / 72%) !important;
+    backdrop-filter: blur(5px);
+}
+
+body.game-page .multiplayer-dialog-content {
+    color: var(--game-text) !important;
+}
+
+body.game-page .multiplayer-dialog-content h2,
+body.game-page .multiplayer-dialog-content h3,
+body.game-page .multiplayer-dialog-content label,
+body.game-page .multiplayer-heading h2,
+body.game-page #multiplayerStatus {
+    color: var(--game-text) !important;
+}
+
+body.game-page .multiplayer-room-options section {
+    padding: 16px 0 !important;
+    border-top: 1px solid var(--game-line) !important;
+}
+
+body.game-page .multiplayer-room-options h3 {
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+}
+
+body.game-page .multiplayer-room-options button,
+body.game-page .multiplayer-icon-button,
+body.game-page .multiplayer-disconnect {
+    min-height: 40px !important;
+    padding: 0 12px !important;
+    border: 1px solid var(--game-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: var(--game-text) !important;
+    box-shadow: none !important;
+    font: 500 10px/1.2 Arial, Helvetica, sans-serif !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+}
+
+body.game-page .multiplayer-room-options button:hover,
+body.game-page .multiplayer-icon-button:hover,
+body.game-page .multiplayer-disconnect:hover {
+    background: color-mix(in srgb, var(--game-text) 12%, transparent) !important;
+}
+
+body.game-page .multiplayer-room-options button:disabled {
+    cursor: not-allowed !important;
+    opacity: .45 !important;
+}
+
+body.game-page #multiplayerCode,
+body.game-page #multiplayerRoomCode {
+    min-width: 0 !important;
+    border: 1px solid var(--game-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: var(--game-text) !important;
+}
+
+body.game-page #multiplayerRoomCode {
+    font-size: 22px !important;
+}
+
+body.game-page .multiplayer-round-results {
+    top: 96px !important;
+    border: 1px solid var(--game-text) !important;
+}
+
+body.game-page .multiplayer-round-results table,
+body.game-page .multiplayer-round-results th,
+body.game-page .multiplayer-round-results td,
+body.game-page .multiplayer-round-results p {
+    color: var(--game-text) !important;
+}
+
+body.game-page .multiplayer-round-results th,
+body.game-page .multiplayer-round-results td {
+    border-color: var(--game-line) !important;
+}
+
+body.game-page #cerveneOkraje {
+    pointer-events: none !important;
+}
+
+@media (max-width: 760px) {
+    body.game-page .navigation-content {
+        min-height: 70px !important;
+        padding-inline: 12px !important;
+    }
+
+    body.game-page .game-info {
+        height: 70px !important;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+        padding-right: 84px !important;
+        gap: 5px !important;
+    }
+
+    body.game-page .game-info .skore span,
+    body.game-page .game-info .mod-kolo span {
+        font-size: 8px !important;
+        letter-spacing: .06em !important;
+    }
+
+    body.game-page .game-info .mod-kolo {
+        gap: 2px !important;
+        flex-direction: column !important;
+    }
+
+    body.game-page .game-info .cas {
+        padding-inline: 4px !important;
+    }
+
+    body.game-page .game-theme-toggle {
+        min-width: 36px !important;
+        width: 36px !important;
+        padding: 6px !important;
+    }
+
+    body.game-page .theme-toggle-label {
+        display: none !important;
+    }
+
+    body.game-page .multiplayer-open {
+        width: 36px !important;
+        min-width: 36px !important;
+        padding: 0 !important;
+    }
+
+    body.game-page .multiplayer-open span {
+        display: none !important;
+    }
+
+    body.game-page .game-toolbar {
+        right: 12px !important;
+        gap: 4px !important;
+    }
+
+    body.game-page .multiplayer-opponent-score {
+        right: 12px !important;
+        top: calc(100% + 6px) !important;
+        max-width: 130px !important;
+    }
+
+    body.game-page #mapa-kontejner {
+        right: 12px;
+        bottom: 12px;
+        width: min(58vw, 340px);
+        height: min(38vh, 290px);
+        max-width: calc(100vw - 24px) !important;
+        max-height: calc(100vh - 90px) !important;
+    }
+
+    body.game-page #resetPanorama {
+        left: 12px !important;
+        bottom: 12px !important;
+    }
+
+    body.game-page .multiplayer-round-results {
+        top: 84px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    body.game-page .navigation-content {
+        padding-inline: 8px !important;
+    }
+
+    body.game-page .game-info .skore span {
+        font-size: 7px !important;
+    }
+
+    body.game-page .game-info .mod-kolo span {
+        font-size: 7px !important;
+    }
+
+    body.game-page .game-toolbar {
+        right: 8px !important;
+    }
+
+    body.game-page #mapa-kontejner {
+        width: min(62vw, 300px);
+        height: min(34vh, 250px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.game-page *,
+    body.game-page *::before,
+    body.game-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}

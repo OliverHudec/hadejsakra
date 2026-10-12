@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="css/mapa.css" type="text/css">
         <link rel="stylesheet" href="css/liquid-glass.css" type="text/css">
         <link rel="stylesheet" href="css/multiplayer.css" type="text/css">
-        <link rel="stylesheet" href="css/site-redesign.css" type="text/css">
+        <link rel="stylesheet" href="css/game-tailwind.css" type="text/css">
 
         <!-- FontAwesome CDN Link -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
@@ -43,61 +43,63 @@
         <!-- <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script> -->
     </head>
 
-    <body class="game-page">
+    <body class="game-page min-h-screen overflow-hidden bg-neutral-950 text-neutral-100 antialiased">
         <div id="cerveneOkraje"></div>
 
-        <header class="navigation">
-            <div class="navigation-content">
-                <ul class="game-info">
-                    <li class="skore">
-                        <span id="celkove-skore">CELKOVÉ SKÓRE: 0</span>
+        <header class="navigation !fixed !inset-x-0 !top-0 !z-[99] !shadow-none">
+            <div class="navigation-content !relative !mx-auto !grid !min-h-[76px] !w-full !max-w-[1800px] !grid-cols-[1fr_auto_1fr] !items-center !gap-6 !px-4 sm:!px-8">
+                <ul class="game-info !col-span-3 !row-start-1 !grid !w-full !grid-cols-[1fr_auto_1fr] !items-center !gap-4 !py-3">
+                    <li class="skore !m-0 !min-w-0">
+                        <span id="celkove-skore" class="!font-sans !text-[10px] !font-semibold !uppercase !tracking-[.16em]">CELKOVÉ SKÓRE: 0</span>
                     </li>
-                    <li class="cas">
-                        <span id="casomira"></span>
+                    <li class="cas !relative !left-auto !m-0 !w-auto !translate-x-0 !border-0 !bg-transparent !p-0 !text-center !shadow-none">
+                        <span id="casomira" class="!font-sans !text-2xl !font-semibold !tabular-nums !tracking-tight"></span>
                     </li>
-                    <li class="mod-kolo">
-                        <span id="mod">MÓD: mód</span>
-                        <span id="kolo">KOLO: 1/20</span>
+                    <li class="mod-kolo !m-0 !justify-self-end !gap-2 sm:!gap-5">
+                        <span id="mod" class="!font-sans !text-[10px] !font-medium !uppercase !tracking-[.1em] !text-neutral-300">MÓD: mód</span>
+                        <span id="kolo" class="!font-sans !text-[10px] !font-medium !uppercase !tracking-[.1em] !text-neutral-300">KOLO: 1/20</span>
                     </li>
                 </ul>
-                <button class="theme-toggle game-theme-toggle" type="button" data-theme-toggle aria-label="Přepnout na tmavý režim" aria-pressed="false" title="Tmavý režim">
+                <div class="game-toolbar !absolute !right-4 !top-1/2 !z-[102] !flex !-translate-y-1/2 !items-center !gap-2 sm:!right-8">
+                <button class="theme-toggle game-theme-toggle !static !min-h-9 !translate-y-0 !rounded-none !bg-transparent !px-3 !py-2 !text-[10px] !uppercase !tracking-wider !shadow-none" type="button" data-theme-toggle aria-label="Přepnout na tmavý režim" aria-pressed="false" title="Tmavý režim">
                     <span class="theme-toggle-icon" aria-hidden="true">☾</span>
                     <span class="theme-toggle-label">Tmavý režim</span>
                 </button>
-                <button class="multiplayer-open" id="multiplayerOpen" type="button" title="Hrát s kamarádem">
+                <button class="multiplayer-open !min-h-9 !rounded-none !px-3 !text-[10px] !font-semibold !uppercase !tracking-wider !shadow-none" id="multiplayerOpen" type="button" title="Hrát s kamarádem">
                     <i class="fa-solid fa-people-arrows-left-right" aria-hidden="true"></i>
-                    <span>HRÁT SPOLU</span>
+                    <span>SPOLU</span>
                 </button>
-                <span id="multiplayerOpponentScore" class="multiplayer-opponent-score" hidden aria-live="polite">SOUPEŘ: -</span>
+                </div>
+                <span id="multiplayerOpponentScore" class="multiplayer-opponent-score !absolute !right-4 !top-[calc(100%+8px)] !border-l-0 !px-3 !py-2 !text-[10px] !uppercase !tracking-wider sm:!right-8" hidden aria-live="polite">SOUPEŘ: -</span>
             </div>
         </header>
 
-        <dialog id="multiplayerDialog" aria-labelledby="multiplayerTitle">
-            <div class="multiplayer-dialog-content">
+        <dialog id="multiplayerDialog" class="!max-h-[90vh] !rounded-none !shadow-none" aria-labelledby="multiplayerTitle">
+            <div class="multiplayer-dialog-content !gap-7 !p-7 sm:!p-10">
                 <div class="multiplayer-heading">
-                    <h2 id="multiplayerTitle">Hrát spolu</h2>
-                    <button id="multiplayerClose" type="button" class="multiplayer-icon-button" aria-label="Zavřít multiplayer" title="Zavřít">
+                    <h2 id="multiplayerTitle" class="!text-3xl !font-bold !tracking-[-.06em]">Společná hra</h2>
+                    <button id="multiplayerClose" type="button" class="multiplayer-icon-button !rounded-none" aria-label="Zavřít multiplayer" title="Zavřít">
                         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div class="multiplayer-room-options">
                     <section>
-                        <h3>Začít hru</h3>
-                        <button id="multiplayerSolo" type="button">Hrát sólo</button>
+                        <h3 class="!text-xs !font-medium !uppercase !tracking-[.14em] !text-neutral-400">Solo</h3>
+                        <button id="multiplayerSolo" type="button">Začít bez soupeře</button>
                         <button id="multiplayerStart" type="button" disabled hidden>Spustit hru</button>
                     </section>
                     <section>
-                        <h3>Vytvořit místnost</h3>
+                        <h3 class="!text-xs !font-medium !uppercase !tracking-[.14em] !text-neutral-400">Hostitel</h3>
                         <button id="multiplayerCreate" type="button">Vytvořit místnost</button>
                         <div id="multiplayerRoomInvite" class="multiplayer-room-invite" hidden>
                             <output id="multiplayerRoomCode" aria-label="Kód místnosti"></output>
-                            <button id="multiplayerCopy" type="button" class="multiplayer-icon-button" aria-label="Zkopírovat kód místnosti" title="Zkopírovat kód">
+                            <button id="multiplayerCopy" type="button" class="multiplayer-icon-button !rounded-none" aria-label="Zkopírovat kód místnosti" title="Zkopírovat kód">
                                 <i class="fa-regular fa-copy" aria-hidden="true"></i>
                             </button>
                         </div>
                     </section>
                     <section>
-                        <h3>Připojit se</h3>
+                        <h3 class="!text-xs !font-medium !uppercase !tracking-[.14em] !text-neutral-400">Připojit</h3>
                         <label for="multiplayerCode">Kód místnosti</label>
                         <div class="multiplayer-join-row">
                             <input id="multiplayerCode" type="text" maxlength="6" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Zadej kód">
@@ -105,26 +107,26 @@
                         </div>
                     </section>
                 </div>
-                <p id="multiplayerStatus" role="status" aria-live="polite">Host vytvoří místnost. Připojený hráč automaticky převezme jeho nastavení.</p>
+                <p id="multiplayerStatus" role="status" aria-live="polite">Nastavení určuje hostitel.</p>
                 <button id="multiplayerDisconnect" type="button" class="multiplayer-disconnect" hidden>Ukončit místnost</button>
             </div>
         </dialog>
 
         <article>
             <div>
-                <div class="panorama-kontejner">
-                    <div class="panorama"></div>
-                    <div class="loading">
+                <div class="panorama-kontejner !relative !h-svh !w-full !justify-center">
+                    <div class="panorama !h-full !w-full"></div>
+                    <div class="loading !z-[98] !gap-6">
                         <div class="kolecko"></div>
                         <p id="loadingText">NAČÍTÁM PANORAMA, POČKEJ PROSÍM.</p>
                     </div>
                 </div>
 
                 <div id="mapa-parent">
-                    <div id="mapa-kontejner">
+                    <div id="mapa-kontejner" class="!rounded-none !shadow-none">
                         <div id="mapa"></div>
 
-                        <button type="button" id="btnPotvrdit" tabindex="-1">POTVRDIT</button>
+                    <button type="button" id="btnPotvrdit" class="!rounded-none !border-0 !font-sans !text-xs !font-semibold !uppercase !tracking-[.14em]" tabindex="-1">POTVRDIT</button>
 
                         <div id="neniOdhadBod">NEBYL OZNAČEN ODHAD BOD!</div>
 
@@ -156,8 +158,8 @@
                             </button>
                         </div>
                     </div>
-                    <section id="multiplayerRoundResults" class="multiplayer-round-results" hidden aria-live="polite">
-                        <h2 id="multiplayerRoundTitle"></h2>
+                    <section id="multiplayerRoundResults" class="multiplayer-round-results !rounded-none !shadow-none" hidden aria-live="polite">
+                        <h2 id="multiplayerRoundTitle" class="!text-2xl !font-bold !tracking-[-.05em]"></h2>
                         <table>
                             <thead>
                                 <tr><th>Hráč</th><th>Body v kole</th><th>Celkem</th></tr>
@@ -171,7 +173,7 @@
                     </section>
                 </div>
 
-                <button type="button" id="resetPanorama" title="Vrátit se na začátek aktuálního kola" tabindex="-1">
+                <button type="button" id="resetPanorama" class="!h-11 !w-11 !rounded-none !shadow-none" title="Vrátit se na začátek aktuálního kola" tabindex="-1">
                     <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
                 </button>
             </div>

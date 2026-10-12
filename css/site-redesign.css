@@ -41,6 +41,10 @@
     --site-shadow: 0 22px 70px rgba(0, 0, 0, .3);
 }
 
+html[data-theme="dark"] .obtiznosti img[src*="obtiznostiTabulka/"] {
+    filter: invert(1);
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;

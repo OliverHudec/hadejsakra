@@ -6,6 +6,7 @@
     "tailwindcss": "^4.3.3"
   },
   "scripts": {
-    "build:tailwind": "tailwindcss -i ./css/index-tailwind.input.css -o ./css/index-tailwind.css --minify"
+    "build:tailwind": "tailwindcss -i ./css/index-tailwind.input.css -o ./css/index-tailwind.css --minify",
+    "build:tailwind:game": "tailwindcss -i ./css/game-tailwind.input.css -o ./css/game-tailwind.css --minify"
   }
 }
