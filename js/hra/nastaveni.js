@@ -1,5 +1,15 @@
 // KONTROLA ZAPNUTÍ HRY SKRZE NASTAVENÍ
 var mod = sessionStorage.getItem("mod");
+if (mod === null && sessionStorage.getItem("multiplayerRole") === "guest" &&
+    sessionStorage.getItem("multiplayerRoomCode"))
+{
+    mod = "celaCR";
+    sessionStorage.setItem("mod", mod);
+    sessionStorage.setItem("hodnotySlideru", JSON.stringify(["1", "0"]));
+    sessionStorage.setItem("hodnotyObtiznosti", JSON.stringify([true, true, true]));
+    sessionStorage.setItem("hodnotyNapovedy", JSON.stringify([false, false, false, false]));
+    sessionStorage.setItem("selectedDruhMapy", "zakladni");
+}
 sessionStorage.removeItem("mod");
 window.dataModuReady = Promise.resolve();
 var gameSetupReady = Promise.resolve();

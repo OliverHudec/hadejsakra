@@ -83,7 +83,8 @@ function zapnoutHru(nazevModu)
 {
     const btnZapnoutHru = document.getElementById("btnZapnoutHru-" + nazevModu);
 
-    btnZapnoutHru.addEventListener("click", function () {
+    function pripravHru(multiplayerRole)
+    {
         let mod = "";
 
         switch (nazevModu)
@@ -178,9 +179,28 @@ function zapnoutHru(nazevModu)
 
         // ZAPNUTÍ HRY
         sessionStorage.setItem("mod", mod);
+        if (multiplayerRole === "host") {
+            sessionStorage.setItem("multiplayerRole", multiplayerRole);
+        } else {
+            sessionStorage.removeItem("multiplayerRole");
+        }
+        sessionStorage.removeItem("multiplayerRoomCode");
 
         window.location.href = "hra.html";
-    });
+    }
+
+    btnZapnoutHru.addEventListener("click", () => pripravHru("solo"));
+
+    const multiplayerButton = document.createElement("button");
+    multiplayerButton.type = "button";
+    multiplayerButton.className = "tlacitko multiplayer-prepare-button";
+    multiplayerButton.addEventListener("click", () => pripravHru("host"));
+    btnZapnoutHru.classList.add("game-launch-primary");
+    const actions = document.createElement("div");
+    actions.className = "game-launch-actions";
+    multiplayerButton.innerHTML = '<i class="bx bx-group" aria-hidden="true"></i><span>Vytvořit místnost</span>';
+    btnZapnoutHru.parentElement.insertBefore(actions, btnZapnoutHru);
+    actions.append(btnZapnoutHru, multiplayerButton);
 }
 
 /* **************************************************************************************************************************************************************** */

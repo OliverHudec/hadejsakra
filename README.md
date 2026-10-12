@@ -26,5 +26,4 @@ Tento fork je distribuován pod stejnou licencí **European Union Public Licence
 
 ## Multiplayer
 
-Živou hru pro dva spustíš z herní obrazovky. Host vytvoří místnost a předá soupeři její šestimístný kód. Hráči musí otevřít stejný mód se stejným nastavením. Pro signalizaci se používá PeerJS cloud služba; hra samotná a skóre se synchronizují přímým WebRTC spojením. Vlastní server není potřeba, takže multiplayer funguje i při hostování přes GitHub Pages.
-
+Host si v nastavení zvoleného módu vybere „Vytvořit multiplayer místnost“ ještě před vstupem do herní čekárny. Odtud pošle soupeři šestimístný kód a spustí hru až po jeho připojení. Soupeř zadá kód přímo na úvodní stránce; mód i jeho nastavení se převezmou od hostitele automaticky. Po každém kole se zobrazí jejich skóre vedle sebe a další panorama se načte až po tipu a potvrzení připravenosti obou hráčů. Pro signalizaci se používá PeerJS cloud služba; hra samotná a skóre se synchronizují přímým WebRTC spojením. Vlastní server není potřeba, takže multiplayer funguje i při hostování přes GitHub Pages. Sólo hru lze spustit samostatně.

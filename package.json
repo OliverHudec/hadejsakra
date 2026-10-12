@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.0",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^4.3.3"
+  },
+  "scripts": {
+    "build:tailwind": "tailwindcss -i ./css/index-tailwind.input.css -o ./css/index-tailwind.css --minify"
+  }
+}

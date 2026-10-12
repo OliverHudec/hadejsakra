@@ -16,12 +16,12 @@
         <title>Hádej sakra - Český GeoGuessr</title>
         <script src="js/theme.js"></script>
 
-        <link rel="stylesheet" href="css/fonty.css" type="text/css">
         <link rel="stylesheet" href="css/styly.css" type="text/css">
         <link rel="stylesheet" href="css/herni-mody.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobil.css">
         <link rel="stylesheet" href="css/liquid-glass.css" type="text/css">
+        <link rel="stylesheet" href="css/index-tailwind.css" type="text/css">
 
         <!-- Boxicons CDN Link -->
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
@@ -40,9 +40,9 @@
         <script src="https://cdn.jsdelivr.net/gh/hayeswise/Leaflet.PointInPolygon@v1.0.0/wise-leaflet-pip.js"></script>
     </head>
 
-    <body class="home-page">
-        <header class="navigation">
-            <div class="navigation-content">
+    <body class="home-page min-h-screen bg-white font-sans text-neutral-950 antialiased dark:bg-neutral-950 dark:text-neutral-100">
+        <header class="navigation !sticky !top-0 !z-50 !border-b !border-neutral-200 !bg-white/95 !shadow-none dark:!border-neutral-800 dark:!bg-neutral-950/95">
+            <div class="navigation-content !mx-auto !min-h-[76px] !w-full !max-w-[1600px] !px-6 lg:!px-12">
                 <div class="logo">
                     <a href="index.html">
                         <img src="img/loga/logo-bod.svg" alt="" aria-hidden="true">
@@ -67,29 +67,37 @@
                         </a>
                     </li>
                 </ul>
-                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Přepnout na tmavý režim" aria-pressed="false" title="Tmavý režim">
+                <button class="theme-toggle !rounded-none !border !border-neutral-400 !bg-transparent !shadow-none !text-[11px] !uppercase !tracking-wider dark:!border-neutral-600" type="button" data-theme-toggle aria-label="Přepnout na tmavý režim" aria-pressed="false" title="Tmavý režim">
                     <span class="theme-toggle-icon" aria-hidden="true">☾</span>
                     <span class="theme-toggle-label">Tmavý režim</span>
                 </button>
             </div>
         </header>
 
-        <article class="home-section">
+        <article class="home-section editorial-main">
             <div class="text">
-                <section class="home-hero">
+                <section class="home-hero editorial-hero">
                     <div class="home-hero-copy">
-                        <p class="hero-kicker">ČESKÁ MAPOVÁ HRA</p>
-                        <h1>Poznáš Česko podle jediného záběru?</h1>
-                        <p class="hero-lead">Rozhlédni se, odhadni místo na mapě a zjisti, jak dobře znáš Česko.</p>
-                        <a class="hero-action" href="#herniMody">Vybrat herní mód <i class="bx bx-arrow-down-right" aria-hidden="true"></i></a>
+                        <p class="hero-kicker editorial-kicker">01 — Česká mapová hra</p>
+                        <h1 class="editorial-title">Poznej<br>Česko.</h1>
+                        <div class="home-hero-actions editorial-hero-actions">
+                            <a class="hero-action editorial-action" href="#herniMody">Zobrazit režimy</a>
+                            <button class="home-multiplayer-join-open editorial-action editorial-action-secondary" id="homeMultiplayerJoinOpen" type="button">
+                                Připojit se k místnosti
+                            </button>
+                        </div>
+                    </div>
+                    <div class="editorial-side">
+                        <p class="editorial-kicker">Bez nápovědy. Bez spěchu.</p>
+                        <p>Každé kolo začíná jediným záběrem. Prohlédni si místo, odhadni ho na mapě a zjisti, jak dobře znáš Česko.</p>
                     </div>
                 </section>
 
                 <section id="herniMody">
-                    <div class="section-heading">
-                        <p class="section-kicker">01 / VYBER SI CÍL</p>
+                    <div class="section-heading editorial-section-heading">
+                        <p class="section-kicker">02 — Režimy</p>
                         <h2>Kam vyrazíš?</h2>
-                        <p>Čtyři způsoby, jak poznat Česko. Každý začíná jedním odhadem.</p>
+                        <p>Čtyři způsoby, jak poznat Česko. Vyber si svůj.</p>
                     </div>
 
                     <div class="herniMody-grid">
@@ -1313,6 +1321,23 @@
             </div>
         </article>
 
+        <dialog id="homeMultiplayerDialog" class="home-multiplayer-dialog" aria-labelledby="homeMultiplayerTitle">
+            <form method="dialog" class="home-multiplayer-dialog-content">
+                <h2 id="homeMultiplayerTitle">Připojit se do hry</h2>
+                <p>Zadej kód od hostitele. Nastavení hry se automaticky převezme z jeho místnosti.</p>
+                <label for="homeMultiplayerCode">Kód místnosti</label>
+                <div class="home-multiplayer-join-row">
+                    <input id="homeMultiplayerCode" type="text" maxlength="6" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Zadej kód">
+                    <button id="homeMultiplayerJoin" type="button">Připojit</button>
+                </div>
+                <p id="homeMultiplayerStatus" role="status" aria-live="polite"></p>
+                <button id="homeMultiplayerClose" class="home-multiplayer-close" type="submit">Zavřít</button>
+            </form>
+        </dialog>
+
+        <footer class="border-t border-neutral-200 px-6 py-8 text-center text-xs uppercase tracking-widest text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
+            <p>© 2023 <span id="aktualni-rok"></span><a href="https://martinhrubos.cz/" target="_blank" rel="noopener noreferrer">martinhrubos.cz</a></p>
+        </footer>
 
         <!-- SKRIPTY -->
         <script src="js/footer.js"></script>
@@ -1320,6 +1345,8 @@
 
         <!-- POPUP OKNO -->
         <script src="js/popupOkno/popupOkno.js"></script>
+        <script src="js/popupOkno/multiplayer.js"></script>
+        <script src="js/scroll-reveal.js"></script>
 
         <!-- vlastniMisto -->
         <script src="js/popupOkno/naseptavacMist.js"></script>

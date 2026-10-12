@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="css/mapa.css" type="text/css">
         <link rel="stylesheet" href="css/liquid-glass.css" type="text/css">
         <link rel="stylesheet" href="css/multiplayer.css" type="text/css">
+        <link rel="stylesheet" href="css/site-redesign.css" type="text/css">
 
         <!-- FontAwesome CDN Link -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
@@ -81,6 +82,11 @@
                 </div>
                 <div class="multiplayer-room-options">
                     <section>
+                        <h3>Začít hru</h3>
+                        <button id="multiplayerSolo" type="button">Hrát sólo</button>
+                        <button id="multiplayerStart" type="button" disabled hidden>Spustit hru</button>
+                    </section>
+                    <section>
                         <h3>Vytvořit místnost</h3>
                         <button id="multiplayerCreate" type="button">Vytvořit místnost</button>
                         <div id="multiplayerRoomInvite" class="multiplayer-room-invite" hidden>
@@ -99,7 +105,7 @@
                         </div>
                     </section>
                 </div>
-                <p id="multiplayerStatus" role="status" aria-live="polite">Hostitel vytvoří místnost a pošle soupeři její kód.</p>
+                <p id="multiplayerStatus" role="status" aria-live="polite">Host vytvoří místnost. Připojený hráč automaticky převezme jeho nastavení.</p>
                 <button id="multiplayerDisconnect" type="button" class="multiplayer-disconnect" hidden>Ukončit místnost</button>
             </div>
         </dialog>
@@ -150,6 +156,19 @@
                             </button>
                         </div>
                     </div>
+                    <section id="multiplayerRoundResults" class="multiplayer-round-results" hidden aria-live="polite">
+                        <h2 id="multiplayerRoundTitle"></h2>
+                        <table>
+                            <thead>
+                                <tr><th>Hráč</th><th>Body v kole</th><th>Celkem</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">Ty</th><td id="multiplayerLocalRoundScore">Čeká na tip</td><td id="multiplayerLocalTotalScore">—</td></tr>
+                                <tr><th scope="row">Soupeř</th><td id="multiplayerRemoteRoundScore">Čeká na tip</td><td id="multiplayerRemoteTotalScore">—</td></tr>
+                            </tbody>
+                        </table>
+                        <p id="multiplayerRoundStatus"></p>
+                    </section>
                 </div>
 
                 <button type="button" id="resetPanorama" title="Vrátit se na začátek aktuálního kola" tabindex="-1">

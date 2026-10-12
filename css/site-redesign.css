@@ -1,0 +1,447 @@
+:root {
+    color-scheme: light;
+    --site-bg: #f8f7fb;
+    --site-surface: rgba(255, 255, 255, .82);
+    --site-surface-solid: #fff;
+    --site-text: #17151e;
+    --site-muted: #716d7c;
+    --site-line: rgba(30, 23, 48, .11);
+    --site-accent: #8153f3;
+    --site-accent-strong: #6840d2;
+    --site-accent-soft: #eee8ff;
+    --site-shadow: 0 22px 70px rgba(45, 30, 76, .09);
+    --site-radius: 24px;
+    --text: var(--site-text);
+    --text-muted: var(--site-muted);
+    --pozadi-webu: var(--site-bg);
+    --pozadi-menu: var(--site-surface);
+    --odkazy: var(--site-accent-strong);
+    --odkazy-hover: var(--site-accent);
+    --oddelovac: var(--site-line);
+    --pozadi-uvod: var(--site-bg);
+    --pozadi-prvku: var(--site-surface-solid);
+    --prvek: var(--site-accent);
+    --prvek-hover: var(--site-accent-strong);
+    --footer: var(--site-bg);
+    --border: var(--site-line);
+    --shadow: var(--site-shadow);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --site-bg: #111017;
+    --site-surface: rgba(30, 27, 39, .84);
+    --site-surface-solid: #1e1b27;
+    --site-text: #f5f2fb;
+    --site-muted: #aaa4b8;
+    --site-line: rgba(239, 232, 255, .13);
+    --site-accent: #b49aff;
+    --site-accent-strong: #c5b2ff;
+    --site-accent-soft: #302744;
+    --site-shadow: 0 22px 70px rgba(0, 0, 0, .3);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body:not(.game-page) {
+    background:
+        radial-gradient(ellipse at 78% 10%, rgba(166, 130, 255, .09), transparent 35rem),
+        var(--site-bg);
+    color: var(--site-text);
+    transition: background-color .25s ease, color .25s ease;
+}
+
+body.home-page {
+    --home-ink: var(--site-text);
+    --home-muted: var(--site-muted);
+    --home-paper: var(--site-bg);
+    --home-card: var(--site-surface);
+    --home-blue: var(--site-accent-strong);
+    --home-coral: var(--site-accent);
+    --home-lime: var(--site-accent);
+    --home-line: var(--site-line);
+    color: var(--site-text);
+    background:
+        radial-gradient(ellipse at 78% 10%, rgba(166, 130, 255, .09), transparent 35rem),
+        var(--site-bg);
+}
+
+html[data-theme] body.home-page {
+    --home-ink: var(--site-text);
+    --home-muted: var(--site-muted);
+    --home-paper: var(--site-bg);
+    --home-card: var(--site-surface);
+    --home-blue: var(--site-accent-strong);
+    --home-coral: var(--site-accent);
+    --home-lime: var(--site-accent);
+    --home-line: var(--site-line);
+    color: var(--site-text);
+    background:
+        radial-gradient(ellipse at 78% 10%, rgba(166, 130, 255, .09), transparent 35rem),
+        var(--site-bg);
+}
+
+body.game-page {
+    background: var(--site-bg);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+body:not(.game-page) header,
+body:not(.game-page) .site-header,
+body:not(.game-page) .navbar,
+body:not(.game-page) nav {
+    color: var(--site-text);
+}
+
+body:not(.game-page) header {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+body:not(.game-page) .navigation {
+    border-color: var(--site-line);
+    background: var(--site-surface);
+    box-shadow: 0 8px 30px rgba(45, 30, 76, .06);
+}
+
+body.home-page .navigation .logo-name,
+body.home-page .navigation li a .links-name,
+body.home-page .navigation li:hover a .links-name,
+body.home-page .navigation li a.current .links-name {
+    color: var(--site-text);
+}
+
+body:not(.game-page) .theme-toggle {
+    border-color: var(--site-line);
+    background: var(--site-surface-solid);
+    color: var(--site-text);
+}
+
+body:not(.game-page) a {
+    text-underline-offset: .2em;
+}
+
+body:not(.game-page) button,
+body:not(.game-page) .button,
+body:not(.game-page) a.button {
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+body:not(.game-page) button:hover,
+body:not(.game-page) .button:hover,
+body:not(.game-page) a.button:hover {
+    transform: translateY(-2px);
+}
+
+body.home-page .home-hero {
+    display: grid;
+    grid-template-columns: minmax(0, .83fr) minmax(0, 1.17fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    min-height: min(690px, calc(100vh - 100px));
+    width: min(1320px, calc(100% - 3rem));
+    margin-inline: auto;
+    padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+.home-hero-copy {
+    position: relative;
+    z-index: 1;
+}
+
+body.home-page .home-hero-copy h1 {
+    max-width: 14ch;
+    margin: .8rem 0 1.1rem;
+    color: var(--site-text);
+    font-size: clamp(3rem, 3.5vw, 3.8rem);
+    font-weight: 750;
+    letter-spacing: -.075em;
+    line-height: .98;
+}
+
+.hero-kicker,
+.eyebrow {
+    margin: 0;
+    color: var(--site-accent-strong);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+body.home-page .hero-kicker,
+body.home-page .section-kicker {
+    color: var(--site-accent-strong);
+}
+
+body.home-page .home-hero h1 {
+    color: var(--site-text);
+}
+
+.hero-lead {
+    max-width: 32rem;
+    color: var(--site-muted);
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    line-height: 1.7;
+}
+
+.home-hero-copy > button,
+.home-hero-copy .button {
+    margin-top: 1.4rem;
+    padding: .95rem 1.35rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--site-text);
+    box-shadow: 0 10px 26px rgba(32, 21, 57, .16);
+    color: var(--site-bg);
+    font-weight: 700;
+}
+
+body.home-page .hero-action,
+body.home-page .home-multiplayer-join-open,
+body.home-page #herniMody .play-button {
+    border: 1px solid var(--site-accent);
+    border-radius: 999px;
+    background: var(--site-accent);
+    color: #fff;
+}
+
+body.home-page .home-hero-actions .hero-action,
+body.home-page .home-hero-actions .home-multiplayer-join-open {
+    background: var(--site-accent);
+    color: #fff !important;
+}
+
+body.home-page .home-hero-actions .home-multiplayer-join-open {
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(45, 30, 76, .13);
+}
+
+body.home-page .home-hero-actions .hero-action:hover,
+body.home-page .home-hero-actions .home-multiplayer-join-open:hover {
+    background: var(--site-accent-strong);
+    color: #fff !important;
+}
+
+body.home-page .hero-action:hover,
+body.home-page .home-multiplayer-join-open:hover,
+body.home-page #herniMody .play-button:hover {
+    background: var(--site-accent-strong);
+    color: #fff;
+}
+
+body.home-page #herniMody .herniMod {
+    border-color: var(--site-line);
+    background: var(--site-surface);
+}
+
+html[data-theme] body.home-page #herniMody .herniMod {
+    border-color: var(--site-line);
+    background: var(--site-surface);
+}
+
+body.home-page #herniMody .herniMod::before {
+    background: radial-gradient(ellipse at 90% 0%, rgba(129, 83, 243, .14), transparent 62%);
+    opacity: 1;
+}
+
+body.home-page #herniMody .herniMod h3,
+body.home-page #herniMody .herniMod p,
+body.home-page #herniMody .herniMod .mode-index {
+    color: var(--site-text);
+}
+
+body.home-page #herniMody .herniMod p {
+    color: var(--site-muted);
+}
+
+html[data-theme] body.home-page #herniMody .herniMod h3,
+html[data-theme] body.home-page #herniMody .herniMod p,
+html[data-theme] body.home-page #herniMody .herniMod .mode-index {
+    color: var(--site-text);
+}
+
+html[data-theme] body.home-page #herniMody .herniMod p {
+    color: var(--site-muted);
+}
+
+.hero-stage {
+    position: relative;
+    min-width: 0;
+    padding: clamp(.6rem, 2vw, 1.5rem);
+    border: 1px solid var(--site-line);
+    border-radius: 30px;
+    background: var(--site-surface);
+    box-shadow: var(--site-shadow);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero-stage::before {
+    position: absolute;
+    z-index: -1;
+    inset: 12% 9%;
+    border-radius: 50%;
+    background: rgba(151, 113, 248, .17);
+    content: "";
+    filter: blur(56px);
+}
+
+.hero-stage-label,
+.hero-stage-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--site-muted);
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.hero-stage-art {
+    display: block;
+    width: 100%;
+    overflow: visible;
+}
+
+.hero-stage-caption {
+    color: var(--site-text);
+    font-size: .83rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.hero-marker {
+    transform-origin: 399px 270px;
+    animation: marker-float 5s ease-in-out infinite;
+}
+
+.hero-wave-tiles {
+    animation: wave-drift 8s ease-in-out infinite alternate;
+    transform-origin: center;
+}
+
+@keyframes marker-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-11px); }
+}
+
+@keyframes wave-drift {
+    from { transform: translateX(-5px); }
+    to { transform: translateX(7px); }
+}
+
+body:not(.game-page) .home-section .text > section:not(.home-hero):not(#herniMody) {
+    width: min(1180px, calc(100% - 3rem));
+    margin: 0 auto clamp(2rem, 5vw, 5rem);
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    border: 1px solid var(--site-line);
+    border-radius: var(--site-radius);
+    background: var(--site-surface);
+    box-shadow: var(--site-shadow);
+}
+
+body.home-page #herniMody .herniMod {
+    border: 1px solid var(--site-line);
+    border-radius: var(--site-radius);
+    background: var(--site-surface);
+    box-shadow: var(--site-shadow);
+}
+
+body:not(.game-page) h1,
+body:not(.game-page) h2,
+body:not(.game-page) h3,
+body:not(.game-page) h4 {
+    color: var(--site-text);
+    letter-spacing: -.035em;
+}
+
+body:not(.game-page) p,
+body:not(.game-page) li,
+body:not(.game-page) label {
+    color: var(--site-muted);
+}
+
+body:not(.game-page) input,
+body:not(.game-page) select,
+body:not(.game-page) textarea {
+    border-color: var(--site-line);
+    border-radius: 12px;
+    background: var(--site-surface-solid);
+    color: var(--site-text);
+}
+
+body:not(.game-page) footer {
+    border-top: 1px solid var(--site-line);
+    background: transparent;
+    color: var(--site-muted);
+}
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .65s ease, transform .65s cubic-bezier(.2, .7, .25, 1);
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 800px) {
+    body.home-page .home-hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        min-height: 0;
+        padding-block: 4rem;
+    }
+
+    .home-hero-copy h1 {
+        max-width: 11ch;
+        font-size: clamp(3rem, 13vw, 5rem);
+    }
+}
+
+@media (max-width: 520px) {
+    body.home-page .home-hero,
+    body:not(.game-page) .home-section .text > section:not(.home-hero):not(#herniMody) {
+        width: min(100% - 1.5rem, 1180px);
+    }
+
+    .hero-stage {
+        padding: .6rem;
+        border-radius: 20px;
+    }
+
+    .hero-stage-label {
+        font-size: .55rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+}

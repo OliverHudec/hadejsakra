@@ -73,7 +73,7 @@
 
 .multiplayer-room-options {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 24px;
 }
 
@@ -95,6 +95,11 @@
     color: #101a1d;
     font-size: 13px;
     font-weight: 600;
+}
+
+.multiplayer-room-options button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
 }
 
 .multiplayer-room-invite[hidden],
@@ -191,6 +196,53 @@
     display: none;
 }
 
+.multiplayer-round-results {
+    position: fixed;
+    z-index: 101;
+    top: 96px;
+    left: 50%;
+    width: min(520px, calc(100vw - 32px));
+    padding: 18px;
+    transform: translateX(-50%);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--pozadi-uvod, #101f25);
+    color: var(--text);
+    box-shadow: var(--shadow);
+}
+
+.multiplayer-round-results[hidden] {
+    display: none;
+}
+
+.multiplayer-round-results h2 {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.multiplayer-round-results table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.multiplayer-round-results th,
+.multiplayer-round-results td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.multiplayer-round-results thead th {
+    color: var(--text-muted);
+}
+
+.multiplayer-round-results p {
+    margin: 12px 0 0;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
 @media (max-width: 760px) {
     .navigation-content {
         gap: 8px;
@@ -227,5 +279,10 @@
     .multiplayer-room-options {
         grid-template-columns: 1fr;
         gap: 16px;
+    }
+
+    .multiplayer-round-results {
+        top: 120px;
+        padding: 12px;
     }
 }

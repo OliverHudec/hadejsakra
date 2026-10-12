@@ -106,7 +106,11 @@ window.onload = async function() {
 
     vytvorMapu();
     vytvorOblastAZarovnejMapu();
-    generace();
+    const startMode = await window.multiplayer?.waitForStart?.() || "solo";
+    if (startMode !== "guest")
+    {
+        generace();
+    }
 
 
     // STATISTIKA - HRÁNO
@@ -264,8 +268,97 @@ const mapaKontejner = document.getElementById("mapa-kontejner");
 const mapa = document.getElementById("mapa");
 const btnPotvrdit = document.getElementById("btnPotvrdit");
 const neniOdhadBod = document.getElementById("neniOdhadBod");
+const multiplayerRoundResults = document.getElementById("multiplayerRoundResults");
+const multiplayerRoundTitle = document.getElementById("multiplayerRoundTitle");
+const multiplayerLocalRoundScore = document.getElementById("multiplayerLocalRoundScore");
+const multiplayerLocalTotalScore = document.getElementById("multiplayerLocalTotalScore");
+const multiplayerRemoteRoundScore = document.getElementById("multiplayerRemoteRoundScore");
+const multiplayerRemoteTotalScore = document.getElementById("multiplayerRemoteTotalScore");
+const multiplayerRoundStatus = document.getElementById("multiplayerRoundStatus");
 var velikostMapky = 2;
 var timeoutZmenseniMapy;
+var localReadyRound = 0;
+
+function renderMultiplayerRound()
+{
+    const multiplayer = window.multiplayer;
+    if (!multiplayer?.active)
+    {
+        multiplayerRoundResults.hidden = true;
+        btnPotvrdit.disabled = false;
+        if (vysledek)
+        {
+            btnPotvrdit.textContent = aktualniKolo >= pocetKol ? "ZOBRAZ VÝSLEDKY" : "DALŠÍ KOLO";
+        }
+        return;
+    }
+
+    const scores = multiplayer.getRoundScores(aktualniKolo);
+    if (!scores.local && !scores.remote)
+    {
+        multiplayerRoundResults.hidden = true;
+        return;
+    }
+    if (!vysledek && !scores.local)
+    {
+        multiplayerRoundResults.hidden = true;
+        return;
+    }
+
+    multiplayerRoundResults.hidden = false;
+    multiplayerRoundTitle.textContent = "Výsledky kola " + aktualniKolo;
+    multiplayerLocalRoundScore.textContent = scores.local ? scores.local.score + " bodů" : "Čeká na tip";
+    multiplayerLocalTotalScore.textContent = scores.local ? scores.local.total + " bodů" : "—";
+    multiplayerRemoteRoundScore.textContent = scores.remote ? scores.remote.score + " bodů" : "Čeká na tip";
+    multiplayerRemoteTotalScore.textContent = scores.remote ? scores.remote.total + " bodů" : "—";
+
+    if (aktualniKolo >= pocetKol)
+    {
+        multiplayerRoundStatus.textContent = "Poslední kolo. Zobraz výsledky hry až budou oba tipy hotové.";
+        return;
+    }
+
+    if (!scores.local || !scores.remote)
+    {
+        multiplayerRoundStatus.textContent = scores.local ? "Čeká se na tip soupeře." : "Čeká se na tvůj tip.";
+        btnPotvrdit.disabled = Boolean(scores.local);
+        if (scores.local)
+        {
+            btnPotvrdit.textContent = "ČEKÁM NA TIP SOUPEŘE";
+        }
+        return;
+    }
+
+    btnPotvrdit.disabled = false;
+    if (localReadyRound === aktualniKolo)
+    {
+        btnPotvrdit.disabled = true;
+        btnPotvrdit.textContent = multiplayer.hasRemoteReady(aktualniKolo)
+            ? "NAČÍTÁ SE DALŠÍ KOLO"
+            : "ČEKÁM NA SOUPEŘE";
+        multiplayerRoundStatus.textContent = multiplayer.hasRemoteReady(aktualniKolo)
+            ? "Oba hráči jsou připraveni. Načítá se další panorama."
+            : "Připraveno. Čeká se na potvrzení soupeře.";
+        return;
+    }
+
+    multiplayerRoundStatus.textContent = multiplayer.hasRemoteReady(aktualniKolo)
+        ? "Soupeř je připraven. Označ další kolo, až budeš připraven/a."
+        : "Označ další kolo, až budeš připraven/a.";
+    btnPotvrdit.textContent = "DALŠÍ KOLO – JSEM PŘIPRAVEN/A";
+}
+
+window.addEventListener("multiplayerguess", renderMultiplayerRound);
+window.addEventListener("multiplayerconnectionchange", renderMultiplayerRound);
+window.addEventListener("multiplayerready", function() {
+    renderMultiplayerRound();
+    if (window.multiplayer?.role === "host" &&
+        localReadyRound === aktualniKolo &&
+        window.multiplayer.hasRemoteReady(aktualniKolo))
+    {
+        startNextRound();
+    }
+});
 
 
 // ODSTRANĚNÍ PŘÍMKY, PANORAMA BODU A ODHAD BODU
@@ -450,8 +543,54 @@ function zkontrolujPosledniKolo()
     }
 }
 
+function startNextRound()
+{
+    cssVysledkovaMapaNaNormalni1();
+    cssZobrazTlacitkaNapoved();
+    napovedyLayer.clearLayers();
+    kruhLayer.clearLayers();
+    odstraneniBoduPrimek();
+
+    setTimeout(() => {
+        map.fitBounds(oblastBounds, {animate: false});
+    }, 300);
+
+    aktualniKolo = Math.min(aktualniKolo + 1, pocetKol);
+    document.getElementById("kolo").innerText = "KOLO: " + aktualniKolo + "/" + pocetKol;
+    vysledek = false;
+    localReadyRound = 0;
+    btnPotvrdit.disabled = false;
+    btnPotvrdit.textContent = "POTVRDIT";
+    multiplayerRoundResults.hidden = true;
+
+    if (window.multiplayer?.role !== "guest" || !window.multiplayer.active)
+    {
+        generace();
+    }
+}
+
 btnPotvrdit.addEventListener("click", function() {
     console.clear(); // vymaže konzoli
+
+    if (window.multiplayer?.active && vysledek && aktualniKolo < pocetKol)
+    {
+        const scores = window.multiplayer.getRoundScores(aktualniKolo);
+        if (!scores.local || !scores.remote)
+        {
+            return;
+        }
+        if (localReadyRound !== aktualniKolo)
+        {
+            localReadyRound = aktualniKolo;
+            window.multiplayer.markReady(aktualniKolo);
+            renderMultiplayerRound();
+        }
+        if (window.multiplayer.role === "host" && window.multiplayer.hasRemoteReady(aktualniKolo))
+        {
+            startNextRound();
+        }
+        return;
+    }
 
     // ZOBRAZENÍ VÝSLEDKOVÉ MAPY, KONEČNÉ MAPY A NORMÁLNÍ MAPKY
     if (konec || (vysledek && aktualniKolo >= pocetKol))
@@ -552,32 +691,7 @@ btnPotvrdit.addEventListener("click", function() {
             return;
         }
 
-        // ZMĚNA CSS PRO MAPU
-        cssVysledkovaMapaNaNormalni1();
-
-        // ZMĚNA CSS PRO NÁPOVĚDY - ZOBRAZÍ TLAČÍTKA NÁPOVĚD
-        cssZobrazTlacitkaNapoved();
-
-        // ODSTRANÍ VŠECHNY BODY A POLYGONY NÁPOVĚD
-        napovedyLayer.clearLayers();
-        kruhLayer.clearLayers();
-
-        // ODSTRANĚNÍ PŘÍMKY, PANORAMA BODU A ODHAD BODU
-        odstraneniBoduPrimek();
-
-        // VYCENTROVÁNÍ MAPY PODLE HÁDACÍHO POLYGONU
-        setTimeout(() => {
-            map.fitBounds(oblastBounds, {animate: false});
-        }, 300);
-
-        // GENERACE DALŠÍ SOUŘADNICE
-        generace();
-
-        // DALŠÍ KOLO
-        aktualniKolo = Math.min(aktualniKolo + 1, pocetKol);
-        document.getElementById("kolo").innerText = "KOLO: " + aktualniKolo + "/" + pocetKol;
-
-        vysledek = false;
+        startNextRound();
     }
     else if (!vysledek)
     {
@@ -633,6 +747,10 @@ window.addEventListener("multiplayerlocation", async function(event) {
     odstraneniBoduPrimek();
     vysledek = false;
     konec = false;
+    localReadyRound = 0;
+    btnPotvrdit.disabled = false;
+    btnPotvrdit.textContent = "POTVRDIT";
+    multiplayerRoundResults.hidden = true;
     vypnout = false;
     aktualniKolo = round;
     document.getElementById("kolo").innerText = "KOLO: " + aktualniKolo + "/" + pocetKol;
