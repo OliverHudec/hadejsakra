@@ -86,7 +86,7 @@ function spustitCas(pocatecniCas)
                     map.fitBounds(primkaBodyLayer.getBounds().pad(0.1), {animate: false}); // zvětší hranice boundu o 10%
                 }, 300);
 
-
+                window.multiplayer?.publishGuess(0, celkoveSkore, aktualniKolo);
                 zkontrolujPosledniKolo();
             }
         }

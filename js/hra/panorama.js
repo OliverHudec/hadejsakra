@@ -171,11 +171,17 @@ async function vygenerujMisto()
 
         if (existuje.exists) // pokud panorama existuje
         {
+            if (window.multiplayer?.role === "guest" && window.multiplayer.hasRemoteLocation)
+            {
+                return;
+            }
+
             souradnicePanorama = L.latLng(existuje.info.lat, existuje.info.lon);
 
             if (kontrolaSouradnice(souradnicePanorama)) // pokud je souřadnice panorama uvnitř polygonu
             {
                 console.log("SOUŘADNICE PANORAMA NALEZENA NA " + pocetPokusu + ". POKUS");
+                window.multiplayer?.publishLocation(souradnicePanorama, aktualniKolo);
                 zobrazPanorama(); // zobrazí panorama
                 return;
             }

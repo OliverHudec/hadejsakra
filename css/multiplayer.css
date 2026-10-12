@@ -1,0 +1,187 @@
+.multiplayer-open,
+.multiplayer-actions button,
+.multiplayer-icon-button {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.multiplayer-open {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 0 14px;
+    background: var(--prvek);
+    color: #101a1d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.multiplayer-open:hover,
+.multiplayer-actions button:hover {
+    background: var(--prvek-hover);
+}
+
+.multiplayer-open i,
+.multiplayer-open span {
+    color: inherit;
+}
+
+#multiplayerDialog {
+    width: min(560px, calc(100vw - 28px));
+    max-width: none;
+    max-height: min(90vh, 720px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--pozadi-uvod, #101f25);
+    box-shadow: var(--shadow);
+}
+
+#multiplayerDialog::backdrop {
+    background: rgba(2, 9, 12, 0.78);
+    backdrop-filter: blur(5px);
+}
+
+.multiplayer-dialog-content {
+    display: grid;
+    gap: 16px;
+    padding: 24px;
+}
+
+.multiplayer-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.multiplayer-heading h2 {
+    font-size: 22px;
+}
+
+.multiplayer-instructions,
+#multiplayerStatus,
+.multiplayer-opponent-score {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.multiplayer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.multiplayer-actions button {
+    min-height: 40px;
+    padding: 0 12px;
+    background: var(--pozadi-prvku);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.multiplayer-actions button:hover {
+    color: #101a1d;
+}
+
+.multiplayer-actions .multiplayer-icon-button,
+.multiplayer-heading .multiplayer-icon-button {
+    display: inline-grid;
+    flex: 0 0 40px;
+    place-items: center;
+    min-height: 40px;
+    padding: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 16px;
+}
+
+.multiplayer-dialog-content label {
+    margin-bottom: -10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#multiplayerCode {
+    width: 100%;
+    min-height: 128px;
+    resize: vertical;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px;
+    background: var(--pozadi-menu);
+    color: var(--text);
+    font: 12px/1.5 monospace;
+}
+
+#multiplayerCode:focus-visible,
+.multiplayer-open:focus-visible,
+.multiplayer-actions button:focus-visible,
+.multiplayer-icon-button:focus-visible {
+    outline: 2px solid var(--odkazy);
+    outline-offset: 2px;
+}
+
+.multiplayer-opponent-score {
+    flex: 0 0 auto;
+    border-left: 1px solid var(--border);
+    padding-left: 10px;
+    color: var(--odkazy);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.multiplayer-opponent-score[hidden] {
+    display: none;
+}
+
+@media (max-width: 760px) {
+    .navigation-content {
+        gap: 8px;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .multiplayer-open {
+        width: 42px;
+        padding: 0;
+        font-size: 16px;
+    }
+
+    .multiplayer-open span {
+        display: none;
+    }
+
+    .multiplayer-opponent-score {
+        max-width: 92px;
+        overflow: hidden;
+        padding-left: 7px;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: normal;
+}
+
+@media (max-width: 480px) {
+    .multiplayer-dialog-content {
+        gap: 13px;
+        padding: 18px;
+    }
+
+    .multiplayer-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 40px;
+    }
+
+    .multiplayer-actions button:first-child {
+        grid-column: 1 / -1;
+    }
+}

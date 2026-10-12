@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="css/menu-hra.css" type="text/css">
         <link rel="stylesheet" href="css/mapa.css" type="text/css">
         <link rel="stylesheet" href="css/liquid-glass.css" type="text/css">
+        <link rel="stylesheet" href="css/multiplayer.css" type="text/css">
 
         <!-- FontAwesome CDN Link -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
@@ -62,8 +63,36 @@
                     <span class="theme-toggle-icon" aria-hidden="true">☾</span>
                     <span class="theme-toggle-label">Tmavý režim</span>
                 </button>
+                <button class="multiplayer-open" id="multiplayerOpen" type="button" title="Hrát s kamarádem">
+                    <i class="fa-solid fa-people-arrows-left-right" aria-hidden="true"></i>
+                    <span>HRÁT SPOLU</span>
+                </button>
+                <span id="multiplayerOpponentScore" class="multiplayer-opponent-score" hidden aria-live="polite">SOUPEŘ: -</span>
             </div>
         </header>
+
+        <dialog id="multiplayerDialog" aria-labelledby="multiplayerTitle">
+            <div class="multiplayer-dialog-content">
+                <div class="multiplayer-heading">
+                    <h2 id="multiplayerTitle">Živá hra pro dva</h2>
+                    <button id="multiplayerClose" type="button" class="multiplayer-icon-button" aria-label="Zavřít multiplayer" title="Zavřít">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <p class="multiplayer-instructions">Oba hráči musí spustit stejný mód se stejným nastavením. Vytvoř pozvánku, předej ji soupeři a vyměňte si odpověď ručně.</p>
+                <div class="multiplayer-actions">
+                    <button id="multiplayerCreate" type="button">Vytvořit pozvánku</button>
+                    <button id="multiplayerJoin" type="button">Přijmout pozvánku</button>
+                    <button id="multiplayerAnswer" type="button">Potvrdit odpověď</button>
+                    <button id="multiplayerCopy" type="button" class="multiplayer-icon-button" aria-label="Zkopírovat kód" title="Zkopírovat kód">
+                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <label for="multiplayerCode">Kód pozvánky nebo odpovědi</label>
+                <textarea id="multiplayerCode" rows="7" spellcheck="false" autocomplete="off"></textarea>
+                <p id="multiplayerStatus" role="status" aria-live="polite">Nejprve se oba připojte do stejné hry.</p>
+            </div>
+        </dialog>
 
         <article>
             <div>
@@ -127,5 +156,6 @@
         <script type="text/javascript" src="js/hra/casovac.js"></script>
         <script type="text/javascript" src="js/hra/mapa.js"></script>
         <script type="text/javascript" src="js/hra/panorama.js"></script>
+        <script type="text/javascript" src="js/hra/multiplayer.js"></script>
     </body>
 </html>

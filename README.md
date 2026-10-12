@@ -24,3 +24,7 @@ Tento fork je distribuován pod stejnou licencí **European Union Public Licence
 - `css/` - globální, herní a responzivní styly
 - `polygony/` a `specifickaMista/` - geografická data hry
 
+## Multiplayer
+
+Živou hru pro dva spustíš z herní obrazovky. Oba hráči musí otevřít stejný mód se stejným nastavením; host vytvoří pozvánku, druhý hráč ji přijme a oba si ručně předají nabídku a odpověď. Samotná hra a skóre se pak synchronizují přímým WebRTC spojením. Pro navázání spojení se používá veřejný STUN server Google; hra nepoužívá vlastní herní server.
+

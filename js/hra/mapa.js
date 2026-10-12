@@ -163,6 +163,7 @@ function zobrazPrimku()
     var skore = vypocetSkore(vzdalenost);
     celkoveSkore += skore;
     document.getElementById("celkove-skore").innerText = "CELKOVÉ SKÓRE: " + celkoveSkore;
+    window.multiplayer?.publishGuess(skore, celkoveSkore, aktualniKolo);
 
     // NASTAVENÍ PRO PŘÍMKU
     var primkaOptions = {
@@ -610,6 +611,36 @@ btnPotvrdit.addEventListener("click", function() {
             console.log("NEBYL OZNAČEN ODHAD BOD!");
         }
     }
+});
+
+window.addEventListener("multiplayerlocation", async function(event) {
+    if (window.multiplayer?.role !== "guest")
+    {
+        return;
+    }
+
+    const {lat, lng, round} = event.detail || {};
+    if (!Number.isFinite(lat) || !Number.isFinite(lng) || !Number.isInteger(round) || round < aktualniKolo || round > pocetKol)
+    {
+        return;
+    }
+
+    clearInterval(casovac);
+    cssVysledkovaMapaNaNormalni1();
+    cssZobrazTlacitkaNapoved();
+    napovedyLayer.clearLayers();
+    kruhLayer.clearLayers();
+    odstraneniBoduPrimek();
+    vysledek = false;
+    konec = false;
+    vypnout = false;
+    aktualniKolo = round;
+    document.getElementById("kolo").innerText = "KOLO: " + aktualniKolo + "/" + pocetKol;
+    souradnicePanorama = L.latLng(lat, lng);
+    document.querySelector(".loading").style.display = "flex";
+    document.querySelector(".loading .kolecko").style.display = "block";
+    document.getElementById("loadingText").textContent = "NAČÍTÁM SPOLEČNÉ KOLO, POČKEJ PROSÍM.";
+    await zobrazPanorama();
 });
 
 
