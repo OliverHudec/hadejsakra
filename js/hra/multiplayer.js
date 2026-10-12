@@ -4,16 +4,20 @@
     const code = document.getElementById("multiplayerCode");
     const createButton = document.getElementById("multiplayerCreate");
     const joinButton = document.getElementById("multiplayerJoin");
-    const answerButton = document.getElementById("multiplayerAnswer");
     const copyButton = document.getElementById("multiplayerCopy");
     const openButton = document.getElementById("multiplayerOpen");
+    const roomInvite = document.getElementById("multiplayerRoomInvite");
+    const roomCodeOutput = document.getElementById("multiplayerRoomCode");
+    const disconnectButton = document.getElementById("multiplayerDisconnect");
 
-    let connection;
+    let peer;
     let channel;
     let role;
     let messageHandler = () => {};
     let hasRemoteLocation = false;
+    let connectionTimeout;
     const opponentScore = document.getElementById("multiplayerOpponentScore");
+    const roomAlphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
     function gameSettings() {
         return {
@@ -34,55 +38,99 @@
         status.textContent = message;
     }
 
-    function waitForIceGathering() {
-        if (connection.iceGatheringState === "complete") {
-            return Promise.resolve();
-        }
+    function generateRoomCode() {
+        const bytes = new Uint8Array(6);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes, byte => roomAlphabet[byte % roomAlphabet.length]).join("");
+    }
 
+    function peerErrorMessage(error) {
+        if (error?.type === "peer-unavailable") {
+            return "Místnost s tímto kódem nebyla nalezena. Zkontroluj kód a zkus to znovu.";
+        }
+        if (["network", "server-error", "socket-error", "socket-closed"].includes(error?.type)) {
+            return "Nelze se spojit se službou místností. Zkus to za chvíli znovu.";
+        }
+        return error?.message || "Spojení se nepodařilo navázat.";
+    }
+
+    function createPeer(id) {
         return new Promise((resolve, reject) => {
-            const timeout = setTimeout(() => {
-                connection.removeEventListener("icegatheringstatechange", onStateChange);
-                reject(new Error("Přímé spojení se nepodařilo připravit. Zkus to znovu."));
-            }, 20000);
-
-            function onStateChange() {
-                if (connection.iceGatheringState === "complete") {
-                    clearTimeout(timeout);
-                    connection.removeEventListener("icegatheringstatechange", onStateChange);
-                    resolve();
-                }
+            if (typeof Peer !== "function") {
+                reject(new Error("Nepodařilo se načíst službu místností. Obnov stránku a zkus to znovu."));
+                return;
             }
 
-            connection.addEventListener("icegatheringstatechange", onStateChange);
+            const candidate = new Peer(id, {
+                host: "0.peerjs.com",
+                port: 443,
+                path: "/",
+                secure: true
+            });
+            let opened = false;
+            peer = candidate;
+            const openTimeout = setTimeout(() => {
+                if (!opened) {
+                    const error = new Error("Služba místností neodpověděla. Zkus to za chvíli znovu.");
+                    error.type = "network";
+                    candidate.destroy();
+                    if (peer === candidate) {
+                        peer = null;
+                    }
+                    reject(error);
+                }
+            }, 12000);
+
+            candidate.on("open", () => {
+                opened = true;
+                clearTimeout(openTimeout);
+                resolve(candidate);
+            });
+            candidate.on("error", error => {
+                if (!opened) {
+                    clearTimeout(openTimeout);
+                    reject(error);
+                } else {
+                    setStatus(peerErrorMessage(error));
+                }
+            });
+            candidate.on("disconnected", () => {
+                if (channel?.open) {
+                    setStatus("Hra pokračuje, obnovuje se spojení se službou místností.");
+                }
+            });
         });
     }
 
-    function createConnection() {
-        if (!window.RTCPeerConnection) {
-            throw new Error("Tento prohlížeč nepodporuje přímé spojení WebRTC.");
+    function receiveMessage(data) {
+        try {
+            const message = typeof data === "string" ? JSON.parse(data) : data;
+            if (message.type === "hello") {
+                if (JSON.stringify(message.payload.settings) !== JSON.stringify(gameSettings())) {
+                    setStatus("Nastavení hráčů se liší. Pro správné skóre spusťte stejný mód a nastavení.");
+                }
+            } else if (message.type === "location" && role === "guest") {
+                hasRemoteLocation = true;
+                window.dispatchEvent(new CustomEvent("multiplayerlocation", { detail: message.payload }));
+            } else if (message.type === "guess") {
+                opponentScore.textContent = `SOUPEŘ: ${message.payload.total}`;
+                opponentScore.title = `Kolo ${message.payload.round}: ${message.payload.score} bodů`;
+            }
+            messageHandler(message);
+        } catch (error) {
+            console.error("Neplatná zpráva multiplayeru", error);
+        }
+    }
+
+    function configureChannel(dataConnection) {
+        if (channel?.open) {
+            dataConnection.close();
+            return;
         }
 
-        closeConnection();
-        connection = new RTCPeerConnection({
-            iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
-        });
-
-        connection.addEventListener("connectionstatechange", () => {
-            if (connection.connectionState === "failed") {
-                setStatus("Přímé spojení selhalo. Zkuste to prosím znovu.");
-            } else if (connection.connectionState === "disconnected") {
-                setStatus("Spojení bylo přerušeno.");
-            }
-        });
-
-        connection.addEventListener("datachannel", event => {
-            channel = event.channel;
-            configureChannel();
-        });
-    }
-
-    function configureChannel() {
-        channel.addEventListener("open", () => {
+        channel = dataConnection;
+        channel.on("open", () => {
+            clearTimeout(connectionTimeout);
             setStatus("Hráči jsou propojeni. Čeká se na společné kolo.");
             opponentScore.hidden = false;
             opponentScore.textContent = "SOUPEŘ: PŘIPOJEN";
@@ -91,107 +139,100 @@
                 multiplayer.publishLocation(souradnicePanorama, aktualniKolo);
             }
         });
-
-        channel.addEventListener("close", () => {
+        channel.on("close", () => {
+            clearTimeout(connectionTimeout);
+            if (channel !== dataConnection) {
+                return;
+            }
+            channel = null;
             setStatus("Spojení bylo ukončeno.");
             opponentScore.hidden = true;
         });
-        channel.addEventListener("message", event => {
-            try {
-                const message = JSON.parse(event.data);
-                if (message.type === "hello") {
-                    if (JSON.stringify(message.payload.settings) !== JSON.stringify(gameSettings())) {
-                        setStatus("Nastavení hráčů se liší. Pro správné skóre spusťte stejný mód a nastavení.");
+        channel.on("error", error => setStatus(peerErrorMessage(error)));
+        channel.on("data", receiveMessage);
+    }
+
+    async function createRoom() {
+        closeConnection();
+        role = "host";
+        createButton.disabled = true;
+        roomInvite.hidden = true;
+        setStatus("Vytvářím místnost…");
+
+        try {
+            for (let attempt = 0; attempt < 8; attempt++) {
+                const roomCode = generateRoomCode();
+                try {
+                    await createPeer(roomCode);
+                    roomCodeOutput.textContent = roomCode;
+                    roomInvite.hidden = false;
+                    disconnectButton.hidden = false;
+                    peer.on("connection", configureChannel);
+                    setStatus("Místnost je připravená. Pošli soupeři tento kód.");
+                    return;
+                } catch (error) {
+                    closeConnection();
+                    if (error.type !== "unavailable-id") {
+                        throw error;
                     }
-                } else if (message.type === "location" && role === "guest") {
-                    hasRemoteLocation = true;
-                    window.dispatchEvent(new CustomEvent("multiplayerlocation", { detail: message.payload }));
-                } else if (message.type === "guess") {
-                    opponentScore.textContent = `SOUPEŘ: ${message.payload.total}`;
-                    opponentScore.title = `Kolo ${message.payload.round}: ${message.payload.score} bodů`;
                 }
-                messageHandler(message);
-            } catch (error) {
-                console.error("Neplatná zpráva multiplayeru", error);
             }
-        });
-    }
-
-    function parseCode() {
-        try {
-            const description = JSON.parse(code.value);
-            if (!description || !["offer", "answer"].includes(description.type) || typeof description.sdp !== "string") {
-                throw new Error();
-            }
-            return description;
-        } catch {
-            throw new Error("Vložený kód místnosti není platný.");
+            throw new Error("Nepodařilo se najít volný kód místnosti. Zkus to znovu.");
+        } catch (error) {
+            setStatus(peerErrorMessage(error));
+        } finally {
+            createButton.disabled = false;
         }
     }
 
-    async function createOffer() {
-        try {
-            role = "host";
-            createConnection();
-            channel = connection.createDataChannel("hadejsakra");
-            configureChannel();
-            const offer = await connection.createOffer();
-            await connection.setLocalDescription(offer);
-            setStatus("Připravuji pozvánku…");
-            await waitForIceGathering();
-            code.value = JSON.stringify(connection.localDescription);
-            setStatus("Pošli pozvánku soupeři. Jeho odpověď vlož sem a potvrď.");
-        } catch (error) {
-            setStatus(error.message);
+    async function joinRoom() {
+        const roomCode = code.value.trim().toUpperCase();
+        if (!/^[A-HJ-NP-Z2-9]{6}$/.test(roomCode)) {
+            setStatus("Zadej šestimístný kód místnosti.");
+            code.focus();
+            return;
         }
-    }
 
-    async function createAnswer() {
-        try {
-            role = "guest";
-            const offer = parseCode();
-            if (offer.type !== "offer") {
-                throw new Error("Vlož pozvánku vytvořenou hostitelem.");
-            }
-            createConnection();
-            await connection.setRemoteDescription(offer);
-            const answer = await connection.createAnswer();
-            await connection.setLocalDescription(answer);
-            setStatus("Připravuji odpověď…");
-            await waitForIceGathering();
-            code.value = JSON.stringify(connection.localDescription);
-            setStatus("Pošli tuto odpověď hostiteli a nech stránku otevřenou.");
-        } catch (error) {
-            setStatus(error.message);
-        }
-    }
+        closeConnection();
+        role = "guest";
+        joinButton.disabled = true;
+        setStatus("Připojuji se do místnosti…");
 
-    async function acceptAnswer() {
         try {
-            if (!connection || role !== "host") {
-                throw new Error("Nejprve vytvoř pozvánku jako hostitel.");
-            }
-            const answer = parseCode();
-            if (answer.type !== "answer") {
-                throw new Error("Vlož odpověď vytvořenou soupeřem.");
-            }
-            await connection.setRemoteDescription(answer);
-            setStatus("Připojuji soupeře…");
+            await createPeer();
+            channel = peer.connect(roomCode, { reliable: true, serialization: "json" });
+            configureChannel(channel);
+            disconnectButton.hidden = false;
+            connectionTimeout = setTimeout(() => {
+                if (!channel?.open) {
+                    setStatus("Místnost nebyla nalezena. Ověř kód a zkus to znovu.");
+                }
+            }, 12000);
         } catch (error) {
-            setStatus(error.message);
+            setStatus(peerErrorMessage(error));
+        } finally {
+            joinButton.disabled = false;
         }
     }
 
     function closeConnection() {
-        if (channel) {
-            channel.close();
-        }
-        if (connection) {
-            connection.close();
-        }
+        clearTimeout(connectionTimeout);
+        connectionTimeout = null;
+        const currentChannel = channel;
+        const currentPeer = peer;
         channel = null;
-        connection = null;
+        peer = null;
         hasRemoteLocation = false;
+        opponentScore.hidden = true;
+        roomInvite.hidden = true;
+        disconnectButton.hidden = true;
+
+        if (currentChannel) {
+            currentChannel.close();
+        }
+        if (currentPeer && !currentPeer.destroyed) {
+            currentPeer.destroy();
+        }
     }
 
     const multiplayer = {
@@ -199,7 +240,7 @@
             return role;
         },
         get connected() {
-            return channel?.readyState === "open";
+            return channel?.open === true;
         },
         get hasRemoteLocation() {
             return hasRemoteLocation;
@@ -208,8 +249,8 @@
             messageHandler = handler;
         },
         send(type, payload) {
-            if (channel?.readyState === "open") {
-                channel.send(JSON.stringify({ type, payload }));
+            if (channel?.open) {
+                channel.send({ type, payload });
             }
         },
         publishLocation(location, round) {
@@ -225,18 +266,30 @@
 
     window.multiplayer = multiplayer;
     openButton.addEventListener("click", () => dialog.showModal());
-    createButton.addEventListener("click", createOffer);
-    joinButton.addEventListener("click", createAnswer);
-    answerButton.addEventListener("click", acceptAnswer);
+    createButton.addEventListener("click", createRoom);
+    joinButton.addEventListener("click", joinRoom);
+    code.addEventListener("input", () => {
+        code.value = code.value.toUpperCase().replace(/[^A-HJ-NP-Z2-9]/g, "").slice(0, 6);
+    });
+    code.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+            joinRoom();
+        }
+    });
     copyButton.addEventListener("click", async () => {
         try {
-            await navigator.clipboard.writeText(code.value);
-            setStatus("Kód byl zkopírován.");
+            await navigator.clipboard.writeText(roomCodeOutput.textContent);
+            setStatus("Kód místnosti zkopírován.");
         } catch {
+            code.value = roomCodeOutput.textContent;
             code.focus();
             code.select();
-            setStatus("Kód označen. Zkopíruj ho klávesami Ctrl+C.");
+            setStatus("Kód je označený. Zkopíruj ho klávesami Ctrl+C.");
         }
+    });
+    disconnectButton.addEventListener("click", () => {
+        closeConnection();
+        setStatus("Místnost byla ukončena.");
     });
     document.getElementById("multiplayerClose").addEventListener("click", () => dialog.close());
 })();

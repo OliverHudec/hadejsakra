@@ -74,23 +74,33 @@
         <dialog id="multiplayerDialog" aria-labelledby="multiplayerTitle">
             <div class="multiplayer-dialog-content">
                 <div class="multiplayer-heading">
-                    <h2 id="multiplayerTitle">Živá hra pro dva</h2>
+                    <h2 id="multiplayerTitle">Hrát spolu</h2>
                     <button id="multiplayerClose" type="button" class="multiplayer-icon-button" aria-label="Zavřít multiplayer" title="Zavřít">
                         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                     </button>
                 </div>
-                <p class="multiplayer-instructions">Oba hráči musí spustit stejný mód se stejným nastavením. Vytvoř pozvánku, předej ji soupeři a vyměňte si odpověď ručně.</p>
-                <div class="multiplayer-actions">
-                    <button id="multiplayerCreate" type="button">Vytvořit pozvánku</button>
-                    <button id="multiplayerJoin" type="button">Přijmout pozvánku</button>
-                    <button id="multiplayerAnswer" type="button">Potvrdit odpověď</button>
-                    <button id="multiplayerCopy" type="button" class="multiplayer-icon-button" aria-label="Zkopírovat kód" title="Zkopírovat kód">
-                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
-                    </button>
+                <div class="multiplayer-room-options">
+                    <section>
+                        <h3>Vytvořit místnost</h3>
+                        <button id="multiplayerCreate" type="button">Vytvořit místnost</button>
+                        <div id="multiplayerRoomInvite" class="multiplayer-room-invite" hidden>
+                            <output id="multiplayerRoomCode" aria-label="Kód místnosti"></output>
+                            <button id="multiplayerCopy" type="button" class="multiplayer-icon-button" aria-label="Zkopírovat kód místnosti" title="Zkopírovat kód">
+                                <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </section>
+                    <section>
+                        <h3>Připojit se</h3>
+                        <label for="multiplayerCode">Kód místnosti</label>
+                        <div class="multiplayer-join-row">
+                            <input id="multiplayerCode" type="text" maxlength="6" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Zadej kód">
+                            <button id="multiplayerJoin" type="button">Připojit</button>
+                        </div>
+                    </section>
                 </div>
-                <label for="multiplayerCode">Kód pozvánky nebo odpovědi</label>
-                <textarea id="multiplayerCode" rows="7" spellcheck="false" autocomplete="off"></textarea>
-                <p id="multiplayerStatus" role="status" aria-live="polite">Nejprve se oba připojte do stejné hry.</p>
+                <p id="multiplayerStatus" role="status" aria-live="polite">Hostitel vytvoří místnost a pošle soupeři její kód.</p>
+                <button id="multiplayerDisconnect" type="button" class="multiplayer-disconnect" hidden>Ukončit místnost</button>
             </div>
         </dialog>
 
@@ -156,6 +166,7 @@
         <script type="text/javascript" src="js/hra/casovac.js"></script>
         <script type="text/javascript" src="js/hra/mapa.js"></script>
         <script type="text/javascript" src="js/hra/panorama.js"></script>
+        <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
         <script type="text/javascript" src="js/hra/multiplayer.js"></script>
     </body>
 </html>

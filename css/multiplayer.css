@@ -1,5 +1,5 @@
 .multiplayer-open,
-.multiplayer-actions button,
+.multiplayer-room-options button,
 .multiplayer-icon-button {
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -21,7 +21,7 @@
 }
 
 .multiplayer-open:hover,
-.multiplayer-actions button:hover {
+.multiplayer-room-options button:hover {
     background: var(--prvek-hover);
 }
 
@@ -65,34 +65,64 @@
     font-size: 22px;
 }
 
-.multiplayer-instructions,
-#multiplayerStatus,
-.multiplayer-opponent-score {
+#multiplayerStatus {
     color: var(--text-muted);
     font-size: 14px;
     line-height: 1.55;
 }
 
-.multiplayer-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+.multiplayer-room-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
 }
 
-.multiplayer-actions button {
+.multiplayer-room-options section {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    min-width: 0;
+}
+
+.multiplayer-room-options h3 {
+    font-size: 15px;
+}
+
+.multiplayer-room-options button {
     min-height: 40px;
     padding: 0 12px;
-    background: var(--pozadi-prvku);
-    color: var(--text);
+    background: var(--prvek);
+    color: #101a1d;
     font-size: 13px;
     font-weight: 600;
 }
 
-.multiplayer-actions button:hover {
-    color: #101a1d;
+.multiplayer-room-invite[hidden],
+.multiplayer-disconnect[hidden] {
+    display: none;
 }
 
-.multiplayer-actions .multiplayer-icon-button,
+.multiplayer-room-invite {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 40px;
+    align-items: center;
+    gap: 8px;
+}
+
+#multiplayerRoomCode {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 7px 4px;
+    background: var(--pozadi-menu);
+    color: var(--odkazy);
+    font-family: monospace;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.multiplayer-room-options .multiplayer-icon-button,
 .multiplayer-heading .multiplayer-icon-button {
     display: inline-grid;
     flex: 0 0 40px;
@@ -104,27 +134,33 @@
     font-size: 16px;
 }
 
-.multiplayer-dialog-content label {
-    margin-bottom: -10px;
+.multiplayer-room-options label {
     font-size: 13px;
     font-weight: 600;
 }
 
 #multiplayerCode {
     width: 100%;
-    min-height: 128px;
-    resize: vertical;
+    min-width: 0;
+    height: 40px;
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 10px;
+    padding: 0 9px;
     background: var(--pozadi-menu);
     color: var(--text);
-    font: 12px/1.5 monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.multiplayer-join-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
 }
 
 #multiplayerCode:focus-visible,
 .multiplayer-open:focus-visible,
-.multiplayer-actions button:focus-visible,
+.multiplayer-room-options button:focus-visible,
 .multiplayer-icon-button:focus-visible {
     outline: 2px solid var(--odkazy);
     outline-offset: 2px;
@@ -138,6 +174,17 @@
     font-size: 11px;
     font-weight: 700;
     white-space: nowrap;
+}
+
+.multiplayer-disconnect {
+    justify-self: start;
+    min-height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0 10px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
 }
 
 .multiplayer-opponent-score[hidden] {
@@ -168,6 +215,7 @@
         text-align: center;
         text-overflow: ellipsis;
         white-space: normal;
+    }
 }
 
 @media (max-width: 480px) {
@@ -176,12 +224,8 @@
         padding: 18px;
     }
 
-    .multiplayer-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr 40px;
-    }
-
-    .multiplayer-actions button:first-child {
-        grid-column: 1 / -1;
+    .multiplayer-room-options {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }

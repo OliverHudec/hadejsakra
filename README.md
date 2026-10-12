@@ -26,5 +26,5 @@ Tento fork je distribuován pod stejnou licencí **European Union Public Licence
 
 ## Multiplayer
 
-Živou hru pro dva spustíš z herní obrazovky. Oba hráči musí otevřít stejný mód se stejným nastavením; host vytvoří pozvánku, druhý hráč ji přijme a oba si ručně předají nabídku a odpověď. Samotná hra a skóre se pak synchronizují přímým WebRTC spojením. Pro navázání spojení se používá veřejný STUN server Google; hra nepoužívá vlastní herní server.
+Živou hru pro dva spustíš z herní obrazovky. Host vytvoří místnost a předá soupeři její šestimístný kód. Hráči musí otevřít stejný mód se stejným nastavením. Pro signalizaci se používá PeerJS cloud služba; hra samotná a skóre se synchronizují přímým WebRTC spojením. Vlastní server není potřeba, takže multiplayer funguje i při hostování přes GitHub Pages.
 
