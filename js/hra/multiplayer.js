@@ -483,11 +483,14 @@
     document.getElementById("multiplayerClose").addEventListener("click", () => dialog.close());
     window.addEventListener("load", () => {
         setStatus("Nejdřív zvol sólo hru nebo vytvoř místnost a pozvi druhého hráče.");
-        dialog.showModal();
         if (role === "host") {
+            dialog.showModal();
             createRoom();
         } else if (role === "guest" && sessionStorage.getItem("multiplayerRoomCode")) {
+            dialog.showModal();
             joinRoom();
+        } else {
+            startGame("solo");
         }
     }, { once: true });
 })();

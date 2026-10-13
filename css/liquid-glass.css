@@ -439,20 +439,20 @@ body.stats-page #statistiky .grid > div {
     padding: 20px 18px;
     border: 1px solid var(--glass-edge);
     border-radius: 8px;
-    background: var(--glass-fill);
+    background: var(--site-surface, var(--glass-fill));
     box-shadow: var(--glass-shadow);
     backdrop-filter: blur(22px) saturate(145%);
     -webkit-backdrop-filter: blur(22px) saturate(145%);
 }
 
 body.stats-page #statistiky .grid .statistika {
-    color: var(--text);
+    color: var(--site-text, var(--text));
     font-size: 32px;
     font-weight: 600;
 }
 
 body.stats-page #statistiky .grid .statistika-text {
-    color: var(--text-muted);
+    color: var(--site-muted, var(--text-muted));
     font-size: 12px;
     font-weight: 600;
 }
@@ -759,9 +759,12 @@ html[data-theme="dark"] body.home-page #herniMody .herniMod p {
 }
 
 html[data-theme="dark"] body.stats-page #statistiky .grid .statistika,
-html[data-theme="dark"] body.stats-page #statistiky .grid .statistika-text,
 html[data-theme="dark"] body.stats-page #historie h2 {
-    color: var(--text);
+    color: var(--site-text, var(--text));
+}
+
+html[data-theme="dark"] body.stats-page #statistiky .grid .statistika-text {
+    color: var(--site-muted, var(--text-muted));
 }
 
 html[data-theme="dark"] body:not(.game-page) .theme-toggle {
